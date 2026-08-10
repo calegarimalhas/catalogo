@@ -362,6 +362,11 @@ const catalogo = {
             "image": "estampas/Infantil/FTI-026.png",
             "thumb": "estampas/Infantil/FTI-026.png"
         }
+        {
+            "id": "FTI-027",
+            "image": "estampas/Infantil/FTI-027.png",
+            "thumb": "estampas/Infantil/FTI-027.png"
+        }
     ],
     "Silkscreen": [
         {
