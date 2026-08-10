@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo - Calegari Malhas</title>
+    <title>Pedidos - Calegari Malhas</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <!-- Ícones -->
@@ -13,8 +13,11 @@
 <body>
     <header>
         <div class="header-content">
-            <h1>Calegari Malhas <span style="font-size: 0.5em; font-weight: 400; opacity: 0.8;">(Mostruário Digital)</span></h1>
-            <!-- Ícone de carrinho foi removido para a versão estática -->
+            <h1>Calegari Malhas</h1>
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span id="cart-count">0</span>
+            </div>
         </div>
         <nav id="tabs-container">
             <!-- As abas serão geradas via JS -->
@@ -27,57 +30,170 @@
 
     <!-- Modal do Produto -->
     <div id="product-modal" class="modal">
-        <div class="modal-content" style="max-width: 500px;"> <!-- Menor pois não tem os seletores -->
+        <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <div class="modal-body" style="flex-direction: column;"> <!-- Para empilhar imagem e código -->
-                <div class="image-wrapper" style="width: 100%; border-right: none;">
-                    <img id="modal-image" src="" alt="Estampa" style="width: 100%;">
+            <div class="modal-body">
+                <div class="image-wrapper">
+                    <img id="modal-image" src="" alt="Estampa">
                     <video id="modal-video" src="" autoplay loop muted playsinline style="display: none; width: 100%; border-radius: 12px;"></video>
                 </div>
-                <div class="product-info" style="width: 100%; padding: 20px 0 0 0; text-align: center;">
-                    <h2 id="modal-title" style="font-size: 2em; margin: 0;">Código</h2>
-                    <p style="color: #666; margin-top: 10px; margin-bottom: 10px;">Anote este código e as especificações de cores/tamanhos para enviar seu pedido.</p>
+                <div class="product-info">
+                    <h2 id="modal-title">Código</h2>
                     
-                    <!-- Informação visual de cores disponíveis (Estático e sem seleção) -->
-                    <div id="info-cores-container" style="display: none; justify-content: center; align-items: flex-start; gap: 30px; flex-wrap: wrap; margin-top: 20px;">
-                        
-                        <div id="info-cores-infantil" style="display: none; flex-direction: column; align-items: center;">
-                            <span style="font-weight: 600; font-size: 0.9em; color: var(--text-light); margin-bottom: 8px;">Cores de Camisa Disponíveis:</span>
-                            <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
-                                <span class="color-btn" style="background: white; border-color: #ddd; padding: 4px 10px; font-size: 0.8em; cursor: default;">Branco</span>
-                                <span class="color-btn" style="background: #40e0d0; color: white; border-color: transparent; padding: 4px 10px; font-size: 0.8em; cursor: default;">Azul Turquesa</span>
-                                <span class="color-btn" style="background: #ffb6c1; color: white; border-color: transparent; padding: 4px 10px; font-size: 0.8em; cursor: default;">Rosa Chiclete</span>
-                            </div>
+                    <div id="strass-selector-container" class="variant-selector" style="display: none;">
+                        <h3>Acabamento:</h3>
+                        <div class="variant-options">
+                            <label class="variant-option">
+                                <input type="radio" name="strass-option" value="Com Pedrinha" checked>
+                                <span class="variant-btn">
+                                    <img src="strass.png" alt="Strass" class="strass-icon" onerror="this.style.display='none'">
+                                    Com Pedrinha
+                                </span>
+                            </label>
+                            <label class="variant-option">
+                                <input type="radio" name="strass-option" value="Sem Pedrinha">
+                                <span class="variant-btn">Sem Pedrinha</span>
+                            </label>
                         </div>
-
-                        <div id="info-cores-silkscreen" style="display: none; flex-direction: column; align-items: center;">
-                            <span style="font-weight: 600; font-size: 0.9em; color: var(--text-light); margin-bottom: 8px;">Cores de Camisa Disponíveis:</span>
-                            <div style="display: flex; gap: 8px;">
-                                <span class="color-square" style="background: black; width: 25px; height: 25px; cursor: default;" title="Preta"></span>
-                                <span class="color-square" style="background: #e30000; width: 25px; height: 25px; cursor: default;" title="Vermelha"></span>
-                                <span class="color-square" style="background: #2b53a3; width: 25px; height: 25px; cursor: default;" title="Azul Royal"></span>
-                                <span class="color-square" style="background: #000080; width: 25px; height: 25px; cursor: default;" title="Azul Marinho"></span>
-                            </div>
-                        </div>
-
-                        <div id="info-estampa-silkscreen" style="display: none; flex-direction: column; align-items: center;">
-                            <span style="font-weight: 600; font-size: 0.9em; color: var(--text-light); margin-bottom: 8px;">Cores de Estampa Disponíveis:</span>
-                            <div style="display: flex; gap: 10px;">
-                                <img src="tintabranca.png" style="width: 30px; height: 30px; border-radius: 50%; object-fit: contain; border: 1px solid #ddd;" title="Branca">
-                                <img src="tintadourada.png" style="width: 30px; height: 30px; border-radius: 50%; object-fit: contain; border: 1px solid #ddd;" title="Dourada">
-                                <img src="tintaprata.png" style="width: 30px; height: 30px; border-radius: 50%; object-fit: contain; border: 1px solid #ddd;" title="Prata">
-                            </div>
-                        </div>
-                        
                     </div>
+                    
+                    <div id="color-selector-container" class="variant-selector" style="display: none;">
+                        <h3>Cor da Camisa:</h3>
+                        
+                        <!-- Cores Sublimação Infantil -->
+                        <div id="color-options-infantil" class="color-options" style="display: none;">
+                            <label class="color-option">
+                                <input type="radio" name="color-option" value="Branco" checked>
+                                <span class="color-btn" style="background: white; border-color: #ddd;">Branco</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option" value="Azul Turquesa">
+                                <span class="color-btn" style="background: #40e0d0; color: white;">Azul Turquesa</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option" value="Rosa Chiclete">
+                                <span class="color-btn" style="background: #ffb6c1; color: white;">Rosa Chiclete</span>
+                            </label>
+                        </div>
+                        
+                        <!-- Cores Silkscreen (Quadrados) -->
+                        <div id="color-options-silkscreen" class="color-options" style="display: none;">
+                            <label class="color-option">
+                                <input type="radio" name="color-option-silk" value="Preta" checked>
+                                <span class="color-square" style="background: black;" title="Preta"></span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-silk" value="Vermelha">
+                                <span class="color-square" style="background: #e30000;" title="Vermelha"></span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-silk" value="Azul Royal">
+                                <span class="color-square" style="background: #2b53a3;" title="Azul Royal"></span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-silk" value="Azul Marinho">
+                                <span class="color-square" style="background: #000080;" title="Azul Marinho"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div id="print-color-selector-container" class="variant-selector" style="display: none;">
+                        <h3>Cor da Estampa:</h3>
+                        <div class="print-color-options">
+                            <label class="print-color-option">
+                                <input type="radio" name="print-color-option" value="Branca" checked>
+                                <img src="tintabranca.png" alt="Branca" class="print-color-img">
+                            </label>
+                            <label class="print-color-option">
+                                <input type="radio" name="print-color-option" value="Dourada">
+                                <img src="tintadourada.png" alt="Dourada" class="print-color-img">
+                            </label>
+                            <label class="print-color-option">
+                                <input type="radio" name="print-color-option" value="Prata">
+                                <img src="tintaprata.png" alt="Prata" class="print-color-img">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="size-selector">
+                        <h3>Tamanhos (Quantidade):</h3>
+                        <div class="sizes-grid">
+                            <div class="size-input-group" id="group-size-pp">
+                                <label for="size-pp">PP</label>
+                                <div class="number-control">
+                                    <button type="button" onclick="changeQty('size-pp', -1)">-</button>
+                                    <input type="number" id="size-pp" min="0" value="0">
+                                    <button type="button" onclick="changeQty('size-pp', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="size-input-group">
+                                <label for="size-p">P</label>
+                                <div class="number-control">
+                                    <button type="button" onclick="changeQty('size-p', -1)">-</button>
+                                    <input type="number" id="size-p" min="0" value="0">
+                                    <button type="button" onclick="changeQty('size-p', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="size-input-group">
+                                <label for="size-m">M</label>
+                                <div class="number-control">
+                                    <button type="button" onclick="changeQty('size-m', -1)">-</button>
+                                    <input type="number" id="size-m" min="0" value="0">
+                                    <button type="button" onclick="changeQty('size-m', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="size-input-group">
+                                <label for="size-g">G</label>
+                                <div class="number-control">
+                                    <button type="button" onclick="changeQty('size-g', -1)">-</button>
+                                    <input type="number" id="size-g" min="0" value="0">
+                                    <button type="button" onclick="changeQty('size-g', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="size-input-group">
+                                <label for="size-gg">GG</label>
+                                <div class="number-control">
+                                    <button type="button" onclick="changeQty('size-gg', -1)">-</button>
+                                    <input type="number" id="size-gg" min="0" value="0">
+                                    <button type="button" onclick="changeQty('size-gg', 1)">+</button>
+                                </div>
+                            </div>
+                            <div class="size-input-group" id="group-size-xg">
+                                <label for="size-xg">XG</label>
+                                <div class="number-control">
+                                    <button type="button" onclick="changeQty('size-xg', -1)">-</button>
+                                    <input type="number" id="size-xg" min="0" value="0">
+                                    <button type="button" onclick="changeQty('size-xg', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="add-to-cart-btn" onclick="addToCart()">Adicionar ao Pedido</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Carrinho e botões de checkout foram removidos para a versão estática -->
+    <!-- Carrinho Lateral (Drawer) -->
+    <div id="cart-drawer" class="cart-drawer">
+        <div class="cart-header">
+            <h2>Seu Pedido</h2>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items">
+            <!-- Itens do carrinho -->
+            <div class="empty-cart-message">Seu carrinho está vazio.</div>
+        </div>
+        <div class="cart-footer">
+            <button class="checkout-btn" onclick="checkout()" id="checkout-btn" disabled>
+                <i class="fab fa-whatsapp"></i> Enviar Pedido
+            </button>
+        </div>
+    </div>
+    <div id="cart-overlay" class="cart-overlay" onclick="toggleCart()"></div>
 
     <script src="dados.js"></script>
-    <script src="catalogo.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
