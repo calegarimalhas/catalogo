@@ -255,15 +255,37 @@ function addToCart() {
         return;
     }
     
-    // Captura variante (Strass) se aplicÃ¡vel
+    // Captura Variação (Nova Lógica de array)
+    let variationSelection = '';
+    let selectedImage = currentProduct.image; // default image
+    
+    const variationContainer = document.getElementById('variation-selector-container');
+    if (variationContainer && variationContainer.style.display !== 'none') {
+        const selectedRadio = document.querySelector('input[name="variation-option"]:checked');
+        if (selectedRadio) {
+            variationSelection = selectedRadio.value;
+            // Acha a imagem correspondente
+            if (currentProduct.variations) {
+                const vari = currentProduct.variations.find(v => v.name === variationSelection);
+                if(vari) selectedImage = vari.image;
+            }
+        }
+    }
+    
+    // Captura variante (Strass) legado se aplicável (para categorias sem 'Selo')
     let strassSelection = '';
     const strassContainer = document.getElementById('strass-selector-container');
-    if (strassContainer.style.display !== 'none') {
+    if (strassContainer && strassContainer.style.display !== 'none') {
         const selectedRadio = document.querySelector('input[name="strass-option"]:checked');
         if (selectedRadio) {
             strassSelection = selectedRadio.value;
+            // Imagem do strass legado
+            selectedImage = currentProduct[strassSelection === 'Com Pedrinha' ? 'strass_image' : 'image'];
         }
     }
+    
+    // Mescla as seleções para o carrinho
+    const finalVariant = variationSelection || strassSelection;
     
     // Captura cor da camisa se aplicÃ¡vel
     let colorSelection = '';
@@ -289,7 +311,7 @@ function addToCart() {
     // Verifica se jÃ¡ tem esse produto no carrinho (considerando a variante e a cor)
     const existingItemIndex = cart.findIndex(item => 
         item.id === currentProduct.id && 
-        item.variant === strassSelection && 
+        item.variant === finalVariant && 
         item.color === colorSelection &&
         item.printColor === printColorSelection
     );
@@ -310,7 +332,7 @@ function addToCart() {
             image: selectedImage,
             thumb: currentProduct.thumb,
             category: currentCategory,
-            variant: strassSelection,
+            variant: finalVariant,
             color: colorSelection,
             printColor: printColorSelection,
             sizes: sizes
