@@ -1,9 +1,9 @@
-// Estado da Aplicação
+// Estado da AplicaÃ§Ã£o
 let currentCategory = '';
 let cart = [];
 const WHATSAPP_NUMBER = '5512991431935'; 
 
-// Configurações de Variantes (Strass)
+// ConfiguraÃ§Ãµes de Variantes (Strass)
 const strassCategories = ['Infantil', 'Baby Look', 'estampas/Infantil', 'estampas/Baby Look'];
 const noStrassItems = ['FTI-002', 'FTI-004', 'FTI-009', 'FTI-015'];
 const sublimacaoInfantilStrassIds = ['0001', '0002', '0003', '0004', '0005', '0006', '0008', '0009', '0010', '0012', '0013', '0014', '0015', '0016', '0017', '0018', '0020', '0024', '0029', '0034', '0035', '0036'];
@@ -16,9 +16,9 @@ const cartItems = document.getElementById('cart-items');
 const checkoutBtn = document.getElementById('checkout-btn');
 const emptyCartMsg = document.querySelector('.empty-cart-message');
 
-// Inicialização
+// InicializaÃ§Ã£o
 document.addEventListener('DOMContentLoaded', () => {
-    // catalogo é carregado do dados.js
+    // catalogo Ã© carregado do dados.js
     if (typeof catalogo === 'undefined' || Object.keys(catalogo).length === 0) {
         catalogContainer.innerHTML = '<p style="text-align:center;width:100%;padding:50px;">Nenhuma estampa encontrada. Execute o gerador_dados.py</p>';
         return;
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCartUI();
 });
 
-// Renderização das Abas
+// RenderizaÃ§Ã£o das Abas
 function renderTabs(categories) {
     tabsContainer.innerHTML = '';
     categories.forEach(cat => {
@@ -49,7 +49,7 @@ function renderTabs(categories) {
     });
 }
 
-// Renderização do Catálogo
+// RenderizaÃ§Ã£o do CatÃ¡logo
 function renderCatalog(category) {
     catalogContainer.innerHTML = '';
     const items = catalogo[category];
@@ -67,38 +67,78 @@ function renderCatalog(category) {
     });
 }
 
-// Lógica do Modal de Produto
+// LÃ³gica do Modal de Produto
 let currentProduct = null;
 
 function openModal(item) {
     currentProduct = item;
     const modal = document.getElementById('product-modal');
     
-    // Configura Imagem ou Vídeo no Modal
+    // Configura Imagem ou VÃ­deo no Modal
     const imgEl = document.getElementById('modal-image');
     const videoEl = document.getElementById('modal-video');
     
-    if (item.image.toLowerCase().endsWith('.mp4')) {
-        imgEl.style.display = 'none';
-        videoEl.style.display = 'block';
-        videoEl.src = item.image;
-        videoEl.playbackRate = 2.5; // Acelera o video para transicoes mais dinamicas
-    } else {
-        videoEl.style.display = 'none';
-        videoEl.src = '';
-        imgEl.style.display = 'block';
-        imgEl.src = item.image;
+    // Lógica das Variações (Videos/Strass Dinâmico)
+    const variationContainer = document.getElementById('variation-selector-container');
+    const variationOptions = document.getElementById('variation-options');
+    
+    // Função local para atualizar a mídia
+    function updateMedia(mediaUrl) {
+        if (mediaUrl.toLowerCase().endsWith('.mp4')) {
+            imgEl.style.display = 'none';
+            videoEl.style.display = 'block';
+            videoEl.src = mediaUrl;
+            videoEl.playbackRate = 2.5;
+        } else {
+            videoEl.style.display = 'none';
+            videoEl.src = '';
+            imgEl.style.display = 'block';
+            imgEl.src = mediaUrl;
+        }
     }
+    
+    if (item.variations && item.variations.length > 1) {
+        variationContainer.style.display = 'block';
+        variationOptions.innerHTML = '';
+        
+        item.variations.forEach((vari, index) => {
+            const label = document.createElement('label');
+            label.className = 'variant-option';
+            
+            const isChecked = index === 0 ? 'checked' : '';
+            
+            label.innerHTML = `
+                <input type="radio" name="variation-option" value="${vari.name}" ${isChecked}>
+                <span class="variant-btn">${vari.name}</span>
+            `;
+            
+            // Event listener para trocar video na hora
+            label.querySelector('input').addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    updateMedia(vari.image);
+                }
+            });
+            
+            variationOptions.appendChild(label);
+        });
+        
+        // Exibe o primeiro por padrão
+        updateMedia(item.variations[0].image);
+    } else {
+        variationContainer.style.display = 'none';
+        updateMedia(item.image);
+    }
+
     
     document.getElementById('modal-title').innerText = item.id;
     
-    // Lógica do Strass
+    // LÃ³gica do Strass
     const strassContainer = document.getElementById('strass-selector-container');
     let hasStrass = false;
     
-    if (strassCategories.some(c => currentCategory.includes(c)) && !noStrassItems.includes(item.id)) {
+    if (strassCategories.some(c => currentCategory.includes(c)) && !currentCategory.includes('Selo') && !noStrassItems.includes(item.id)) {
         hasStrass = true;
-    } else if (currentCategory === 'Sublimação Infantil' && sublimacaoInfantilStrassIds.includes(item.id)) {
+    } else if ((currentCategory === 'SublimaÃ§Ã£o Infantil' || currentCategory === 'Sublimação Infantil') && sublimacaoInfantilStrassIds.includes(item.id)) {
         hasStrass = true;
     }
     
@@ -113,22 +153,36 @@ function openModal(item) {
     const colorContainer = document.getElementById('color-selector-container');
     const colorInfantil = document.getElementById('color-options-infantil');
     const colorSilkscreen = document.getElementById('color-options-silkscreen');
+    const colorInfantilSelo = document.getElementById('color-options-infantil-selo');
+    const colorBabylookSelo = document.getElementById('color-options-babylook-selo');
     
-    if (currentCategory === 'Sublimação Infantil') {
+    // Esconde todos inicialmente
+    if(colorInfantil) colorInfantil.style.display = 'none';
+    if(colorSilkscreen) colorSilkscreen.style.display = 'none';
+    if(colorInfantilSelo) colorInfantilSelo.style.display = 'none';
+    if(colorBabylookSelo) colorBabylookSelo.style.display = 'none';
+    
+    if (currentCategory === 'SublimaÃ§Ã£o Infantil' || currentCategory === 'Sublimação Infantil') {
         colorContainer.style.display = 'block';
-        colorInfantil.style.display = 'flex';
-        colorSilkscreen.style.display = 'none';
+        if(colorInfantil) colorInfantil.style.display = 'flex';
         document.querySelector('input[name="color-option"][value="Branco"]').checked = true;
     } else if (currentCategory === 'Silkscreen') {
         colorContainer.style.display = 'block';
-        colorSilkscreen.style.display = 'flex';
-        colorInfantil.style.display = 'none';
+        if(colorSilkscreen) colorSilkscreen.style.display = 'flex';
         document.querySelector('input[name="color-option-silk"][value="Preta"]').checked = true;
+    } else if (currentCategory === 'Viscolycra Infantil Selo') {
+        colorContainer.style.display = 'block';
+        if(colorInfantilSelo) colorInfantilSelo.style.display = 'flex';
+        document.querySelector('#color-options-infantil-selo input[name="color-option"][value="Preta"]').checked = true;
+    } else if (currentCategory === 'Baby Look Selo') {
+        colorContainer.style.display = 'block';
+        if(colorBabylookSelo) colorBabylookSelo.style.display = 'flex';
+        document.querySelector('#color-options-babylook-selo input[name="color-option"][value="Preta"]').checked = true;
     } else {
         colorContainer.style.display = 'none';
     }
     
-    // Lógica da Cor da Estampa (Print Color)
+    // LÃ³gica da Cor da Estampa (Print Color)
     const printColorContainer = document.getElementById('print-color-selector-container');
     if (currentCategory === 'Silkscreen') {
         printColorContainer.style.display = 'block';
@@ -142,15 +196,7 @@ function openModal(item) {
         document.getElementById(id).value = '0';
     });
     
-    // Mostra o tamanho PP apenas para Sublimação Infantil (ou adicione outras se precisar)
-    const ppContainer = document.getElementById('group-size-pp');
-    if (currentCategory === 'Sublimação Infantil') {
-        ppContainer.style.display = 'flex';
-    } else {
-        ppContainer.style.display = 'none';
-    }
-    
-    // Mostra o tamanho XG apenas para Baby Look (se desejar ocultar para outras abas futuramente, a lógica fica aqui)
+    // Mostra o tamanho XG apenas para Baby Look
     const xgContainer = document.getElementById('group-size-xg');
     if (currentCategory.includes('Baby Look')) {
         xgContainer.style.display = 'flex';
@@ -158,6 +204,13 @@ function openModal(item) {
         xgContainer.style.display = 'none';
     }
     
+    // Atualiza PP para categorias Infantis
+    const ppContainer = document.getElementById('group-size-pp');
+    if (currentCategory.includes('Infantil')) {
+        ppContainer.style.display = 'flex';
+    } else {
+        ppContainer.style.display = 'none';
+    }
     modal.style.display = 'flex';
 }
 
@@ -182,7 +235,7 @@ window.onclick = function(event) {
     }
 }
 
-// Lógica do Carrinho
+// LÃ³gica do Carrinho
 function addToCart() {
     if (!currentProduct) return;
     
@@ -202,7 +255,7 @@ function addToCart() {
         return;
     }
     
-    // Captura variante (Strass) se aplicável
+    // Captura variante (Strass) se aplicÃ¡vel
     let strassSelection = '';
     const strassContainer = document.getElementById('strass-selector-container');
     if (strassContainer.style.display !== 'none') {
@@ -212,7 +265,7 @@ function addToCart() {
         }
     }
     
-    // Captura cor da camisa se aplicável
+    // Captura cor da camisa se aplicÃ¡vel
     let colorSelection = '';
     const colorContainer = document.getElementById('color-selector-container');
     if (colorContainer.style.display !== 'none') {
@@ -225,7 +278,7 @@ function addToCart() {
         }
     }
     
-    // Captura cor da estampa se aplicável
+    // Captura cor da estampa se aplicÃ¡vel
     let printColorSelection = '';
     const printColorContainer = document.getElementById('print-color-selector-container');
     if (printColorContainer.style.display !== 'none') {
@@ -233,7 +286,7 @@ function addToCart() {
         if (selectedPrintColor) printColorSelection = selectedPrintColor.value;
     }
     
-    // Verifica se já tem esse produto no carrinho (considerando a variante e a cor)
+    // Verifica se jÃ¡ tem esse produto no carrinho (considerando a variante e a cor)
     const existingItemIndex = cart.findIndex(item => 
         item.id === currentProduct.id && 
         item.variant === strassSelection && 
@@ -254,7 +307,7 @@ function addToCart() {
         // Adiciona novo
         cart.push({
             id: currentProduct.id,
-            image: currentProduct.image,
+            image: selectedImage,
             thumb: currentProduct.thumb,
             category: currentCategory,
             variant: strassSelection,
@@ -267,7 +320,7 @@ function addToCart() {
     closeModal();
     updateCartUI();
     
-    // Feedback visual (abre a gaveta do carrinho brevemente ou mostra notificação)
+    // Feedback visual (abre a gaveta do carrinho brevemente ou mostra notificaÃ§Ã£o)
     toggleCart();
 }
 
@@ -300,7 +353,7 @@ function updateCartUI() {
     const cartItemsContainer = document.getElementById('cart-items');
     
     if (cart.length === 0) {
-        cartItemsContainer.innerHTML = '<div class="empty-cart-message">Seu carrinho está vazio.</div>';
+        cartItemsContainer.innerHTML = '<div class="empty-cart-message">Seu carrinho estÃ¡ vazio.</div>';
         checkoutBtn.disabled = true;
         return;
     }
@@ -339,11 +392,11 @@ function updateCartUI() {
     });
 }
 
-// Finalização (WhatsApp)
+// FinalizaÃ§Ã£o (WhatsApp)
 function checkout() {
     if (cart.length === 0) return;
     
-    let text = "*Novo Pedido - Calegari Malhas* 🛍️\n\n";
+    let text = "*Novo Pedido - Calegari Malhas* ðŸ›ï¸\n\n";
     
     // Agrupa os itens do carrinho por categoria (Aba)
     const groupedCart = {};
@@ -354,7 +407,7 @@ function checkout() {
         groupedCart[item.category].push(item);
     });
     
-    // Constrói a mensagem segmentada
+    // ConstrÃ³i a mensagem segmentada
     for (const [category, items] of Object.entries(groupedCart)) {
         text += `*--- ${category.toUpperCase()} ---*\n`;
         
@@ -374,10 +427,11 @@ function checkout() {
         });
     }
     
-    text += "_Pedido gerado pelo Catálogo Digital_";
+    text += "_Pedido gerado pelo CatÃ¡logo Digital_";
     
     const encodedText = encodeURIComponent(text);
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedText}`;
     
     window.open(whatsappUrl, '_blank');
 }
+

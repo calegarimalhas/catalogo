@@ -9,6 +9,14 @@
     <link rel="canonical" href="https://calegariestampas.com.br/">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Metadados de Compartilhamento (Open Graph - WhatsApp, Facebook, etc) -->
+    <meta property="og:title" content="Catálogo Digital - Calegari Malhas">
+    <meta property="og:description" content="Confira nosso catálogo completo de estampas: Baby Look, Strass, Sublimação Infantil e Silkscreen. Faça seu pedido online!">
+    <meta property="og:image" content="https://calegariestampas.com.br/preview.jpg">
+    <meta property="og:url" content="https://calegariestampas.com.br/">
+    <meta property="og:type" content="website">
+    
     <!-- Ícones -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
@@ -60,6 +68,13 @@
                         </div>
                     </div>
                     
+                    <div id="variation-selector-container" class="variant-selector" style="display: none;">
+                        <h3>Variação:</h3>
+                        <div id="variation-options" class="variant-options">
+                            <!-- Injetado via JS -->
+                        </div>
+                    </div>
+                    
                     <div id="color-selector-container" class="variant-selector" style="display: none;">
                         <h3>Cor da Camisa:</h3>
                         
@@ -76,6 +91,54 @@
                             <label class="color-option">
                                 <input type="radio" name="color-option" value="Rosa Chiclete">
                                 <span class="color-btn" style="background: #ffb6c1; color: white;">Rosa Chiclete</span>
+                            </label>
+                        </div>
+                        
+                        <!-- Cores Sublimação Infantil Selo -->
+                        <div id="color-options-infantil-selo" class="color-options" style="display: none;">
+                            <label class="color-option">
+                                <input type="radio" name="color-option" value="Preta" checked>
+                                <span class="color-btn" style="background: black; color: white;">Preta</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option" value="Rosa">
+                                <span class="color-btn" style="background: #ffc0cb; color: black;">Rosa</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option" value="Marinho">
+                                <span class="color-btn" style="background: #000080; color: white;">Marinho</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option" value="Vinho">
+                                <span class="color-btn" style="background: #722f37; color: white;">Vinho</span>
+                            </label>
+                        </div>
+                        
+                        <!-- Cores Baby Look Selo -->
+                        <div id="color-options-babylook-selo" class="color-options" style="display: none;">
+                            <label class="color-option">
+                                <input type="radio" name="color-option" value="Preta" checked>
+                                <span class="color-btn" style="background: black; color: white;">Preta</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option" value="Branca">
+                                <span class="color-btn" style="background: white; border-color: #ddd;">Branca</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option" value="Mescla">
+                                <span class="color-btn" style="background: #a9a9a9; color: white;">Mescla</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option" value="Marinho">
+                                <span class="color-btn" style="background: #000080; color: white;">Marinho</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option" value="Pink">
+                                <span class="color-btn" style="background: #ff1493; color: white;">Pink</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option" value="Vinho">
+                                <span class="color-btn" style="background: #722f37; color: white;">Vinho</span>
                             </label>
                         </div>
                         
