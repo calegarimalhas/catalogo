@@ -49,7 +49,7 @@ function renderTabs(categories) {
     });
 }
 
-// RenderizaÃ§Ã£o do CatÃ¡logo
+// RenderizaÃ§Ã£o do Catálogo
 function renderCatalog(category) {
     catalogContainer.innerHTML = '';
     const items = catalogo[category];
@@ -67,7 +67,7 @@ function renderCatalog(category) {
     });
 }
 
-// LÃ³gica do Modal de Produto
+// Lógica do Modal de Produto
 let currentProduct = null;
 
 function openModal(item) {
@@ -132,7 +132,7 @@ function openModal(item) {
     
     document.getElementById('modal-title').innerText = item.id;
     
-    // LÃ³gica do Strass
+    // Lógica do Strass
     const strassContainer = document.getElementById('strass-selector-container');
     let hasStrass = false;
     
@@ -182,7 +182,7 @@ function openModal(item) {
         colorContainer.style.display = 'none';
     }
     
-    // LÃ³gica da Cor da Estampa (Print Color)
+    // Lógica da Cor da Estampa (Print Color)
     const printColorContainer = document.getElementById('print-color-selector-container');
     if (currentCategory === 'Silkscreen') {
         printColorContainer.style.display = 'block';
@@ -235,7 +235,7 @@ window.onclick = function(event) {
     }
 }
 
-// LÃ³gica do Carrinho
+// Lógica do Carrinho
 function addToCart() {
     if (!currentProduct) return;
     
@@ -287,7 +287,7 @@ function addToCart() {
     // Mescla as seleções para o carrinho
     const finalVariant = variationSelection || strassSelection;
     
-    // Captura cor da camisa se aplicÃ¡vel
+    // Captura cor da camisa se aplicável
     let colorSelection = '';
     const colorContainer = document.getElementById('color-selector-container');
     if (colorContainer.style.display !== 'none') {
@@ -300,7 +300,7 @@ function addToCart() {
         }
     }
     
-    // Captura cor da estampa se aplicÃ¡vel
+    // Captura cor da estampa se aplicável
     let printColorSelection = '';
     const printColorContainer = document.getElementById('print-color-selector-container');
     if (printColorContainer.style.display !== 'none') {
@@ -308,7 +308,7 @@ function addToCart() {
         if (selectedPrintColor) printColorSelection = selectedPrintColor.value;
     }
     
-    // Verifica se jÃ¡ tem esse produto no carrinho (considerando a variante e a cor)
+    // Verifica se já tem esse produto no carrinho (considerando a variante e a cor)
     const existingItemIndex = cart.findIndex(item => 
         item.id === currentProduct.id && 
         item.variant === finalVariant && 
@@ -342,7 +342,7 @@ function addToCart() {
     closeModal();
     updateCartUI();
     
-    // Feedback visual (abre a gaveta do carrinho brevemente ou mostra notificaÃ§Ã£o)
+    // Feedback visual (abre a gaveta do carrinho brevemente ou mostra notificação)
     toggleCart();
 }
 
@@ -375,7 +375,7 @@ function updateCartUI() {
     const cartItemsContainer = document.getElementById('cart-items');
     
     if (cart.length === 0) {
-        cartItemsContainer.innerHTML = '<div class="empty-cart-message">Seu carrinho estÃ¡ vazio.</div>';
+        cartItemsContainer.innerHTML = '<div class="empty-cart-message">Seu carrinho está vazio.</div>';
         checkoutBtn.disabled = true;
         return;
     }
@@ -414,14 +414,15 @@ function updateCartUI() {
     });
 }
 
-// FinalizaÃ§Ã£o (WhatsApp)
+// Finalização (WhatsApp)
 function checkout() {
     if (cart.length === 0) return;
     
-    let text = "*Novo Pedido - Calegari Malhas* ðŸ›ï¸\n\n";
+    let text = "*Novo Pedido - Calegari Malhas* 🛍️\n\n";
     
     // Agrupa os itens do carrinho por categoria (Aba)
     const groupedCart = {};
+    
     cart.forEach(item => {
         if (!groupedCart[item.category]) {
             groupedCart[item.category] = [];
@@ -429,31 +430,226 @@ function checkout() {
         groupedCart[item.category].push(item);
     });
     
-    // ConstrÃ³i a mensagem segmentada
+    // Constrói a mensagem segmentada
     for (const [category, items] of Object.entries(groupedCart)) {
         text += `*--- ${category.toUpperCase()} ---*\n`;
         
         items.forEach(item => {
+            let sizesText = [];
+            for (const [size, qty] of Object.entries(item.sizes)) {
+                if (qty > 0) sizesText.push(`${qty}x ${size}`);
+            }
+            
             let extras = [];
             if (item.color) extras.push(`Camisa: ${item.color}`);
             if (item.printColor) extras.push(`Estampa: ${item.printColor}`);
             if (item.variant) extras.push(item.variant);
             let extrasText = extras.length > 0 ? `(${extras.join(' - ')})` : '';
             
-            text += `*Estampa: ${item.id}* ${extrasText}\n`;
+            text += `Estampa: ${item.id} ${extrasText}\n`;
+            text += `Tamanhos: ${sizesText.join(', ')}\n\n`;
+    }
+    
+    // Captura Variação (Nova Lógica de array)
+    let variationSelection = '';
+    let selectedImage = currentProduct.image; // default image
+    
+    const variationContainer = document.getElementById('variation-selector-container');
+    if (variationContainer && variationContainer.style.display !== 'none') {
+        const selectedRadio = document.querySelector('input[name="variation-option"]:checked');
+        if (selectedRadio) {
+            variationSelection = selectedRadio.value;
+            // Acha a imagem correspondente
+            if (currentProduct.variations) {
+                const vari = currentProduct.variations.find(v => v.name === variationSelection);
+                if(vari) selectedImage = vari.image;
+            }
+        }
+    }
+    
+    // Captura variante (Strass) legado se aplicável (para categorias sem 'Selo')
+    let strassSelection = '';
+    const strassContainer = document.getElementById('strass-selector-container');
+    if (strassContainer && strassContainer.style.display !== 'none') {
+        const selectedRadio = document.querySelector('input[name="strass-option"]:checked');
+        if (selectedRadio) {
+            strassSelection = selectedRadio.value;
+            // Imagem do strass legado
+            selectedImage = currentProduct[strassSelection === 'Com Pedrinha' ? 'strass_image' : 'image'];
+        }
+    }
+    
+    // Mescla as seleções para o carrinho
+    const finalVariant = variationSelection || strassSelection;
+    
+    // Captura cor da camisa se aplicável
+    let colorSelection = '';
+    const colorContainer = document.getElementById('color-selector-container');
+    if (colorContainer && colorContainer.style.display !== 'none') {
+        if (currentCategory === 'Silkscreen') {
+            const selectedColorRadio = document.querySelector('input[name="color-option-silk"]:checked');
+            if (selectedColorRadio) colorSelection = selectedColorRadio.value;
+        } else {
+            const selectedColorRadio = document.querySelector('input[name="color-option"]:checked');
+            if (selectedColorRadio) colorSelection = selectedColorRadio.value;
+        }
+    }
+    
+    // Captura cor da estampa se aplicável
+    let printColorSelection = '';
+    const printColorContainer = document.getElementById('print-color-selector-container');
+    if (printColorContainer && printColorContainer.style.display !== 'none') {
+        const selectedPrintColor = document.querySelector('input[name="print-color-option"]:checked');
+        if (selectedPrintColor) printColorSelection = selectedPrintColor.value;
+    }
+    
+    // Verifica se já tem esse produto no carrinho (considerando a variante e a cor)
+    const existingItemIndex = cart.findIndex(item => 
+        item.id === currentProduct.id && 
+        item.variant === finalVariant && 
+        item.color === colorSelection &&
+        item.printColor === printColorSelection
+    );
+    
+    if (existingItemIndex >= 0) {
+        // Atualiza quantidades
+        const item = cart[existingItemIndex];
+        item.sizes['PP'] += sizes['PP'];
+        item.sizes['P'] += sizes['P'];
+        item.sizes['M'] += sizes['M'];
+        item.sizes['G'] += sizes['G'];
+        item.sizes['GG'] += sizes['GG'];
+        item.sizes['XG'] += sizes['XG'];
+    } else {
+        // Adiciona novo
+        cart.push({
+            id: currentProduct.id,
+            image: selectedImage,
+            thumb: currentProduct.thumb,
+            category: currentCategory,
+            variant: finalVariant,
+            color: colorSelection,
+            printColor: printColorSelection,
+            sizes: sizes
+        });
+    }
+    
+    closeModal();
+    updateCartUI();
+    
+    // Feedback visual (abre a gaveta do carrinho brevemente ou mostra notificação)
+    toggleCart();
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartUI();
+}
+
+function toggleCart() {
+    const drawer = document.getElementById('cart-drawer');
+    const overlay = document.getElementById('cart-overlay');
+    
+    if (drawer.classList.contains('open')) {
+        drawer.classList.remove('open');
+        overlay.style.display = 'none';
+    } else {
+        drawer.classList.add('open');
+        overlay.style.display = 'block';
+    }
+}
+
+function updateCartUI() {
+    // Atualiza contador da bolinha
+    const totalItems = cart.reduce((total, item) => {
+        return total + Object.values(item.sizes).reduce((a, b) => a + b, 0);
+    }, 0);
+    cartCount.innerText = totalItems;
+    
+    // Atualiza lista do carrinho
+    const cartItemsContainer = document.getElementById('cart-items');
+    
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<div class="empty-cart-message">Seu carrinho está vazio.</div>';
+        checkoutBtn.disabled = true;
+        return;
+    }
+    
+    checkoutBtn.disabled = false;
+    cartItemsContainer.innerHTML = '';
+    
+    cart.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        
+        let sizesText = [];
+        for (const [size, qty] of Object.entries(item.sizes)) {
+            if (qty > 0) sizesText.push(`${qty}x ${size}`);
+        }
+        
+        let displayTitle = item.id;
+        
+        let extras = [];
+        if (item.color) extras.push(`Camisa: ${item.color}`);
+        if (item.printColor) extras.push(`Estampa: ${item.printColor}`);
+        if (item.variant) extras.push(item.variant);
+        let extrasText = extras.length > 0 ? `(${extras.join(' - ')})` : '';
+        
+        div.innerHTML = `
+            <img src="${item.thumb || item.image}" alt="${item.id}">
+            <div class="cart-item-info">
+                <div class="cart-item-title">${displayTitle} ${extrasText}</div>
+                <div class="cart-item-sizes">Tam: ${sizesText.join(', ')}</div>
+            </div>
+            <button class="remove-item" onclick="removeFromCart(${index})">
+                <i class="fas fa-trash"></i>
+            </button>
+        `;
+        cartItemsContainer.appendChild(div);
+    });
+}
+
+// Finalização (WhatsApp)
+function checkout() {
+    if (cart.length === 0) return;
+    
+    let text = "*Novo Pedido - Calegari Malhas* 🛍️\n\n";
+    
+    // Agrupa os itens do carrinho por categoria (Aba)
+    const groupedCart = {};
+    
+    cart.forEach(item => {
+        if (!groupedCart[item.category]) {
+            groupedCart[item.category] = [];
+        }
+        groupedCart[item.category].push(item);
+    });
+    
+    // Constrói a mensagem segmentada
+    for (const [category, items] of Object.entries(groupedCart)) {
+        text += `*--- ${category.toUpperCase()} ---*\n`;
+        
+        items.forEach(item => {
             let sizesText = [];
             for (const [size, qty] of Object.entries(item.sizes)) {
                 if (qty > 0) sizesText.push(`${qty}x ${size}`);
             }
+            
+            let extras = [];
+            if (item.color) extras.push(`Camisa: ${item.color}`);
+            if (item.printColor) extras.push(`Estampa: ${item.printColor}`);
+            if (item.variant) extras.push(item.variant);
+            let extrasText = extras.length > 0 ? `(${extras.join(' - ')})` : '';
+            
+            text += `Estampa: ${item.id} ${extrasText}\n`;
             text += `Tamanhos: ${sizesText.join(', ')}\n\n`;
         });
     }
     
-    text += "_Pedido gerado pelo CatÃ¡logo Digital_";
+    text += "_Pedido gerado pelo Catálogo Digital_";
     
     const encodedText = encodeURIComponent(text);
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedText}`;
     
     window.open(whatsappUrl, '_blank');
 }
-
