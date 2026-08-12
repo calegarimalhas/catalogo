@@ -213,18 +213,30 @@ header h1 {
 }
 
 @media (min-width: 768px) {
+    .modal-content {
+        max-width: 900px;
+        height: 80vh;
+    }
     .modal-body {
         flex-direction: row;
     }
     .image-wrapper {
-        flex: 1;
+        flex: 1.2;
+        max-height: none;
         background: #f8f8f8;
         display: flex;
         align-items: center;
-        padding: 20px;
+        justify-content: center;
+        padding: 0;
+    }
+    .image-wrapper img, .image-wrapper video {
+        max-height: 100%;
+        width: 100%;
+        object-fit: cover;
     }
     .product-info {
         flex: 1;
+        padding: 40px;
     }
 }
 
