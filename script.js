@@ -1,6 +1,10 @@
 // Estado da AplicaÃ§Ã£o
 let currentCategory = '';
-let cart = [];
+let cart = JSON.parse(localStorage.getItem('calegari_cart')) || [];
+
+function saveCart() {
+    localStorage.setItem('calegari_cart', JSON.stringify(cart));
+}
 const WHATSAPP_NUMBER = '5512991431935'; 
 
 // ConfiguraÃ§Ãµes de Variantes (Strass)
@@ -13,7 +17,7 @@ const tabsContainer = document.getElementById('tabs-container');
 const catalogContainer = document.getElementById('catalog-container');
 const cartCount = document.getElementById('cart-count');
 const cartItems = document.getElementById('cart-items');
-const checkoutBtn = document.getElementById('checkout-btn');
+// const checkoutBtn = document.getElementById('checkout-btn');
 const emptyCartMsg = document.querySelector('.empty-cart-message');
 
 // InicializaÃ§Ã£o
@@ -60,7 +64,7 @@ function renderCatalog(category) {
         card.onclick = () => openModal(item);
         
         card.innerHTML = `
-            <img src="${item.thumb || item.image}" alt="Estampa ${item.id}" loading="lazy">
+            <img src="${item.thumb || item.image}" alt="Estampa ${item.id}" loading="lazy" decoding="async">
             <div class="codigo">${item.id}</div>
         `;
         catalogContainer.appendChild(card);
@@ -131,6 +135,8 @@ function openModal(item) {
 
     
     document.getElementById('modal-title').innerText = item.id;
+    const errMsg = document.getElementById('modal-error-msg');
+    if(errMsg) errMsg.style.display = 'none';
     
     // Lógica do Strass
     const strassContainer = document.getElementById('strass-selector-container');
@@ -212,14 +218,23 @@ function openModal(item) {
         ppContainer.style.display = 'none';
     }
     modal.style.display = 'flex';
+    history.pushState({ type: 'modal' }, '', '#produto');
 }
 
-function closeModal() {
-    document.getElementById('product-modal').style.display = 'none';
-    currentProduct = null;
+function closeModal(isPopState = false) {
+    const modal = document.getElementById('product-modal');
+    if (modal.style.display !== 'none') {
+        modal.style.display = 'none';
+        currentProduct = null;
+        if (!isPopState && window.location.hash === '#produto') {
+            history.back();
+        }
+    }
 }
 
 function changeQty(inputId, change) {
+    const errMsg = document.getElementById('modal-error-msg');
+    if(errMsg) errMsg.style.display = "none";
     const input = document.getElementById(inputId);
     let val = parseInt(input.value) || 0;
     val += change;
@@ -251,8 +266,15 @@ function addToCart() {
     const totalItems = Object.values(sizes).reduce((a, b) => a + b, 0);
     
     if (totalItems === 0) {
-        alert("Por favor, selecione ao menos uma quantidade.");
+        const errMsg = document.getElementById('modal-error-msg');
+        if (errMsg) {
+            errMsg.innerText = "Por favor, selecione ao menos uma quantidade.";
+            errMsg.style.display = "block";
+        }
         return;
+    } else {
+        const errMsg = document.getElementById('modal-error-msg');
+        if (errMsg) errMsg.style.display = "none";
     }
     
     // Captura Variação (Nova Lógica de array)
@@ -342,27 +364,56 @@ function addToCart() {
     closeModal();
     updateCartUI();
     
-    // Feedback visual (abre a gaveta do carrinho brevemente ou mostra notificação)
-    toggleCart();
+    // Feedback visual sem interrupção
+    showToast("Produto adicionado ao carrinho! 🛒");
+    saveCart();
 }
 
 function removeFromCart(index) {
     cart.splice(index, 1);
+    saveCart();
     updateCartUI();
+}
+
+function openCart() {
+    const drawer = document.getElementById('cart-drawer');
+    const overlay = document.getElementById('cart-overlay');
+    drawer.classList.add('open');
+    overlay.style.display = 'block';
+    history.pushState({ type: 'cart' }, '', '#carrinho');
+}
+
+function closeCart(isPopState = false) {
+    const drawer = document.getElementById('cart-drawer');
+    const overlay = document.getElementById('cart-overlay');
+    drawer.classList.remove('open');
+    overlay.style.display = 'none';
+    if (!isPopState) {
+        if (window.location.hash === '#carrinho') {
+            history.back();
+        }
+    }
 }
 
 function toggleCart() {
     const drawer = document.getElementById('cart-drawer');
-    const overlay = document.getElementById('cart-overlay');
-    
     if (drawer.classList.contains('open')) {
-        drawer.classList.remove('open');
-        overlay.style.display = 'none';
+        closeCart();
     } else {
-        drawer.classList.add('open');
-        overlay.style.display = 'block';
+        openCart();
     }
 }
+
+window.addEventListener('popstate', function(event) {
+    const modal = document.getElementById('product-modal');
+    if (modal && modal.style.display !== 'none') {
+        closeModal(true);
+    }
+    const drawer = document.getElementById('cart-drawer');
+    if (drawer && drawer.classList.contains('open')) {
+        closeCart(true);
+    }
+});
 
 function updateCartUI() {
     // Atualiza contador da bolinha
@@ -376,11 +427,17 @@ function updateCartUI() {
     
     if (cart.length === 0) {
         cartItemsContainer.innerHTML = '<div class="empty-cart-message">Seu carrinho está vazio.</div>';
-        checkoutBtn.disabled = true;
+        const btnAp = document.getElementById('checkout-btn-aparecida');
+        const btnGua = document.getElementById('checkout-btn-guaratingueta');
+        if(btnAp) btnAp.disabled = true;
+        if(btnGua) btnGua.disabled = true;
         return;
     }
     
-    checkoutBtn.disabled = false;
+    const btnAp = document.getElementById('checkout-btn-aparecida');
+    const btnGua = document.getElementById('checkout-btn-guaratingueta');
+    if(btnAp) btnAp.disabled = false;
+    if(btnGua) btnGua.disabled = false;
     cartItemsContainer.innerHTML = '';
     
     cart.forEach((item, index) => {
@@ -415,10 +472,15 @@ function updateCartUI() {
 }
 
 // FinalizaÃ§Ã£o (WhatsApp)
-function checkout() {
+function checkout(store) {
     if (cart.length === 0) return;
     
-    let text = "*Novo Pedido - Calegari Malhas* 🛍️\n\n";
+    let phone = '5512991431935'; // Aparecida (default)
+    if (store === 'guaratingueta') {
+        phone = '5512991420566';
+    }
+    
+    let text = "*Novo Pedido - Calegari Malhas*\n\n";
     
     // Agrupa os itens do carrinho por categoria (Aba)
     const groupedCart = {};
@@ -452,8 +514,28 @@ function checkout() {
     text += "_Pedido gerado pelo Catálogo Digital_";
     
     const encodedText = encodeURIComponent(text);
-    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedText}`;
+    const whatsappUrl = `https://wa.me/${phone}?text=${encodedText}`;
     
     window.open(whatsappUrl, '_blank');
 }
 
+
+function showToast(message) {
+    const container = document.getElementById('toast-container');
+    if (!container) return;
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerText = message;
+    container.appendChild(toast);
+    
+    // Animar icone do carrinho
+    const cartIcon = document.querySelector('.cart-icon');
+    if (cartIcon) {
+        cartIcon.classList.add('cart-bounce');
+        setTimeout(() => cartIcon.classList.remove('cart-bounce'), 300);
+    }
+    
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
+}

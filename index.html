@@ -234,8 +234,10 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <button class="add-to-cart-btn" onclick="addToCart()">Adicionar ao Pedido</button>
+                    <div class="add-to-cart-container">
+                        <div id="modal-error-msg" style="display: none; color: #ff4757; font-size: 0.95rem; margin-bottom: 10px; text-align: center; font-weight: 600;"></div>
+                        <button class="add-to-cart-btn" onclick="addToCart()">Adicionar ao Pedido</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -252,14 +254,22 @@
             <div class="empty-cart-message">Seu carrinho está vazio.</div>
         </div>
         <div class="cart-footer">
-            <button class="checkout-btn" onclick="checkout()" id="checkout-btn" disabled>
-                <i class="fab fa-whatsapp"></i> Enviar Pedido
-            </button>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <button class="checkout-btn" onclick="checkout('aparecida')" id="checkout-btn-aparecida" disabled>
+                    <i class="fab fa-whatsapp"></i> Enviar pra Calegari Aparecida
+                </button>
+                <button class="checkout-btn" onclick="checkout('guaratingueta')" id="checkout-btn-guaratingueta" disabled style="background: #128C7E;">
+                    <i class="fab fa-whatsapp"></i> Enviar pra Calegari Guaratinguetá
+                </button>
+            </div>
         </div>
     </div>
     <div id="cart-overlay" class="cart-overlay" onclick="toggleCart()"></div>
 
-    <script src="dados.js?v=2"></script>
-    <script src="script.js?v=2"></script>
+    <!-- Toast de Feedback -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="dados.js?v=4"></script>
+    <script src="script.js?v=4"></script>
 </body>
 </html>

@@ -82,6 +82,7 @@ header h1 {
     overflow-x: auto;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 15px;
     scrollbar-width: none; /* Firefox */
 }
 #tabs-container::-webkit-scrollbar {
@@ -89,6 +90,7 @@ header h1 {
 }
 
 .tab {
+    position: relative;
     padding: 10px 20px;
     background: rgba(255,255,255,0.2);
     border: none;
@@ -103,6 +105,17 @@ header h1 {
 .tab.active {
     background: var(--bg-color);
     color: var(--primary-color);
+}
+
+.tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 15%;
+    right: 15%;
+    height: 4px;
+    background-color: var(--primary-color);
+    border-radius: 4px 4px 0 0;
 }
 
 /* Catalog Grid */
@@ -124,6 +137,8 @@ header h1 {
 
 .card {
     background: var(--card-bg);
+    content-visibility: auto;
+    contain-intrinsic-size: 200px;
     border-radius: var(--border-radius);
     padding: 10px;
     box-shadow: var(--shadow);
@@ -192,10 +207,18 @@ header h1 {
 .close-btn {
     position: absolute;
     top: 10px;
-    right: 15px;
+    right: 10px;
     font-size: 28px;
     font-weight: bold;
     color: var(--text-dark);
+    background: rgba(255, 255, 255, 0.8);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     cursor: pointer;
     z-index: 10;
     transition: var(--transition);
@@ -210,6 +233,42 @@ header h1 {
     flex-direction: column;
     flex: 1;
     overflow: hidden;
+}
+
+
+
+.image-wrapper {
+    width: 100%;
+    max-height: 220px;
+    flex-shrink: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    background: #f8f8f8;
+    padding: 15px;
+}
+
+.image-wrapper img, .image-wrapper video {
+    height: 100%;
+    max-height: 200px;
+    object-fit: contain;
+}
+
+.product-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* Estilizar a barra de rolagem do painel de informações */
+.product-info::-webkit-scrollbar {
+    width: 6px;
+}
+.product-info::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
 }
 
 @media (min-width: 768px) {
@@ -232,46 +291,12 @@ header h1 {
     .image-wrapper img, .image-wrapper video {
         max-height: 100%;
         width: 100%;
-        object-fit: cover;
+        object-fit: contain;
     }
     .product-info {
         flex: 1;
         padding: 40px;
     }
-}
-
-.image-wrapper {
-    width: 100%;
-    max-height: 300px;
-    flex-shrink: 0;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    background: #f8f8f8;
-    padding: 15px;
-}
-
-.image-wrapper img, .image-wrapper video {
-    height: 100%;
-    max-height: 270px;
-    object-fit: contain;
-}
-
-.product-info {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    overflow-y: auto;
-}
-
-/* Estilizar a barra de rolagem do painel de informações */
-.product-info::-webkit-scrollbar {
-    width: 6px;
-}
-.product-info::-webkit-scrollbar-thumb {
-    background-color: #ccc;
-    border-radius: 4px;
 }
 
 #modal-title {
@@ -316,8 +341,8 @@ header h1 {
 .number-control button {
     background: #f0f0f0;
     border: none;
-    width: 35px;
-    height: 35px;
+    width: 44px;
+    height: 44px;
     font-size: 1.2rem;
     cursor: pointer;
     transition: 0.2s;
@@ -329,10 +354,11 @@ header h1 {
 
 .number-control input {
     width: 100%;
-    height: 35px;
+    height: 44px;
     text-align: center;
     border: none;
     font-weight: 600;
+    font-size: 16px;
     -moz-appearance: textfield;
 }
 
@@ -340,6 +366,16 @@ header h1 {
 .number-control input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.add-to-cart-container {
+    position: sticky;
+    bottom: -20px;
+    background: var(--white);
+    padding: 15px 20px 20px 20px;
+    margin: auto -20px -20px -20px;
+    z-index: 10;
+    border-top: 1px solid #eee;
 }
 
 .add-to-cart-btn {
@@ -353,7 +389,6 @@ header h1 {
     cursor: pointer;
     transition: var(--transition);
     width: 100%;
-    margin-top: auto;
 }
 
 .add-to-cart-btn:hover {
@@ -436,8 +471,8 @@ header h1 {
 
 .color-square {
     display: inline-block;
-    width: 35px;
-    height: 35px;
+    width: 44px;
+    height: 44px;
     border: 3px solid transparent;
     border-radius: 8px; /* Slightly rounded for premium feel, but still square-ish */
     transition: 0.2s;
@@ -613,4 +648,51 @@ header h1 {
 .checkout-btn:disabled {
     background: #a5d6b4;
     cursor: not-allowed;
+}
+
+/* Toast */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.toast {
+    background: #25D366;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    animation: slideDown 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; visibility: hidden; }
+}
+
+@keyframes cartBounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+}
+.cart-bounce {
+    animation: cartBounce 0.3s ease;
+}
+
+
+/* Otimizacoes UI/UX de Touch e Performance */
+button, input, .variant-option, .color-option, .print-color-option, .close-btn, .cart-icon {
+    touch-action: manipulation;
 }
