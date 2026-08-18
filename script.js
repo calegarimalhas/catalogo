@@ -58,7 +58,7 @@ function renderCatalog(category) {
     catalogContainer.innerHTML = '';
     const items = catalogo[category];
     
-    items.forEach(item => {
+    items.forEach((item, index) => {
         const card = document.createElement('div');
         card.className = 'card';
         card.onclick = () => openModal(item);

@@ -903,6 +903,12 @@ const catalogo = {
             "image": "estampas/silkscreen/animado_0077.mp4",
             "thumb": "estampas/silkscreen/animado_0077_thumb.webp",
             "variations": []
+        },
+        {
+            "id": "test_animado_0001",
+            "image": "estampas/silkscreen/test_animado_0001.mp4",
+            "thumb": "estampas/silkscreen/test_animado_0001_thumb.webp",
+            "variations": []
         }
     ],
     "Sublima\u00e7\u00e3o Adulta Branca": [
