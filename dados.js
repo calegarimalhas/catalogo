@@ -2140,457 +2140,457 @@ const catalogo = {
     "Sublima\u00e7\u00e3o Infantil": [
         {
             "id": "0001",
-            "image": "estampas/SublimacaoInfantil/animacao_1.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_1.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_1_thumb.webp",
             "variations": []
         },
         {
             "id": "0002",
-            "image": "estampas/SublimacaoInfantil/animacao_2.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_2.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_2_thumb.webp",
             "variations": []
         },
         {
             "id": "0003",
-            "image": "estampas/SublimacaoInfantil/animacao_3.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_3.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_3_thumb.webp",
             "variations": []
         },
         {
             "id": "0004",
-            "image": "estampas/SublimacaoInfantil/animacao_4.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_4.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_4_thumb.webp",
             "variations": []
         },
         {
             "id": "0005",
-            "image": "estampas/SublimacaoInfantil/animacao_5.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_5.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_5_thumb.webp",
             "variations": []
         },
         {
             "id": "0006",
-            "image": "estampas/SublimacaoInfantil/animacao_6.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_6.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_6_thumb.webp",
             "variations": []
         },
         {
             "id": "0007",
-            "image": "estampas/SublimacaoInfantil/animacao_7.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_7.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_7_thumb.webp",
             "variations": []
         },
         {
             "id": "0008",
-            "image": "estampas/SublimacaoInfantil/animacao_8.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_8.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_8_thumb.webp",
             "variations": []
         },
         {
             "id": "0009",
-            "image": "estampas/SublimacaoInfantil/animacao_9.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_9.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_9_thumb.webp",
             "variations": []
         },
         {
             "id": "0010",
-            "image": "estampas/SublimacaoInfantil/animacao_10.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_10.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_10_thumb.webp",
             "variations": []
         },
         {
             "id": "0011",
-            "image": "estampas/SublimacaoInfantil/animacao_11.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_11.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_11_thumb.webp",
             "variations": []
         },
         {
             "id": "0012",
-            "image": "estampas/SublimacaoInfantil/animacao_12.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_12.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_12_thumb.webp",
             "variations": []
         },
         {
             "id": "0013",
-            "image": "estampas/SublimacaoInfantil/animacao_13.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_13.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_13_thumb.webp",
             "variations": []
         },
         {
             "id": "0014",
-            "image": "estampas/SublimacaoInfantil/animacao_14.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_14.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_14_thumb.webp",
             "variations": []
         },
         {
             "id": "0015",
-            "image": "estampas/SublimacaoInfantil/animacao_15.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_15.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_15_thumb.webp",
             "variations": []
         },
         {
             "id": "0016",
-            "image": "estampas/SublimacaoInfantil/animacao_16.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_16.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_16_thumb.webp",
             "variations": []
         },
         {
             "id": "0017",
-            "image": "estampas/SublimacaoInfantil/animacao_17.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_17.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_17_thumb.webp",
             "variations": []
         },
         {
             "id": "0018",
-            "image": "estampas/SublimacaoInfantil/animacao_18.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_18.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_18_thumb.webp",
             "variations": []
         },
         {
             "id": "0019",
-            "image": "estampas/SublimacaoInfantil/animacao_19.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_19.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_19_thumb.webp",
             "variations": []
         },
         {
             "id": "0020",
-            "image": "estampas/SublimacaoInfantil/animacao_20.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_20.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_20_thumb.webp",
             "variations": []
         },
         {
             "id": "0021",
-            "image": "estampas/SublimacaoInfantil/animacao_21.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_21.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_21_thumb.webp",
             "variations": []
         },
         {
             "id": "0022",
-            "image": "estampas/SublimacaoInfantil/animacao_22.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_22.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_22_thumb.webp",
             "variations": []
         },
         {
             "id": "0023",
-            "image": "estampas/SublimacaoInfantil/animacao_23.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_23.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_23_thumb.webp",
             "variations": []
         },
         {
             "id": "0024",
-            "image": "estampas/SublimacaoInfantil/animacao_24.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_24.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_24_thumb.webp",
             "variations": []
         },
         {
             "id": "0025",
-            "image": "estampas/SublimacaoInfantil/animacao_25.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_25.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_25_thumb.webp",
             "variations": []
         },
         {
             "id": "0026",
-            "image": "estampas/SublimacaoInfantil/animacao_26.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_26.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_26_thumb.webp",
             "variations": []
         },
         {
             "id": "0027",
-            "image": "estampas/SublimacaoInfantil/animacao_27.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_27.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_27_thumb.webp",
             "variations": []
         },
         {
             "id": "0028",
-            "image": "estampas/SublimacaoInfantil/animacao_28.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_28.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_28_thumb.webp",
             "variations": []
         },
         {
             "id": "0029",
-            "image": "estampas/SublimacaoInfantil/animacao_29.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_29.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_29_thumb.webp",
             "variations": []
         },
         {
             "id": "0030",
-            "image": "estampas/SublimacaoInfantil/animacao_30.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_30.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_30_thumb.webp",
             "variations": []
         },
         {
             "id": "0031",
-            "image": "estampas/SublimacaoInfantil/animacao_31.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_31.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_31_thumb.webp",
             "variations": []
         },
         {
             "id": "0032",
-            "image": "estampas/SublimacaoInfantil/animacao_32.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_32.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_32_thumb.webp",
             "variations": []
         },
         {
             "id": "0033",
-            "image": "estampas/SublimacaoInfantil/animacao_33.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_33.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_33_thumb.webp",
             "variations": []
         },
         {
             "id": "0034",
-            "image": "estampas/SublimacaoInfantil/animacao_34.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_34.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_34_thumb.webp",
             "variations": []
         },
         {
             "id": "0035",
-            "image": "estampas/SublimacaoInfantil/animacao_35.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_35.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_35_thumb.webp",
             "variations": []
         },
         {
             "id": "0036",
-            "image": "estampas/SublimacaoInfantil/animacao_36.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_36.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_36_thumb.webp",
             "variations": []
         },
         {
             "id": "0037",
-            "image": "estampas/SublimacaoInfantil/animacao_37.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_37.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_37_thumb.webp",
             "variations": []
         },
         {
             "id": "0038",
-            "image": "estampas/SublimacaoInfantil/animacao_38.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_38.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_38_thumb.webp",
             "variations": []
         },
         {
             "id": "0039",
-            "image": "estampas/SublimacaoInfantil/animacao_39.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_39.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_39_thumb.webp",
             "variations": []
         },
         {
             "id": "0040",
-            "image": "estampas/SublimacaoInfantil/animacao_40.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_40.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_40_thumb.webp",
             "variations": []
         },
         {
             "id": "0041",
-            "image": "estampas/SublimacaoInfantil/animacao_41.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_41.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_41_thumb.webp",
             "variations": []
         },
         {
             "id": "0042",
-            "image": "estampas/SublimacaoInfantil/animacao_42.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_42.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_42_thumb.webp",
             "variations": []
         },
         {
             "id": "0043",
-            "image": "estampas/SublimacaoInfantil/animacao_43.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_43.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_43_thumb.webp",
             "variations": []
         },
         {
             "id": "0044",
-            "image": "estampas/SublimacaoInfantil/animacao_44.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_44.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_44_thumb.webp",
             "variations": []
         },
         {
             "id": "0045",
-            "image": "estampas/SublimacaoInfantil/animacao_45.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_45.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_45_thumb.webp",
             "variations": []
         },
         {
             "id": "0046",
-            "image": "estampas/SublimacaoInfantil/animacao_46.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_46.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_46_thumb.webp",
             "variations": []
         },
         {
             "id": "0047",
-            "image": "estampas/SublimacaoInfantil/animacao_47.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_47.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_47_thumb.webp",
             "variations": []
         },
         {
             "id": "0048",
-            "image": "estampas/SublimacaoInfantil/animacao_48.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_48.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_48_thumb.webp",
             "variations": []
         },
         {
             "id": "0049",
-            "image": "estampas/SublimacaoInfantil/animacao_49.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_49.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_49_thumb.webp",
             "variations": []
         },
         {
             "id": "0050",
-            "image": "estampas/SublimacaoInfantil/animacao_50.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_50.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_50_thumb.webp",
             "variations": []
         },
         {
             "id": "0051",
-            "image": "estampas/SublimacaoInfantil/animacao_51.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_51.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_51_thumb.webp",
             "variations": []
         },
         {
             "id": "0052",
-            "image": "estampas/SublimacaoInfantil/animacao_52.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_52.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_52_thumb.webp",
             "variations": []
         },
         {
             "id": "0053",
-            "image": "estampas/SublimacaoInfantil/animacao_53.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_53.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_53_thumb.webp",
             "variations": []
         },
         {
             "id": "0054",
-            "image": "estampas/SublimacaoInfantil/animacao_54.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_54.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_54_thumb.webp",
             "variations": []
         },
         {
             "id": "0055",
-            "image": "estampas/SublimacaoInfantil/animacao_55.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_55.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_55_thumb.webp",
             "variations": []
         },
         {
             "id": "0056",
-            "image": "estampas/SublimacaoInfantil/animacao_56.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_56.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_56_thumb.webp",
             "variations": []
         },
         {
             "id": "0057",
-            "image": "estampas/SublimacaoInfantil/animacao_57.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_57.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_57_thumb.webp",
             "variations": []
         },
         {
             "id": "0058",
-            "image": "estampas/SublimacaoInfantil/animacao_58.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_58.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_58_thumb.webp",
             "variations": []
         },
         {
             "id": "0059",
-            "image": "estampas/SublimacaoInfantil/animacao_59.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_59.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_59_thumb.webp",
             "variations": []
         },
         {
             "id": "0060",
-            "image": "estampas/SublimacaoInfantil/animacao_60.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_60.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_60_thumb.webp",
             "variations": []
         },
         {
             "id": "0061",
-            "image": "estampas/SublimacaoInfantil/animacao_61.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_61.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_61_thumb.webp",
             "variations": []
         },
         {
             "id": "0062",
-            "image": "estampas/SublimacaoInfantil/animacao_62.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_62.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_62_thumb.webp",
             "variations": []
         },
         {
             "id": "0063",
-            "image": "estampas/SublimacaoInfantil/animacao_63.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_63.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_63_thumb.webp",
             "variations": []
         },
         {
             "id": "0064",
-            "image": "estampas/SublimacaoInfantil/animacao_64.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_64.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_64_thumb.webp",
             "variations": []
         },
         {
             "id": "0065",
-            "image": "estampas/SublimacaoInfantil/animacao_65.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_65.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_65_thumb.webp",
             "variations": []
         },
         {
             "id": "0066",
-            "image": "estampas/SublimacaoInfantil/animacao_66.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_66.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_66_thumb.webp",
             "variations": []
         },
         {
             "id": "0067",
-            "image": "estampas/SublimacaoInfantil/animacao_67.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_67.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_67_thumb.webp",
             "variations": []
         },
         {
             "id": "0068",
-            "image": "estampas/SublimacaoInfantil/animacao_68.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_68.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_68_thumb.webp",
             "variations": []
         },
         {
             "id": "0069",
-            "image": "estampas/SublimacaoInfantil/animacao_0069.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_0069.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_0069_thumb.webp",
             "variations": []
         },
         {
             "id": "0070",
-            "image": "estampas/SublimacaoInfantil/animacao_0070.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_0070.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_0070_thumb.webp",
             "variations": []
         },
         {
             "id": "0071",
-            "image": "estampas/SublimacaoInfantil/animacao_0071.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_0071.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_0071_thumb.webp",
             "variations": []
         },
         {
             "id": "0072",
-            "image": "estampas/SublimacaoInfantil/animacao_0072.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_0072.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_0072_thumb.webp",
             "variations": []
         },
         {
             "id": "0073",
-            "image": "estampas/SublimacaoInfantil/animacao_0073.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_0073.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_0073_thumb.webp",
             "variations": []
         },
         {
             "id": "0074",
-            "image": "estampas/SublimacaoInfantil/animacao_0074.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_0074.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_0074_thumb.webp",
             "variations": []
         },
         {
             "id": "0075",
-            "image": "estampas/SublimacaoInfantil/animacao_0075.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_0075.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_0075_thumb.webp",
             "variations": []
         },
         {
             "id": "0076",
-            "image": "estampas/SublimacaoInfantil/animacao_0076.gif",
+            "image": "estampas/SublimacaoInfantil/animacao_0076.mp4",
             "thumb": "estampas/SublimacaoInfantil/animacao_0076_thumb.webp",
             "variations": []
         }
