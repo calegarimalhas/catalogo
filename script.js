@@ -63,8 +63,9 @@ function renderCatalog(category) {
         card.className = 'card';
         card.onclick = () => openModal(item);
         
+        let loadingAttr = index < 4 ? 'fetchpriority="high"' : 'loading="lazy" decoding="async"';
         card.innerHTML = `
-            <img src="${item.thumb || item.image}" alt="Estampa ${item.id}" loading="lazy" decoding="async">
+            <img src="${item.thumb || item.image}" alt="Estampa ${item.id}" ${loadingAttr}>
             <div class="codigo">${item.id}</div>
         `;
         catalogContainer.appendChild(card);

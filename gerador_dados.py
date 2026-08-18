@@ -76,7 +76,7 @@ def gerar_dados():
         grupos = {}
         
         for arq in arquivos:
-            if arq.endswith('_thumb.jpg'):
+            if arq.endswith('_thumb.webp'):
                 continue
                 
             nome, ext = os.path.splitext(arq)
@@ -134,9 +134,9 @@ def gerar_dados():
                 full_thumb_path = ""
                 if ext.lower() in ['.gif', '.mp4']:
                     if categoria in ["Viscolycra Selo Adulto", "Viscolycra Selo Infantil"]:
-                        thumb_filename = f"{base_id}_thumb.jpg"
+                        thumb_filename = f"{base_id}_thumb.webp"
                     else:
-                        thumb_filename = f"{nome}_thumb.jpg"
+                        thumb_filename = f"{nome}_thumb.webp"
                         
                     full_thumb_path = os.path.join(caminho_cat, thumb_filename)
                     thumb_path = f"{pasta_estampas}/{categoria}/{thumb_filename}"
@@ -149,7 +149,7 @@ def gerar_dados():
                                     img.seek(0)
                                     rgb_img = img.convert('RGB')
                                     rgb_img.thumbnail((800, 800), Image.Resampling.LANCZOS)
-                                    rgb_img.save(full_thumb_path, 'JPEG', quality=85, optimize=True)
+                                    rgb_img.save(full_thumb_path, 'webp', quality=85, optimize=True)
                             except Exception as e:
                                 thumb_path = f"{pasta_estampas}/{categoria}/{arq}"
                         else:
@@ -165,7 +165,7 @@ def gerar_dados():
                                     with Image.open(temp_frame) as img:
                                         rgb_img = img.convert('RGB')
                                         rgb_img.thumbnail((800, 800), Image.Resampling.LANCZOS)
-                                        rgb_img.save(full_thumb_path, 'JPEG', quality=85, optimize=True)
+                                        rgb_img.save(full_thumb_path, 'webp', quality=85, optimize=True)
                                     os.remove(temp_frame)
                                 else:
                                     thumb_path = f"{pasta_estampas}/{categoria}/{arq}"
