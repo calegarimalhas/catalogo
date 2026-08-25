@@ -405,7 +405,29 @@ function toggleCart() {
     }
 }
 
+function openHelpModal() {
+    const modal = document.getElementById('help-modal');
+    if (modal) {
+        modal.style.display = 'flex';
+        history.pushState({ type: 'help' }, '', '#ajuda');
+    }
+}
+
+function closeHelpModal(isPopState = false) {
+    const modal = document.getElementById('help-modal');
+    if (modal && modal.style.display !== 'none') {
+        modal.style.display = 'none';
+        if (!isPopState && window.location.hash === '#ajuda') {
+            history.back();
+        }
+    }
+}
+
 window.addEventListener('popstate', function(event) {
+    const helpModal = document.getElementById('help-modal');
+    if (helpModal && helpModal.style.display !== 'none') {
+        closeHelpModal(true);
+    }
     const modal = document.getElementById('product-modal');
     if (modal && modal.style.display !== 'none') {
         closeModal(true);
@@ -422,6 +444,20 @@ function updateCartUI() {
         return total + Object.values(item.sizes).reduce((a, b) => a + b, 0);
     }, 0);
     cartCount.innerText = totalItems;
+    
+    // Atualiza barra flutuante de carrinho na parte inferior
+    const stickyBar = document.getElementById('sticky-cart-bar');
+    const stickyText = document.getElementById('sticky-cart-text');
+    if (stickyBar) {
+        if (totalItems > 0) {
+            stickyBar.style.display = 'flex';
+            if (stickyText) {
+                stickyText.innerText = `Ver Meu Pedido (${totalItems} ${totalItems === 1 ? 'peça' : 'peças'})`;
+            }
+        } else {
+            stickyBar.style.display = 'none';
+        }
+    }
     
     // Atualiza lista do carrinho
     const cartItemsContainer = document.getElementById('cart-items');

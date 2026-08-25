@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <link rel="canonical" href="https://calegariestampas.com.br/">
     <!-- Google Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     
@@ -19,22 +19,35 @@
     <meta property="og:url" content="https://calegariestampas.com.br/">
     <meta property="og:type" content="website">
     
-    <!-- Ícones -->
-    
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=10">
 </head>
 <body>
     <header>
         <div class="header-content">
             <h1>Calegari Malhas</h1>
-            <div class="cart-icon" onclick="toggleCart()">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="16" height="16" fill="currentColor" style="vertical-align: middle;"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
-                <span id="cart-count">0</span>
+            <div class="header-right">
+                <button class="help-btn" onclick="openHelpModal()" title="Como fazer seu pedido">
+                    <span class="help-icon">❓</span> Como Pedir
+                </button>
+                <div class="cart-icon" onclick="toggleCart()" title="Ver sacola de pedidos">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="16" height="16" fill="currentColor" style="vertical-align: middle;"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+                    <span id="cart-count">0</span>
+                </div>
             </div>
         </div>
         <nav id="tabs-container">
             <!-- As abas serão geradas via JS -->
         </nav>
+        
+        <!-- Banner Guia em Passos Discreto -->
+        <div id="instruction-banner" class="instruction-banner">
+            <span class="step-tag">💡 <strong>Como pedir:</strong></span>
+            <span class="step-item">1. Clique na estampa</span>
+            <span class="step-arrow">➔</span>
+            <span class="step-item">2. Escolha as quantidades</span>
+            <span class="step-arrow">➔</span>
+            <span class="step-item">3. Envie pelo WhatsApp</span>
+        </div>
     </header>
 
     <main id="catalog-container">
@@ -183,6 +196,8 @@
                         </div>
                     </div>
 
+                    <p class="modal-help-tip">👇 Selecione a quantidade desejada de cada tamanho abaixo:</p>
+
                     <div class="size-selector">
                         <h3>Tamanhos (Quantidade):</h3>
                         <div class="sizes-grid">
@@ -238,9 +253,56 @@
                     </div>
                     <div class="add-to-cart-container">
                         <div id="modal-error-msg" style="display: none; color: #ff4757; font-size: 0.95rem; margin-bottom: 10px; text-align: center; font-weight: 600;"></div>
-                        <button class="add-to-cart-btn" onclick="addToCart()">Adicionar ao Pedido</button>
+                        <button class="add-to-cart-btn" onclick="addToCart()">Adicionar ao Pedido ➔</button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Ajuda / Como Pedir -->
+    <div id="help-modal" class="modal">
+        <div class="modal-content help-modal-content">
+            <span class="close-btn" onclick="closeHelpModal()">&times;</span>
+            <div class="help-modal-body">
+                <h2>❓ Como Fazer seu Pedido</h2>
+                <p class="help-subtitle">Siga este passo a passo simples:</p>
+                
+                <div class="help-steps">
+                    <div class="help-step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-info">
+                            <strong>Escolha a Estampa</strong>
+                            <span>Navegue pelas abas no topo e clique na foto da estampa que deseja.</span>
+                        </div>
+                    </div>
+                    
+                    <div class="help-step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-info">
+                            <strong>Selecione Cor e Quantidades</strong>
+                            <span>Escolha a cor e use os botões <b>+</b> e <b>-</b> nos tamanhos. Depois toque no botão azul <b>"Adicionar ao Pedido"</b>.</span>
+                        </div>
+                    </div>
+
+                    <div class="help-step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-info">
+                            <strong>Abra seu Pedido</strong>
+                            <span>Você pode adicionar várias estampas! Quando terminar, clique no botão verde que aparece na parte de baixo da tela (ou no ícone da sacolinha no topo).</span>
+                        </div>
+                    </div>
+
+                    <div class="help-step-card">
+                        <div class="step-number">4</div>
+                        <div class="step-info">
+                            <strong>Envie pelo WhatsApp</strong>
+                            <span>No carrinho, clique na loja desejada (<i>Aparecida</i> ou <i>Guaratinguetá</i>) para enviar a lista prontinha no WhatsApp da loja!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="help-close-action-btn" onclick="closeHelpModal()">Entendi! Ver Estampas ➔</button>
             </div>
         </div>
     </div>
@@ -268,10 +330,19 @@
     </div>
     <div id="cart-overlay" class="cart-overlay" onclick="toggleCart()"></div>
 
+    <!-- Barra Flutuante de Carrinho na Parte Inferior -->
+    <div id="sticky-cart-bar" class="sticky-cart-bar" style="display: none;" onclick="openCart()">
+        <div class="sticky-cart-info">
+            <span class="sticky-cart-icon">🛒</span>
+            <span id="sticky-cart-text">Ver Meu Pedido (0 peças)</span>
+        </div>
+        <button class="sticky-cart-btn">Enviar Pedido ➔</button>
+    </div>
+
     <!-- Toast de Feedback -->
     <div id="toast-container" class="toast-container"></div>
 
-    <script src="dados.js?v=9"></script>
-    <script src="script.js?v=9"></script>
+    <script src="dados.js?v=10"></script>
+    <script src="script.js?v=10"></script>
 </body>
 </html>
