@@ -35,10 +35,6 @@
                 </div>
             </div>
         </div>
-        <nav id="tabs-container">
-            <!-- As abas serão geradas via JS -->
-        </nav>
-        
         <!-- Banner Guia em Passos Discreto -->
         <div id="instruction-banner" class="instruction-banner">
             <span class="step-tag">💡 <strong>Como pedir:</strong></span>
@@ -48,7 +44,16 @@
             <span class="step-arrow">➔</span>
             <span class="step-item">3. Envie pelo WhatsApp</span>
         </div>
+
+        <nav id="tabs-container">
+            <!-- As abas serão geradas via JS -->
+        </nav>
     </header>
+
+    <!-- Sub-filtros por Tema (Solto e Empilhável) -->
+    <div id="subfilters-container" class="subfilters-container" style="display: none;">
+        <div id="subfilters-list" class="subfilters-list"></div>
+    </div>
 
     <main id="catalog-container">
         <!-- O grid de imagens será gerado via JS -->
@@ -449,7 +454,7 @@
     <!-- Toast de Feedback -->
     <div id="toast-container" class="toast-container"></div>
 
-    <script src="dados.js?v=15"></script>
-    <script src="script.js?v=15"></script>
+    <script src="dados.js?v=20"></script>
+    <script src="script.js?v=20"></script>
 </body>
 </html>

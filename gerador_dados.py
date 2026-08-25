@@ -59,7 +59,7 @@ def gerar_dados():
         arquivos = os.listdir(caminho_cat)
         
         if categoria in ["SublimacaoAdulto", "SublimacaoAdulta"]:
-            nome_aba = "Sublimação Adulta Branca"
+            nome_aba = "Sublimação Adulta"
         elif categoria == "BabyLook":
             nome_aba = "Baby Look"
         elif categoria == "SublimacaoInfantil":
@@ -69,11 +69,11 @@ def gerar_dados():
         elif categoria == "Viscolycra Selo Adulto":
             nome_aba = "Baby Look Selo"
         elif categoria == "Viscolycra Selo Infantil":
-            nome_aba = "Viscolycra Infantil Selo"
+            nome_aba = "Visco Infantil Selo"
         elif categoria == "estampasbody":
-            nome_aba = "Body Infantil"
-        elif categoria in ["FrenteTotalMasculina", "Frente Total Masculina"]:
-            nome_aba = "Frente Total Masculina"
+            nome_aba = "Body"
+        elif categoria in ["FrenteTotalMasculina", "Frente Total Masculina", "FrenteTotal"]:
+            nome_aba = "Frente Total"
         else:
             nome_aba = categoria
         

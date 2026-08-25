@@ -277,7 +277,7 @@ const catalogo = {
             "variations": []
         }
     ],
-    "Body Infantil": [
+    "Body": [
         {
             "id": "0001",
             "image": "estampas/estampasbody/0001.webp",
@@ -567,7 +567,7 @@ const catalogo = {
             "variations": []
         }
     ],
-    "Frente Total Masculina": [
+    "Frente Total": [
         {
             "id": "FT001",
             "image": "estampas/FrenteTotalMasculina/FT001.webp",
@@ -1671,7 +1671,7 @@ const catalogo = {
             "variations": []
         }
     ],
-    "Sublima\u00e7\u00e3o Adulta Branca": [
+    "Sublima\u00e7\u00e3o Adulta": [
         {
             "id": "0001",
             "image": "estampas/SublimacaoAdulta/mockup_0001.webp",
@@ -3834,7 +3834,7 @@ const catalogo = {
             "variations": []
         }
     ],
-    "Viscolycra Infantil Selo": [
+    "Visco Infantil Selo": [
         {
             "id": "SI-001",
             "image": "estampas/Viscolycra Selo Infantil/SI_001.mp4",

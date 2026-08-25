@@ -78,12 +78,14 @@ header h1 {
 /* Tabs */
 #tabs-container {
     display: flex;
-    gap: 10px;
+    gap: 6px;
     overflow-x: auto;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0 10px;
     scrollbar-width: none; /* Firefox */
+    -webkit-overflow-scrolling: touch;
 }
 #tabs-container::-webkit-scrollbar {
     display: none; /* Chrome */
@@ -91,15 +93,17 @@ header h1 {
 
 .tab {
     position: relative;
-    padding: 10px 20px;
+    padding: 8px 14px;
     background: rgba(255,255,255,0.2);
     border: none;
     color: var(--white);
     font-weight: 600;
+    font-size: 0.88rem;
     border-radius: 8px 8px 0 0;
     cursor: pointer;
     white-space: nowrap;
     transition: var(--transition);
+    flex-shrink: 0;
 }
 
 .tab.active {
@@ -895,5 +899,51 @@ button, input, .variant-option, .color-option, .print-color-option, .close-btn, 
     font-weight: 800;
     font-size: 0.85rem;
     cursor: pointer;
+}
+
+/* Sub-filtros por Tema (Solto e Empilhável) */
+.subfilters-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 15px auto 10px auto;
+    padding: 0 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.subfilters-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.subfilter-btn {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    color: #374151;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    touch-action: manipulation;
+    user-select: none;
+}
+
+.subfilter-btn:hover {
+    background: #f3f4f6;
+    border-color: #9ca3af;
+}
+
+.subfilter-btn.active {
+    background: var(--primary-color, #1b4332);
+    color: #ffffff;
+    border-color: var(--primary-color, #1b4332);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
 }
 
