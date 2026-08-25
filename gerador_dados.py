@@ -72,6 +72,8 @@ def gerar_dados():
             nome_aba = "Viscolycra Infantil Selo"
         elif categoria == "estampasbody":
             nome_aba = "Body Infantil"
+        elif categoria in ["FrenteTotalMasculina", "Frente Total Masculina"]:
+            nome_aba = "Frente Total Masculina"
         else:
             nome_aba = categoria
         

@@ -567,6 +567,476 @@ const catalogo = {
             "variations": []
         }
     ],
+    "Frente Total Masculina": [
+        {
+            "id": "FT001",
+            "image": "estampas/FrenteTotalMasculina/FT001.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT001.webp",
+            "variations": []
+        },
+        {
+            "id": "FT002",
+            "image": "estampas/FrenteTotalMasculina/FT002.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT002.webp",
+            "variations": []
+        },
+        {
+            "id": "FT003",
+            "image": "estampas/FrenteTotalMasculina/FT003.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT003.webp",
+            "variations": []
+        },
+        {
+            "id": "FT004",
+            "image": "estampas/FrenteTotalMasculina/FT004.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT004.webp",
+            "variations": []
+        },
+        {
+            "id": "FT005",
+            "image": "estampas/FrenteTotalMasculina/FT005.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT005.webp",
+            "variations": []
+        },
+        {
+            "id": "FT006",
+            "image": "estampas/FrenteTotalMasculina/FT006.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT006.webp",
+            "variations": []
+        },
+        {
+            "id": "FT007",
+            "image": "estampas/FrenteTotalMasculina/FT007.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT007.webp",
+            "variations": []
+        },
+        {
+            "id": "FT008",
+            "image": "estampas/FrenteTotalMasculina/FT008.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT008.webp",
+            "variations": []
+        },
+        {
+            "id": "FT009",
+            "image": "estampas/FrenteTotalMasculina/FT009.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT009.webp",
+            "variations": []
+        },
+        {
+            "id": "FT010",
+            "image": "estampas/FrenteTotalMasculina/FT010.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT010.webp",
+            "variations": []
+        },
+        {
+            "id": "FT011",
+            "image": "estampas/FrenteTotalMasculina/FT011.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT011.webp",
+            "variations": []
+        },
+        {
+            "id": "FT012",
+            "image": "estampas/FrenteTotalMasculina/FT012.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT012.webp",
+            "variations": []
+        },
+        {
+            "id": "FT013",
+            "image": "estampas/FrenteTotalMasculina/FT013.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT013.webp",
+            "variations": []
+        },
+        {
+            "id": "FT014",
+            "image": "estampas/FrenteTotalMasculina/FT014.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT014.webp",
+            "variations": []
+        },
+        {
+            "id": "FT015",
+            "image": "estampas/FrenteTotalMasculina/FT015.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT015.webp",
+            "variations": []
+        },
+        {
+            "id": "FT016",
+            "image": "estampas/FrenteTotalMasculina/FT016.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT016.webp",
+            "variations": []
+        },
+        {
+            "id": "FT017",
+            "image": "estampas/FrenteTotalMasculina/FT017.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT017.webp",
+            "variations": []
+        },
+        {
+            "id": "FT018",
+            "image": "estampas/FrenteTotalMasculina/FT018.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT018.webp",
+            "variations": []
+        },
+        {
+            "id": "FT019",
+            "image": "estampas/FrenteTotalMasculina/FT019.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT019.webp",
+            "variations": []
+        },
+        {
+            "id": "FT020",
+            "image": "estampas/FrenteTotalMasculina/FT020.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT020.webp",
+            "variations": []
+        },
+        {
+            "id": "FT021",
+            "image": "estampas/FrenteTotalMasculina/FT021.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT021.webp",
+            "variations": []
+        },
+        {
+            "id": "FT022",
+            "image": "estampas/FrenteTotalMasculina/FT022.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT022.webp",
+            "variations": []
+        },
+        {
+            "id": "FT023",
+            "image": "estampas/FrenteTotalMasculina/FT023.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT023.webp",
+            "variations": []
+        },
+        {
+            "id": "FT024",
+            "image": "estampas/FrenteTotalMasculina/FT024.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT024.webp",
+            "variations": []
+        },
+        {
+            "id": "FT025",
+            "image": "estampas/FrenteTotalMasculina/FT025.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT025.webp",
+            "variations": []
+        },
+        {
+            "id": "FT026",
+            "image": "estampas/FrenteTotalMasculina/FT026.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT026.webp",
+            "variations": []
+        },
+        {
+            "id": "FT027",
+            "image": "estampas/FrenteTotalMasculina/FT027.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT027.webp",
+            "variations": []
+        },
+        {
+            "id": "FT028",
+            "image": "estampas/FrenteTotalMasculina/FT028.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT028.webp",
+            "variations": []
+        },
+        {
+            "id": "FT029",
+            "image": "estampas/FrenteTotalMasculina/FT029.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT029.webp",
+            "variations": []
+        },
+        {
+            "id": "FT030",
+            "image": "estampas/FrenteTotalMasculina/FT030.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT030.webp",
+            "variations": []
+        },
+        {
+            "id": "FT031",
+            "image": "estampas/FrenteTotalMasculina/FT031.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT031.webp",
+            "variations": []
+        },
+        {
+            "id": "FT032",
+            "image": "estampas/FrenteTotalMasculina/FT032.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT032.webp",
+            "variations": []
+        },
+        {
+            "id": "FT033",
+            "image": "estampas/FrenteTotalMasculina/FT033.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT033.webp",
+            "variations": []
+        },
+        {
+            "id": "FT034",
+            "image": "estampas/FrenteTotalMasculina/FT034.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT034.webp",
+            "variations": []
+        },
+        {
+            "id": "FT035",
+            "image": "estampas/FrenteTotalMasculina/FT035.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT035.webp",
+            "variations": []
+        },
+        {
+            "id": "FT036",
+            "image": "estampas/FrenteTotalMasculina/FT036.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT036.webp",
+            "variations": []
+        },
+        {
+            "id": "FT037",
+            "image": "estampas/FrenteTotalMasculina/FT037.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT037.webp",
+            "variations": []
+        },
+        {
+            "id": "FT038",
+            "image": "estampas/FrenteTotalMasculina/FT038.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT038.webp",
+            "variations": []
+        },
+        {
+            "id": "FT039",
+            "image": "estampas/FrenteTotalMasculina/FT039.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT039.webp",
+            "variations": []
+        },
+        {
+            "id": "FT040",
+            "image": "estampas/FrenteTotalMasculina/FT040.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT040.webp",
+            "variations": []
+        },
+        {
+            "id": "FT041",
+            "image": "estampas/FrenteTotalMasculina/FT041.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT041.webp",
+            "variations": []
+        },
+        {
+            "id": "FT042",
+            "image": "estampas/FrenteTotalMasculina/FT042.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT042.webp",
+            "variations": []
+        },
+        {
+            "id": "FT043",
+            "image": "estampas/FrenteTotalMasculina/FT043.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT043.webp",
+            "variations": []
+        },
+        {
+            "id": "FT044",
+            "image": "estampas/FrenteTotalMasculina/FT044.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT044.webp",
+            "variations": []
+        },
+        {
+            "id": "FT045",
+            "image": "estampas/FrenteTotalMasculina/FT045.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT045.webp",
+            "variations": []
+        },
+        {
+            "id": "FT046",
+            "image": "estampas/FrenteTotalMasculina/FT046.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT046.webp",
+            "variations": []
+        },
+        {
+            "id": "FT047",
+            "image": "estampas/FrenteTotalMasculina/FT047.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT047.webp",
+            "variations": []
+        },
+        {
+            "id": "FT048",
+            "image": "estampas/FrenteTotalMasculina/FT048.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT048.webp",
+            "variations": []
+        },
+        {
+            "id": "FT049",
+            "image": "estampas/FrenteTotalMasculina/FT049.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT049.webp",
+            "variations": []
+        },
+        {
+            "id": "FT050",
+            "image": "estampas/FrenteTotalMasculina/FT050.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT050.webp",
+            "variations": []
+        },
+        {
+            "id": "FT051",
+            "image": "estampas/FrenteTotalMasculina/FT051.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT051.webp",
+            "variations": []
+        },
+        {
+            "id": "FT052",
+            "image": "estampas/FrenteTotalMasculina/FT052.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT052.webp",
+            "variations": []
+        },
+        {
+            "id": "FT053",
+            "image": "estampas/FrenteTotalMasculina/FT053.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT053.webp",
+            "variations": []
+        },
+        {
+            "id": "FT054",
+            "image": "estampas/FrenteTotalMasculina/FT054.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT054.webp",
+            "variations": []
+        },
+        {
+            "id": "FT055",
+            "image": "estampas/FrenteTotalMasculina/FT055.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT055.webp",
+            "variations": []
+        },
+        {
+            "id": "FT056",
+            "image": "estampas/FrenteTotalMasculina/FT056.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT056.webp",
+            "variations": []
+        },
+        {
+            "id": "FT057",
+            "image": "estampas/FrenteTotalMasculina/FT057.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT057.webp",
+            "variations": []
+        },
+        {
+            "id": "FT058",
+            "image": "estampas/FrenteTotalMasculina/FT058.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT058.webp",
+            "variations": []
+        },
+        {
+            "id": "FT059",
+            "image": "estampas/FrenteTotalMasculina/FT059.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT059.webp",
+            "variations": []
+        },
+        {
+            "id": "FT060",
+            "image": "estampas/FrenteTotalMasculina/FT060.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT060.webp",
+            "variations": []
+        },
+        {
+            "id": "FT061",
+            "image": "estampas/FrenteTotalMasculina/FT061.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT061.webp",
+            "variations": []
+        },
+        {
+            "id": "FT062",
+            "image": "estampas/FrenteTotalMasculina/FT062.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT062.webp",
+            "variations": []
+        },
+        {
+            "id": "FT063",
+            "image": "estampas/FrenteTotalMasculina/FT063.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT063.webp",
+            "variations": []
+        },
+        {
+            "id": "FT064",
+            "image": "estampas/FrenteTotalMasculina/FT064.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT064.webp",
+            "variations": []
+        },
+        {
+            "id": "FT065",
+            "image": "estampas/FrenteTotalMasculina/FT065.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT065.webp",
+            "variations": []
+        },
+        {
+            "id": "FT066",
+            "image": "estampas/FrenteTotalMasculina/FT066.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT066.webp",
+            "variations": []
+        },
+        {
+            "id": "FT067",
+            "image": "estampas/FrenteTotalMasculina/FT067.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT067.webp",
+            "variations": []
+        },
+        {
+            "id": "FT068",
+            "image": "estampas/FrenteTotalMasculina/FT068.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT068.webp",
+            "variations": []
+        },
+        {
+            "id": "FT069",
+            "image": "estampas/FrenteTotalMasculina/FT069.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT069.webp",
+            "variations": []
+        },
+        {
+            "id": "FT070",
+            "image": "estampas/FrenteTotalMasculina/FT070.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT070.webp",
+            "variations": []
+        },
+        {
+            "id": "FT071",
+            "image": "estampas/FrenteTotalMasculina/FT071.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT071.webp",
+            "variations": []
+        },
+        {
+            "id": "FT072",
+            "image": "estampas/FrenteTotalMasculina/FT072.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT072.webp",
+            "variations": []
+        },
+        {
+            "id": "FT073",
+            "image": "estampas/FrenteTotalMasculina/FT073.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT073.webp",
+            "variations": []
+        },
+        {
+            "id": "FT074",
+            "image": "estampas/FrenteTotalMasculina/FT074.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT074.webp",
+            "variations": []
+        },
+        {
+            "id": "FT075",
+            "image": "estampas/FrenteTotalMasculina/FT075.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT075.webp",
+            "variations": []
+        },
+        {
+            "id": "FT076",
+            "image": "estampas/FrenteTotalMasculina/FT076.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT076.webp",
+            "variations": []
+        },
+        {
+            "id": "FT077",
+            "image": "estampas/FrenteTotalMasculina/FT077.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT077.webp",
+            "variations": []
+        },
+        {
+            "id": "FT078",
+            "image": "estampas/FrenteTotalMasculina/FT078.webp",
+            "thumb": "estampas/FrenteTotalMasculina/FT078.webp",
+            "variations": []
+        }
+    ],
     "Infantil": [
         {
             "id": "FTI-001",

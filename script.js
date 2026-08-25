@@ -143,7 +143,7 @@ function openModal(item) {
     const strassContainer = document.getElementById('strass-selector-container');
     let hasStrass = false;
     
-    if (!currentCategory.includes('Body') && strassCategories.some(c => currentCategory.includes(c)) && !currentCategory.includes('Selo') && !noStrassItems.includes(item.id)) {
+    if (!currentCategory.includes('Body') && !currentCategory.includes('Frente Total') && strassCategories.some(c => currentCategory.includes(c)) && !currentCategory.includes('Selo') && !noStrassItems.includes(item.id)) {
         hasStrass = true;
     } else if ((currentCategory === 'SublimaÃ§Ã£o Infantil' || currentCategory === 'Sublimação Infantil') && sublimacaoInfantilStrassIds.includes(item.id)) {
         hasStrass = true;
