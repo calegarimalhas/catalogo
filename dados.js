@@ -277,6 +277,296 @@ const catalogo = {
             "variations": []
         }
     ],
+    "Body Infantil": [
+        {
+            "id": "0001",
+            "image": "estampas/estampasbody/0001.webp",
+            "thumb": "estampas/estampasbody/0001.webp",
+            "variations": []
+        },
+        {
+            "id": "0002",
+            "image": "estampas/estampasbody/0002.webp",
+            "thumb": "estampas/estampasbody/0002.webp",
+            "variations": []
+        },
+        {
+            "id": "0003",
+            "image": "estampas/estampasbody/0003.webp",
+            "thumb": "estampas/estampasbody/0003.webp",
+            "variations": []
+        },
+        {
+            "id": "0004",
+            "image": "estampas/estampasbody/0004.webp",
+            "thumb": "estampas/estampasbody/0004.webp",
+            "variations": []
+        },
+        {
+            "id": "0005",
+            "image": "estampas/estampasbody/0005.webp",
+            "thumb": "estampas/estampasbody/0005.webp",
+            "variations": []
+        },
+        {
+            "id": "0006",
+            "image": "estampas/estampasbody/0006.webp",
+            "thumb": "estampas/estampasbody/0006.webp",
+            "variations": []
+        },
+        {
+            "id": "0007",
+            "image": "estampas/estampasbody/0007.webp",
+            "thumb": "estampas/estampasbody/0007.webp",
+            "variations": []
+        },
+        {
+            "id": "0008",
+            "image": "estampas/estampasbody/0008.webp",
+            "thumb": "estampas/estampasbody/0008.webp",
+            "variations": []
+        },
+        {
+            "id": "0009",
+            "image": "estampas/estampasbody/0009.webp",
+            "thumb": "estampas/estampasbody/0009.webp",
+            "variations": []
+        },
+        {
+            "id": "0010",
+            "image": "estampas/estampasbody/0010.webp",
+            "thumb": "estampas/estampasbody/0010.webp",
+            "variations": []
+        },
+        {
+            "id": "0011",
+            "image": "estampas/estampasbody/0011.webp",
+            "thumb": "estampas/estampasbody/0011.webp",
+            "variations": []
+        },
+        {
+            "id": "0012",
+            "image": "estampas/estampasbody/0012.webp",
+            "thumb": "estampas/estampasbody/0012.webp",
+            "variations": []
+        },
+        {
+            "id": "0013",
+            "image": "estampas/estampasbody/0013.webp",
+            "thumb": "estampas/estampasbody/0013.webp",
+            "variations": []
+        },
+        {
+            "id": "0014",
+            "image": "estampas/estampasbody/0014.webp",
+            "thumb": "estampas/estampasbody/0014.webp",
+            "variations": []
+        },
+        {
+            "id": "0015",
+            "image": "estampas/estampasbody/0015.webp",
+            "thumb": "estampas/estampasbody/0015.webp",
+            "variations": []
+        },
+        {
+            "id": "0016",
+            "image": "estampas/estampasbody/0016.webp",
+            "thumb": "estampas/estampasbody/0016.webp",
+            "variations": []
+        },
+        {
+            "id": "0017",
+            "image": "estampas/estampasbody/0017.webp",
+            "thumb": "estampas/estampasbody/0017.webp",
+            "variations": []
+        },
+        {
+            "id": "0018",
+            "image": "estampas/estampasbody/0018.webp",
+            "thumb": "estampas/estampasbody/0018.webp",
+            "variations": []
+        },
+        {
+            "id": "0019",
+            "image": "estampas/estampasbody/0019.webp",
+            "thumb": "estampas/estampasbody/0019.webp",
+            "variations": []
+        },
+        {
+            "id": "0020",
+            "image": "estampas/estampasbody/0020.webp",
+            "thumb": "estampas/estampasbody/0020.webp",
+            "variations": []
+        },
+        {
+            "id": "0021",
+            "image": "estampas/estampasbody/0021.webp",
+            "thumb": "estampas/estampasbody/0021.webp",
+            "variations": []
+        },
+        {
+            "id": "0022",
+            "image": "estampas/estampasbody/0022.webp",
+            "thumb": "estampas/estampasbody/0022.webp",
+            "variations": []
+        },
+        {
+            "id": "0023",
+            "image": "estampas/estampasbody/0023.webp",
+            "thumb": "estampas/estampasbody/0023.webp",
+            "variations": []
+        },
+        {
+            "id": "0024",
+            "image": "estampas/estampasbody/0024.webp",
+            "thumb": "estampas/estampasbody/0024.webp",
+            "variations": []
+        },
+        {
+            "id": "0025",
+            "image": "estampas/estampasbody/0025.webp",
+            "thumb": "estampas/estampasbody/0025.webp",
+            "variations": []
+        },
+        {
+            "id": "0026",
+            "image": "estampas/estampasbody/0026.webp",
+            "thumb": "estampas/estampasbody/0026.webp",
+            "variations": []
+        },
+        {
+            "id": "0027",
+            "image": "estampas/estampasbody/0027.webp",
+            "thumb": "estampas/estampasbody/0027.webp",
+            "variations": []
+        },
+        {
+            "id": "0028",
+            "image": "estampas/estampasbody/0028.webp",
+            "thumb": "estampas/estampasbody/0028.webp",
+            "variations": []
+        },
+        {
+            "id": "0029",
+            "image": "estampas/estampasbody/0029.webp",
+            "thumb": "estampas/estampasbody/0029.webp",
+            "variations": []
+        },
+        {
+            "id": "0030",
+            "image": "estampas/estampasbody/0030.webp",
+            "thumb": "estampas/estampasbody/0030.webp",
+            "variations": []
+        },
+        {
+            "id": "0031",
+            "image": "estampas/estampasbody/0031.webp",
+            "thumb": "estampas/estampasbody/0031.webp",
+            "variations": []
+        },
+        {
+            "id": "0032",
+            "image": "estampas/estampasbody/0032.webp",
+            "thumb": "estampas/estampasbody/0032.webp",
+            "variations": []
+        },
+        {
+            "id": "0033",
+            "image": "estampas/estampasbody/0033.webp",
+            "thumb": "estampas/estampasbody/0033.webp",
+            "variations": []
+        },
+        {
+            "id": "0034",
+            "image": "estampas/estampasbody/0034.webp",
+            "thumb": "estampas/estampasbody/0034.webp",
+            "variations": []
+        },
+        {
+            "id": "0035",
+            "image": "estampas/estampasbody/0035.webp",
+            "thumb": "estampas/estampasbody/0035.webp",
+            "variations": []
+        },
+        {
+            "id": "0036",
+            "image": "estampas/estampasbody/0036.webp",
+            "thumb": "estampas/estampasbody/0036.webp",
+            "variations": []
+        },
+        {
+            "id": "0037",
+            "image": "estampas/estampasbody/0037.webp",
+            "thumb": "estampas/estampasbody/0037.webp",
+            "variations": []
+        },
+        {
+            "id": "0038",
+            "image": "estampas/estampasbody/0038.webp",
+            "thumb": "estampas/estampasbody/0038.webp",
+            "variations": []
+        },
+        {
+            "id": "0039",
+            "image": "estampas/estampasbody/0039.webp",
+            "thumb": "estampas/estampasbody/0039.webp",
+            "variations": []
+        },
+        {
+            "id": "0040",
+            "image": "estampas/estampasbody/0040.webp",
+            "thumb": "estampas/estampasbody/0040.webp",
+            "variations": []
+        },
+        {
+            "id": "0041",
+            "image": "estampas/estampasbody/0041.webp",
+            "thumb": "estampas/estampasbody/0041.webp",
+            "variations": []
+        },
+        {
+            "id": "0042",
+            "image": "estampas/estampasbody/0042.webp",
+            "thumb": "estampas/estampasbody/0042.webp",
+            "variations": []
+        },
+        {
+            "id": "0043",
+            "image": "estampas/estampasbody/0043.webp",
+            "thumb": "estampas/estampasbody/0043.webp",
+            "variations": []
+        },
+        {
+            "id": "0044",
+            "image": "estampas/estampasbody/0044.webp",
+            "thumb": "estampas/estampasbody/0044.webp",
+            "variations": []
+        },
+        {
+            "id": "0045",
+            "image": "estampas/estampasbody/0045.webp",
+            "thumb": "estampas/estampasbody/0045.webp",
+            "variations": []
+        },
+        {
+            "id": "0046",
+            "image": "estampas/estampasbody/0046.webp",
+            "thumb": "estampas/estampasbody/0046.webp",
+            "variations": []
+        },
+        {
+            "id": "0047",
+            "image": "estampas/estampasbody/0047.webp",
+            "thumb": "estampas/estampasbody/0047.webp",
+            "variations": []
+        },
+        {
+            "id": "0048",
+            "image": "estampas/estampasbody/0048.webp",
+            "thumb": "estampas/estampasbody/0048.webp",
+            "variations": []
+        }
+    ],
     "Infantil": [
         {
             "id": "FTI-001",

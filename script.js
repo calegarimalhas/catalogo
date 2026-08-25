@@ -143,7 +143,7 @@ function openModal(item) {
     const strassContainer = document.getElementById('strass-selector-container');
     let hasStrass = false;
     
-    if (strassCategories.some(c => currentCategory.includes(c)) && !currentCategory.includes('Selo') && !noStrassItems.includes(item.id)) {
+    if (!currentCategory.includes('Body') && strassCategories.some(c => currentCategory.includes(c)) && !currentCategory.includes('Selo') && !noStrassItems.includes(item.id)) {
         hasStrass = true;
     } else if ((currentCategory === 'SublimaÃ§Ã£o Infantil' || currentCategory === 'Sublimação Infantil') && sublimacaoInfantilStrassIds.includes(item.id)) {
         hasStrass = true;
@@ -156,37 +156,53 @@ function openModal(item) {
         strassContainer.style.display = 'none';
     }
     
-    // Lógica de Cores da Camisa
+    // Lógica de Cores da Camisa / Viés
     const colorContainer = document.getElementById('color-selector-container');
+    const colorTitle = colorContainer ? colorContainer.querySelector('h3') : null;
     const colorInfantil = document.getElementById('color-options-infantil');
     const colorSilkscreen = document.getElementById('color-options-silkscreen');
     const colorInfantilSelo = document.getElementById('color-options-infantil-selo');
     const colorBabylookSelo = document.getElementById('color-options-babylook-selo');
+    const colorBody = document.getElementById('color-options-body');
     
     // Esconde todos inicialmente
     if(colorInfantil) colorInfantil.style.display = 'none';
     if(colorSilkscreen) colorSilkscreen.style.display = 'none';
     if(colorInfantilSelo) colorInfantilSelo.style.display = 'none';
     if(colorBabylookSelo) colorBabylookSelo.style.display = 'none';
+    if(colorBody) colorBody.style.display = 'none';
     
-    if (currentCategory === 'SublimaÃ§Ã£o Infantil' || currentCategory === 'Sublimação Infantil') {
+    if (currentCategory === 'Body Infantil' || currentCategory === 'estampasbody') {
         colorContainer.style.display = 'block';
-        if(colorInfantil) colorInfantil.style.display = 'flex';
-        document.querySelector('input[name="color-option"][value="Branco"]').checked = true;
-    } else if (currentCategory === 'Silkscreen') {
-        colorContainer.style.display = 'block';
-        if(colorSilkscreen) colorSilkscreen.style.display = 'flex';
-        document.querySelector('input[name="color-option-silk"][value="Preta"]').checked = true;
-    } else if (currentCategory === 'Viscolycra Infantil Selo') {
-        colorContainer.style.display = 'block';
-        if(colorInfantilSelo) colorInfantilSelo.style.display = 'flex';
-        document.querySelector('#color-options-infantil-selo input[name="color-option"][value="Preta"]').checked = true;
-    } else if (currentCategory === 'Baby Look Selo') {
-        colorContainer.style.display = 'block';
-        if(colorBabylookSelo) colorBabylookSelo.style.display = 'flex';
-        document.querySelector('#color-options-babylook-selo input[name="color-option"][value="Preta"]').checked = true;
+        if(colorTitle) colorTitle.innerText = 'Cor do Viés (Gola/Manga):';
+        if(colorBody) colorBody.style.display = 'flex';
+        const defaultRadio = document.querySelector('input[name="color-option-body"][value="Branco"]');
+        if(defaultRadio) defaultRadio.checked = true;
     } else {
-        colorContainer.style.display = 'none';
+        if(colorTitle) colorTitle.innerText = 'Cor da Camisa:';
+        if (currentCategory === 'Sublimação Infantil' || currentCategory === 'Sublimação Infantil') {
+            colorContainer.style.display = 'block';
+            if(colorInfantil) colorInfantil.style.display = 'flex';
+            const defaultRadio = document.querySelector('input[name="color-option"][value="Branco"]');
+            if(defaultRadio) defaultRadio.checked = true;
+        } else if (currentCategory === 'Silkscreen') {
+            colorContainer.style.display = 'block';
+            if(colorSilkscreen) colorSilkscreen.style.display = 'flex';
+            const defaultRadio = document.querySelector('input[name="color-option-silk"][value="Preta"]');
+            if(defaultRadio) defaultRadio.checked = true;
+        } else if (currentCategory === 'Viscolycra Infantil Selo') {
+            colorContainer.style.display = 'block';
+            if(colorInfantilSelo) colorInfantilSelo.style.display = 'flex';
+            const defaultRadio = document.querySelector('#color-options-infantil-selo input[name="color-option"][value="Preta"]');
+            if(defaultRadio) defaultRadio.checked = true;
+        } else if (currentCategory === 'Baby Look Selo') {
+            colorContainer.style.display = 'block';
+            if(colorBabylookSelo) colorBabylookSelo.style.display = 'flex';
+            const defaultRadio = document.querySelector('#color-options-babylook-selo input[name="color-option"][value="Preta"]');
+            if(defaultRadio) defaultRadio.checked = true;
+        } else {
+            colorContainer.style.display = 'none';
+        }
     }
     
     // Lógica da Cor da Estampa (Print Color)
@@ -211,9 +227,9 @@ function openModal(item) {
         xgContainer.style.display = 'none';
     }
     
-    // Atualiza PP para categorias Infantis
+    // Atualiza PP para categorias Infantis (exceto Body)
     const ppContainer = document.getElementById('group-size-pp');
-    if (currentCategory.includes('Infantil')) {
+    if (currentCategory.includes('Infantil') && currentCategory !== 'Body Infantil') {
         ppContainer.style.display = 'flex';
     } else {
         ppContainer.style.display = 'none';
@@ -310,11 +326,14 @@ function addToCart() {
     // Mescla as seleções para o carrinho
     const finalVariant = variationSelection || strassSelection;
     
-    // Captura cor da camisa se aplicável
+    // Captura cor da camisa / viés se aplicável
     let colorSelection = '';
     const colorContainer = document.getElementById('color-selector-container');
     if (colorContainer.style.display !== 'none') {
-        if (currentCategory === 'Silkscreen') {
+        if (currentCategory === 'Body Infantil' || currentCategory === 'estampasbody') {
+            const selectedColorRadio = document.querySelector('input[name="color-option-body"]:checked');
+            if (selectedColorRadio) colorSelection = selectedColorRadio.value;
+        } else if (currentCategory === 'Silkscreen') {
             const selectedColorRadio = document.querySelector('input[name="color-option-silk"]:checked');
             if (selectedColorRadio) colorSelection = selectedColorRadio.value;
         } else {
@@ -489,7 +508,15 @@ function updateCartUI() {
         let displayTitle = item.id;
         
         let extras = [];
-        if (item.color) extras.push(`Camisa: ${item.color}`);
+        if (item.color) {
+            let colorLabel = 'Camisa';
+            if (item.category && item.category.includes('Body')) {
+                colorLabel = 'Viés';
+            } else if (item.category === 'Baby Look Selo') {
+                colorLabel = 'Baby Visco';
+            }
+            extras.push(`${colorLabel}: ${item.color}`);
+        }
         if (item.printColor) extras.push(`Estampa: ${item.printColor}`);
         if (item.variant) extras.push(item.variant);
         let extrasText = extras.length > 0 ? `(${extras.join(' - ')})` : '';
@@ -508,7 +535,7 @@ function updateCartUI() {
     });
 }
 
-// FinalizaÃ§Ã£o (WhatsApp)
+// Finalização (WhatsApp)
 function checkout(store) {
     if (cart.length === 0) return;
     
@@ -528,13 +555,25 @@ function checkout(store) {
         groupedCart[item.category].push(item);
     });
     
-    // ConstrÃ³i a mensagem segmentada
+    // Constrói a mensagem segmentada
     for (const [category, items] of Object.entries(groupedCart)) {
-        text += `*--- ${category.toUpperCase()} ---*\n`;
+        let catHeader = category.toUpperCase();
+        if (category === 'Baby Look Selo') {
+            catHeader = 'VISCOLYCRA SELO ADULTA';
+        }
+        text += `*--- ${catHeader} ---*\n`;
         
         items.forEach(item => {
             let extras = [];
-            if (item.color) extras.push(`Camisa: ${item.color}`);
+            if (item.color) {
+                let colorLabel = 'Camisa';
+                if (item.category && item.category.includes('Body')) {
+                    colorLabel = 'Viés';
+                } else if (item.category === 'Baby Look Selo') {
+                    colorLabel = 'Baby Visco';
+                }
+                extras.push(`${colorLabel}: ${item.color}`);
+            }
             if (item.printColor) extras.push(`Estampa: ${item.printColor}`);
             if (item.variant) extras.push(item.variant);
             let extrasText = extras.length > 0 ? `(${extras.join(' - ')})` : '';

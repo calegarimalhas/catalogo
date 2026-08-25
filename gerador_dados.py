@@ -70,6 +70,8 @@ def gerar_dados():
             nome_aba = "Baby Look Selo"
         elif categoria == "Viscolycra Selo Infantil":
             nome_aba = "Viscolycra Infantil Selo"
+        elif categoria == "estampasbody":
+            nome_aba = "Body Infantil"
         else:
             nome_aba = categoria
         
