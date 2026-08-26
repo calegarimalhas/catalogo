@@ -55,9 +55,13 @@
             <span class="step-item">3. Envie pelo WhatsApp</span>
         </div>
 
-        <nav id="tabs-container">
-            <!-- As abas serão geradas via JS -->
-        </nav>
+        <div class="tabs-wrapper">
+            <button class="tabs-arrow-btn tabs-arrow-left" onclick="scrollTabs(-180)" aria-label="Abas à esquerda">‹</button>
+            <nav id="tabs-container">
+                <!-- As abas serão geradas via JS -->
+            </nav>
+            <button class="tabs-arrow-btn tabs-arrow-right" onclick="scrollTabs(180)" aria-label="Abas à direita">›</button>
+        </div>
     </header>
 
     <!-- Sub-filtros por Tema (Solto e Empilhável) -->
@@ -74,9 +78,10 @@
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
             <div class="modal-body">
-                <div class="image-wrapper">
+                <div class="image-wrapper" onclick="openZoomModal()" title="Clique para ampliar">
                     <img id="modal-image" src="" alt="Estampa">
                     <video id="modal-video" src="" autoplay loop muted playsinline style="display: none; width: 100%; border-radius: 12px;"></video>
+                    <span class="zoom-badge-hint">🔍 Clique para ampliar</span>
                 </div>
                 <div class="product-info">
                     <h2 id="modal-title">Código</h2>
@@ -116,6 +121,25 @@
                             <label class="variant-option">
                                 <input type="radio" name="fabric-option" value="Baby Poliéster">
                                 <span class="variant-btn">Baby Poliéster</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Seletor de Modelo de Camiseta Silkscreen (Adulto, Infantil, Baby Viscolycra) -->
+                    <div id="silk-model-selector-container" class="variant-selector" style="display: none;">
+                        <h3>Modelo de Camiseta:</h3>
+                        <div class="variant-options">
+                            <label class="variant-option">
+                                <input type="radio" name="silk-model-option" value="Adulto" checked>
+                                <span class="variant-btn">Adulto</span>
+                            </label>
+                            <label class="variant-option">
+                                <input type="radio" name="silk-model-option" value="Infantil">
+                                <span class="variant-btn">Infantil</span>
+                            </label>
+                            <label class="variant-option">
+                                <input type="radio" name="silk-model-option" value="Baby Viscolycra">
+                                <span class="variant-btn">Baby Viscolycra</span>
                             </label>
                         </div>
                     </div>
@@ -279,8 +303,8 @@
                             </label>
                         </div>
                         
-                        <!-- Cores Silkscreen (Quadrados) -->
-                        <div id="color-options-silkscreen" class="color-options" style="display: none;">
+                        <!-- Cores Silkscreen Adulto / Infantil -->
+                        <div id="color-options-silkscreen-adulto" class="color-options" style="display: none;">
                             <label class="color-option">
                                 <input type="radio" name="color-option-silk" value="Preta" checked>
                                 <span class="color-square" style="background: black;" title="Preta"></span>
@@ -296,6 +320,34 @@
                             <label class="color-option">
                                 <input type="radio" name="color-option-silk" value="Azul Marinho">
                                 <span class="color-square" style="background: #000080;" title="Azul Marinho"></span>
+                            </label>
+                        </div>
+                        
+                        <!-- Cores Silkscreen Baby Viscolycra -->
+                        <div id="color-options-silkscreen-baby" class="color-options" style="display: none;">
+                            <label class="color-option">
+                                <input type="radio" name="color-option-silk" value="Preto">
+                                <span class="color-square" style="background: black;" title="Preto"></span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-silk" value="Marinho">
+                                <span class="color-square" style="background: #000080;" title="Marinho"></span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-silk" value="Pink">
+                                <span class="color-square" style="background: #ff1493;" title="Pink"></span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-silk" value="Mescla">
+                                <span class="color-square" style="background: #a9a9a9;" title="Mescla"></span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-silk" value="Vinho">
+                                <span class="color-square" style="background: #722f37;" title="Vinho"></span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-silk" value="Branco">
+                                <span class="color-square" style="background: white; border: 2px solid #ccc;" title="Branco"></span>
                             </label>
                         </div>
                     </div>
@@ -461,10 +513,20 @@
         <button class="sticky-cart-btn">Enviar Pedido ➔</button>
     </div>
 
+    <!-- Modal de Zoom na Imagem (Lightbox) -->
+    <div id="zoom-modal" class="zoom-modal" onclick="closeZoomModal()">
+        <span class="zoom-close-btn" onclick="closeZoomModal()">&times; Fechar</span>
+        <div class="zoom-content" onclick="event.stopPropagation()">
+            <img id="zoom-image" src="" alt="Zoom da Estampa">
+            <video id="zoom-video" src="" autoplay loop muted playsinline style="display: none;"></video>
+            <p class="zoom-tip">🔍 Dica: toque na foto para ver mais de perto</p>
+        </div>
+    </div>
+
     <!-- Toast de Feedback -->
     <div id="toast-container" class="toast-container"></div>
 
-    <script src="dados.js?v=24"></script>
-    <script src="script.js?v=24"></script>
+    <script src="dados.js?v=37"></script>
+    <script src="script.js?v=37"></script>
 </body>
 </html>

@@ -11,7 +11,7 @@ const WHATSAPP_NUMBER = '5512991431935';
 // Configurações de Variantes (Strass)
 const strassCategories = ['Infantil', 'Baby Look', 'estampas/Infantil', 'estampas/Baby Look'];
 const noStrassItems = ['FTI-002', 'FTI-004', 'FTI-009', 'FTI-015'];
-const sublimacaoInfantilStrassIds = ['0001', '0002', '0003', '0004', '0005', '0006', '0008', '0009', '0010', '0012', '0013', '0014', '0015', '0016', '0017', '0018', '0020', '0024', '0029', '0034', '0035', '0036'];
+const sublimacaoInfantilStrassIds = ['0002', '0004', '0005', '0006', '0008', '0009', '0010', '0012', '0013', '0014', '0015', '0016', '0018', '0020', '0029', '0035', '0036'];
 
 // Dicionário de Filtros por Categoria/Tema
 const FILTROS_CATEGORIAS = {
@@ -72,7 +72,7 @@ const FILTROS_CATEGORIAS = {
         "Outros": ["0021", "0022", "0033", "0034", "0053", "0057", "0058", "0069", "0070", "0071", "0072", "0073", "0074", "0075", "0076"]
     },
     "Silkscreen": {
-        "Nossa Senhora Aparecida": ["0001", "0005", "0006", "0013", "0014", "0019", "0023", "0024", "0026", "0028", "0032", "0033", "0034", "0035", "0038", "0039", "0045", "0047", "0048", "test_animado_0001"],
+        "Nossa Senhora Aparecida": ["0001", "0005", "0006", "0013", "0014", "0019", "0023", "0024", "0026", "0028", "0032", "0033", "0034", "0035", "0038", "0039", "0045", "0047", "0048"],
         "São Bento": ["0003", "0008", "0018", "0037", "0066", "0067"],
         "São Miguel": ["0015"],
         "São Jorge": ["0022", "0059", "0060"],
@@ -105,7 +105,58 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSubFilters(currentCategory);
     renderCatalog(currentCategory);
     updateCartUI();
+
+    const tabsNav = document.getElementById('tabs-container');
+    if (tabsNav) {
+        tabsNav.addEventListener('scroll', updateTabsArrows);
+        window.addEventListener('resize', updateTabsArrows);
+    }
+    updateTabsArrows();
+    setTimeout(updateTabsArrows, 200);
 });
+
+// Funções para controle da navegação das abas por setas
+function scrollTabs(amount) {
+    const container = document.getElementById('tabs-container');
+    if (container) {
+        container.scrollBy({ left: amount, behavior: 'smooth' });
+    }
+}
+
+function updateTabsArrows() {
+    const container = document.getElementById('tabs-container');
+    const leftBtn = document.querySelector('.tabs-arrow-left');
+    const rightBtn = document.querySelector('.tabs-arrow-right');
+
+    if (!container || !leftBtn || !rightBtn) return;
+
+    const isScrollable = container.scrollWidth > container.clientWidth + 5;
+    if (!isScrollable) {
+        leftBtn.style.display = 'none';
+        rightBtn.style.display = 'none';
+        return;
+    }
+
+    leftBtn.style.display = 'flex';
+    rightBtn.style.display = 'flex';
+
+    if (container.scrollLeft <= 5) {
+        leftBtn.style.opacity = '0.3';
+        leftBtn.style.pointerEvents = 'none';
+    } else {
+        leftBtn.style.opacity = '1';
+        leftBtn.style.pointerEvents = 'auto';
+    }
+
+    const maxScrollLeft = container.scrollWidth - container.clientWidth;
+    if (container.scrollLeft >= maxScrollLeft - 5) {
+        rightBtn.style.opacity = '0.3';
+        rightBtn.style.pointerEvents = 'none';
+    } else {
+        rightBtn.style.opacity = '1';
+        rightBtn.style.pointerEvents = 'auto';
+    }
+}
 
 // Renderização dos Sub-filtros por Tema
 function renderSubFilters(category) {
@@ -161,13 +212,16 @@ function renderTabs(categories) {
         btn.onclick = () => {
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             btn.classList.add('active');
+            btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             currentCategory = cat;
             currentSubFilter = 'Todos';
             renderSubFilters(cat);
             renderCatalog(cat);
+            setTimeout(updateTabsArrows, 300);
         };
         tabsContainer.appendChild(btn);
     });
+    setTimeout(updateTabsArrows, 100);
 }
 
 // Renderização do Catálogo
@@ -270,17 +324,18 @@ function openModal(item) {
     const strassContainer = document.getElementById('strass-selector-container');
     let hasStrass = false;
     
-    if (!currentCategory.includes('Body') && !currentCategory.includes('Frente Total') && strassCategories.some(c => currentCategory.includes(c)) && !currentCategory.includes('Selo') && !noStrassItems.includes(item.id)) {
-        hasStrass = true;
-    } else if ((currentCategory === 'SublimaÃ§Ã£o Infantil' || currentCategory === 'Sublimação Infantil') && sublimacaoInfantilStrassIds.includes(item.id)) {
+    if (currentCategory.includes('Sublimação Infantil')) {
+        hasStrass = sublimacaoInfantilStrassIds.includes(item.id);
+    } else if (!currentCategory.includes('Body') && !currentCategory.includes('Frente Total') && strassCategories.some(c => currentCategory.includes(c)) && !currentCategory.includes('Selo') && !noStrassItems.includes(item.id)) {
         hasStrass = true;
     }
     
     if (hasStrass) {
-        strassContainer.style.display = 'block';
-        document.querySelector('input[name="strass-option"][value="Com Pedrinha"]').checked = true;
+        if (strassContainer) strassContainer.style.display = 'block';
+        const strassRadio = document.querySelector('input[name="strass-option"][value="Com Pedrinha"]');
+        if (strassRadio) strassRadio.checked = true;
     } else {
-        strassContainer.style.display = 'none';
+        if (strassContainer) strassContainer.style.display = 'none';
     }
     
     // Lógica de Tecido / Modelo (Baby Look Selo)
@@ -319,66 +374,109 @@ function openModal(item) {
     const colorTitle = colorContainer ? colorContainer.querySelector('h3') : null;
     const colorAdulto = document.getElementById('color-options-adulto');
     const colorInfantil = document.getElementById('color-options-infantil');
-    const colorSilkscreen = document.getElementById('color-options-silkscreen');
+    const colorSilkscreenAdulto = document.getElementById('color-options-silkscreen-adulto');
+    const colorSilkscreenBaby = document.getElementById('color-options-silkscreen-baby');
     const colorInfantilSelo = document.getElementById('color-options-infantil-selo');
     const colorBabylookSelo = document.getElementById('color-options-babylook-selo');
     const colorBody = document.getElementById('color-options-body');
+
+    // Lógica de Modelo de Camiseta (Silkscreen)
+    const silkModelContainer = document.getElementById('silk-model-selector-container');
+    if (currentCategory === 'Silkscreen') {
+        if (silkModelContainer) {
+            silkModelContainer.style.display = 'block';
+            const defaultModel = document.querySelector('input[name="silk-model-option"][value="Adulto"]');
+            if (defaultModel) defaultModel.checked = true;
+
+            const silkModelRadios = document.querySelectorAll('input[name="silk-model-option"]');
+            silkModelRadios.forEach(radio => {
+                radio.onchange = (e) => {
+                    const isBaby = e.target.value === 'Baby Viscolycra';
+                    if (isBaby) {
+                        if (colorSilkscreenAdulto) colorSilkscreenAdulto.style.display = 'none';
+                        if (colorSilkscreenBaby) colorSilkscreenBaby.style.display = 'flex';
+                        const defaultRadio = document.querySelector('#color-options-silkscreen-baby input[name="color-option-silk"][value="Preto"]');
+                        if (defaultRadio) defaultRadio.checked = true;
+                    } else {
+                        if (colorSilkscreenBaby) colorSilkscreenBaby.style.display = 'none';
+                        if (colorSilkscreenAdulto) colorSilkscreenAdulto.style.display = 'flex';
+                        const defaultRadio = document.querySelector('#color-options-silkscreen-adulto input[name="color-option-silk"][value="Preta"]');
+                        if (defaultRadio) defaultRadio.checked = true;
+                    }
+                };
+            });
+        }
+    } else {
+        if (silkModelContainer) silkModelContainer.style.display = 'none';
+    }
     
     // Esconde todos inicialmente
     if(colorAdulto) colorAdulto.style.display = 'none';
     if(colorInfantil) colorInfantil.style.display = 'none';
-    if(colorSilkscreen) colorSilkscreen.style.display = 'none';
+    if(colorSilkscreenAdulto) colorSilkscreenAdulto.style.display = 'none';
+    if(colorSilkscreenBaby) colorSilkscreenBaby.style.display = 'none';
     if(colorInfantilSelo) colorInfantilSelo.style.display = 'none';
     if(colorBabylookSelo) colorBabylookSelo.style.display = 'none';
     if(colorBody) colorBody.style.display = 'none';
     
-    if (currentCategory === 'Body' || currentCategory === 'Body Infantil' || currentCategory === 'estampasbody') {
-        colorContainer.style.display = 'block';
-        if(colorTitle) colorTitle.innerText = 'Cor do Viés (Gola/Manga):';
-        if(colorBody) colorBody.style.display = 'flex';
-        const defaultRadio = document.querySelector('input[name="color-option-body"][value="Branco"]');
-        if(defaultRadio) defaultRadio.checked = true;
-    } else {
-        if(colorTitle) colorTitle.innerText = 'Cor da Camisa:';
-        if (currentCategory.includes('Sublimação Adulta')) {
+    if (colorContainer) {
+        if (currentCategory === 'Body' || currentCategory === 'Body Infantil' || currentCategory === 'estampasbody') {
             colorContainer.style.display = 'block';
-            if(colorAdulto) colorAdulto.style.display = 'flex';
-            const defaultRadio = document.querySelector('input[name="color-option-adulto"][value="Branca"]');
-            if(defaultRadio) defaultRadio.checked = true;
-        } else if (currentCategory === 'Sublimação Infantil' || currentCategory === 'Sublimação Infantil') {
-            colorContainer.style.display = 'block';
-            if(colorInfantil) colorInfantil.style.display = 'flex';
-            const defaultRadio = document.querySelector('input[name="color-option-infantil"][value="Branco"]');
-            if(defaultRadio) defaultRadio.checked = true;
-        } else if (currentCategory === 'Silkscreen') {
-            colorContainer.style.display = 'block';
-            if(colorSilkscreen) colorSilkscreen.style.display = 'flex';
-            const defaultRadio = document.querySelector('input[name="color-option-silk"][value="Preta"]');
-            if(defaultRadio) defaultRadio.checked = true;
-        } else if (currentCategory.includes('Visco Infantil Selo') || currentCategory === 'Viscolycra Infantil Selo') {
-            colorContainer.style.display = 'block';
-            if(colorInfantilSelo) colorInfantilSelo.style.display = 'flex';
-            const defaultRadio = document.querySelector('#color-options-infantil-selo input[name="color-option"][value="Preta"]');
-            if(defaultRadio) defaultRadio.checked = true;
-        } else if (currentCategory === 'Baby Look Selo') {
-            colorContainer.style.display = 'block';
-            if(colorBabylookSelo) colorBabylookSelo.style.display = 'flex';
-            const viscoOnlyOptions = document.querySelectorAll('.color-opt-baby-visco-only');
-            viscoOnlyOptions.forEach(opt => opt.style.display = 'inline-block');
-            const defaultRadio = document.querySelector('input[name="color-option-babylook-selo"][value="Preta"]');
+            if(colorTitle) colorTitle.innerText = 'Cor do Viés (Gola/Manga):';
+            if(colorBody) colorBody.style.display = 'flex';
+            const defaultRadio = document.querySelector('input[name="color-option-body"][value="Branco"]');
             if(defaultRadio) defaultRadio.checked = true;
         } else {
-            colorContainer.style.display = 'none';
+            if(colorTitle) colorTitle.innerText = 'Cor da Camisa:';
+            if (currentCategory.includes('Sublimação Adulta')) {
+                colorContainer.style.display = 'block';
+                if(colorAdulto) colorAdulto.style.display = 'flex';
+                const defaultRadio = document.querySelector('input[name="color-option-adulto"][value="Branca"]');
+                if(defaultRadio) defaultRadio.checked = true;
+            } else if (currentCategory === 'Sublimação Infantil' || currentCategory === 'Sublimação Infantil') {
+                colorContainer.style.display = 'block';
+                if(colorInfantil) colorInfantil.style.display = 'flex';
+                const defaultRadio = document.querySelector('input[name="color-option-infantil"][value="Branco"]');
+                if(defaultRadio) defaultRadio.checked = true;
+            } else if (currentCategory === 'Silkscreen') {
+                colorContainer.style.display = 'block';
+                const silkModelRadio = document.querySelector('input[name="silk-model-option"]:checked');
+                const isBabyVisco = silkModelRadio && silkModelRadio.value === 'Baby Viscolycra';
+                if (isBabyVisco) {
+                    if (colorSilkscreenBaby) colorSilkscreenBaby.style.display = 'flex';
+                    const defaultRadio = document.querySelector('#color-options-silkscreen-baby input[name="color-option-silk"][value="Preto"]');
+                    if(defaultRadio) defaultRadio.checked = true;
+                } else {
+                    if (colorSilkscreenAdulto) colorSilkscreenAdulto.style.display = 'flex';
+                    const defaultRadio = document.querySelector('#color-options-silkscreen-adulto input[name="color-option-silk"][value="Preta"]');
+                    if(defaultRadio) defaultRadio.checked = true;
+                }
+            } else if (currentCategory.includes('Visco Infantil Selo') || currentCategory === 'Viscolycra Infantil Selo') {
+                colorContainer.style.display = 'block';
+                if(colorInfantilSelo) colorInfantilSelo.style.display = 'flex';
+                const defaultRadio = document.querySelector('#color-options-infantil-selo input[name="color-option"][value="Preta"]');
+                if(defaultRadio) defaultRadio.checked = true;
+            } else if (currentCategory === 'Baby Look Selo') {
+                colorContainer.style.display = 'block';
+                if(colorBabylookSelo) colorBabylookSelo.style.display = 'flex';
+                const viscoOnlyOptions = document.querySelectorAll('.color-opt-baby-visco-only');
+                viscoOnlyOptions.forEach(opt => opt.style.display = 'inline-block');
+                const defaultRadio = document.querySelector('input[name="color-option-babylook-selo"][value="Preta"]');
+                if(defaultRadio) defaultRadio.checked = true;
+            } else {
+                colorContainer.style.display = 'none';
+            }
         }
     }
     
     // Lógica da Cor da Estampa (Print Color)
     const printColorContainer = document.getElementById('print-color-selector-container');
     if (currentCategory === 'Silkscreen') {
-        printColorContainer.style.display = 'block';
-        document.querySelector('input[name="print-color-option"][value="Branca"]').checked = true;
+        if (printColorContainer) printColorContainer.style.display = 'block';
+        const defaultPrintColor = document.querySelector('input[name="print-color-option"][value="Branca"]');
+        if (defaultPrintColor) defaultPrintColor.checked = true;
     } else {
-        printColorContainer.style.display = 'none';
+        if (printColorContainer) printColorContainer.style.display = 'none';
     }
     
     // Resetar inputs
@@ -392,6 +490,41 @@ function openModal(item) {
         xgContainer.style.display = 'flex';
     } else {
         xgContainer.style.display = 'none';
+    }
+
+    // Passo a Passo Numerado Dinâmico para Facilitar para Idosos
+    let stepNum = 1;
+
+    if (hasStrass && strassContainer) {
+        const h3 = strassContainer.querySelector('h3');
+        if (h3) h3.innerText = `${stepNum}. Escolha o Acabamento:`;
+        stepNum++;
+    }
+    if (currentCategory === 'Baby Look Selo' && fabricContainer) {
+        const h3 = fabricContainer.querySelector('h3');
+        if (h3) h3.innerText = `${stepNum}. Escolha o Modelo / Tecido:`;
+        stepNum++;
+    }
+    if (currentCategory === 'Silkscreen' && silkModelContainer) {
+        const h3 = silkModelContainer.querySelector('h3');
+        if (h3) h3.innerText = `${stepNum}. Escolha o Modelo:`;
+        stepNum++;
+    }
+    if (colorContainer && colorContainer.style.display !== 'none') {
+        const isBody = currentCategory === 'Body' || currentCategory === 'Body Infantil' || currentCategory === 'estampasbody';
+        const labelText = isBody ? 'Cor do Viés (Gola/Manga):' : 'Cor da Camisa:';
+        if (colorTitle) colorTitle.innerText = `${stepNum}. ${labelText}`;
+        stepNum++;
+    }
+    if (currentCategory === 'Silkscreen' && printColorContainer) {
+        const h3 = printColorContainer.querySelector('h3');
+        if (h3) h3.innerText = `${stepNum}. Cor da Estampa:`;
+        stepNum++;
+    }
+
+    const sizeHelpTip = document.querySelector('.modal-help-tip');
+    if (sizeHelpTip) {
+        sizeHelpTip.innerText = `👇 ${stepNum}. Escolha a quantidade de cada tamanho:`;
     }
     
     // Atualiza PP para categorias Infantis (exceto Body)
@@ -531,11 +664,20 @@ function addToCart() {
         if (selectedPrintColor) printColorSelection = selectedPrintColor.value;
     }
     
-    // Verifica se já tem esse produto no carrinho (considerando variante, tecido e cor)
+    // Captura Modelo Silkscreen se aplicável
+    let silkModelSelection = '';
+    const silkModelContainer = document.getElementById('silk-model-selector-container');
+    if (silkModelContainer && silkModelContainer.style.display !== 'none') {
+        const selectedModelRadio = document.querySelector('input[name="silk-model-option"]:checked');
+        if (selectedModelRadio) silkModelSelection = selectedModelRadio.value;
+    }
+
+    // Verifica se já tem esse produto no carrinho (considerando variante, tecido, modelo e cor)
     const existingItemIndex = cart.findIndex(item => 
         item.id === currentProduct.id && 
         item.variant === finalVariant && 
         item.fabric === fabricSelection &&
+        item.silkModel === silkModelSelection &&
         item.color === colorSelection &&
         item.printColor === printColorSelection
     );
@@ -558,6 +700,7 @@ function addToCart() {
             category: currentCategory,
             variant: finalVariant,
             fabric: fabricSelection,
+            silkModel: silkModelSelection,
             color: colorSelection,
             printColor: printColorSelection,
             sizes: sizes
@@ -691,6 +834,7 @@ function updateCartUI() {
         let displayTitle = item.id;
         
         let extras = [];
+        if (item.silkModel) extras.push(`Modelo: ${item.silkModel}`);
         if (item.category === 'Baby Look Selo') {
             let fabLabel = item.fabric === 'Baby Poliéster' ? 'Baby Poliéster' : 'Baby Visco';
             extras.push(`${fabLabel}: ${item.color}`);
@@ -748,6 +892,7 @@ function checkout(store) {
         
         items.forEach(item => {
             let extras = [];
+            if (item.silkModel) extras.push(`Modelo: ${item.silkModel}`);
             if (item.category === 'Baby Look Selo') {
                 let fabLabel = item.fabric === 'Baby Poliéster' ? 'Baby Poliéster' : 'Baby Visco';
                 extras.push(`${fabLabel}: ${item.color}`);
@@ -795,4 +940,34 @@ function showToast(message) {
     setTimeout(() => {
         toast.remove();
     }, 3000);
+}
+
+// Funções para o Modal de Zoom na Imagem (Lightbox)
+function openZoomModal() {
+    const imgEl = document.getElementById('modal-image');
+    const videoEl = document.getElementById('modal-video');
+    const zoomModal = document.getElementById('zoom-modal');
+    const zoomImg = document.getElementById('zoom-image');
+    const zoomVideo = document.getElementById('zoom-video');
+
+    if (!zoomModal || !zoomImg || !zoomVideo) return;
+
+    if (videoEl && videoEl.style.display !== 'none' && videoEl.src) {
+        zoomImg.style.display = 'none';
+        zoomVideo.style.display = 'block';
+        zoomVideo.src = videoEl.src;
+        zoomVideo.playbackRate = 2.5;
+    } else if (imgEl && imgEl.src) {
+        zoomVideo.style.display = 'none';
+        zoomVideo.src = '';
+        zoomImg.style.display = 'block';
+        zoomImg.src = imgEl.src;
+    }
+
+    zoomModal.style.display = 'flex';
+}
+
+function closeZoomModal() {
+    const zoomModal = document.getElementById('zoom-modal');
+    if (zoomModal) zoomModal.style.display = 'none';
 }
