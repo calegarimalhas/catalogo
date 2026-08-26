@@ -919,6 +919,12 @@ function checkout(store) {
     const whatsappUrl = `https://wa.me/${phone}?text=${encodedText}`;
     
     window.open(whatsappUrl, '_blank');
+
+    // Esvazia o carrinho e atualiza a interface
+    cart = [];
+    saveCart();
+    updateCartUI();
+    closeCart(true);
 }
 
 
