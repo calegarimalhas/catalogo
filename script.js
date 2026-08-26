@@ -527,9 +527,9 @@ function openModal(item) {
         sizeHelpTip.innerText = `👇 ${stepNum}. Escolha a quantidade de cada tamanho:`;
     }
     
-    // Atualiza PP para categorias Infantis (exceto Body)
+    // Atualiza PP para categorias Infantis (exceto Body e a aba Infantil)
     const ppContainer = document.getElementById('group-size-pp');
-    if (currentCategory.includes('Infantil') && !currentCategory.includes('Body')) {
+    if (currentCategory.includes('Infantil') && currentCategory !== 'Infantil' && !currentCategory.includes('Body')) {
         ppContainer.style.display = 'flex';
     } else {
         ppContainer.style.display = 'none';
