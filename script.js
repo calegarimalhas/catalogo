@@ -10,7 +10,7 @@ const WHATSAPP_NUMBER = '5512991431935';
 
 // Configurações de Variantes (Strass)
 const strassCategories = ['Infantil', 'Baby Look', 'estampas/Infantil', 'estampas/Baby Look'];
-const noStrassItems = ['FTI-002', 'FTI-004', 'FTI-009', 'FTI-015'];
+const noStrassItems = ['FTI-002', 'FTI-004', 'FTI-009', 'FTI-015', 'FTI-019', 'FTI-020', 'FTI-021', 'FTI-022', 'FTI-023'];
 const sublimacaoInfantilStrassIds = ['0002', '0004', '0005', '0006', '0008', '0009', '0010', '0012', '0013', '0014', '0015', '0016', '0018', '0020', '0029', '0035', '0036'];
 
 // Dicionário de Filtros por Categoria/Tema
