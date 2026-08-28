@@ -378,7 +378,8 @@ function openModal(item) {
     const colorSilkscreenBaby = document.getElementById('color-options-silkscreen-baby');
     const colorInfantilSelo = document.getElementById('color-options-infantil-selo');
     const colorBabylookSelo = document.getElementById('color-options-babylook-selo');
-        const colorDtfPolyester = document.getElementById('color-options-dtf-polyester');
+    const colorBody = document.getElementById('color-options-body');
+    const colorDtfPolyester = document.getElementById('color-options-dtf-polyester');
     const colorDtfBabylook = document.getElementById('color-options-dtf-babylook');
     const colorDtfInfantilCamiseta = document.getElementById('color-options-dtf-infantil-camiseta');
     const colorDtfInfantilBaby = document.getElementById('color-options-dtf-infantil-baby');
