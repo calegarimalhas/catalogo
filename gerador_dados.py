@@ -74,10 +74,15 @@ def gerar_dados():
             nome_aba = "Body"
         elif categoria in ["FrenteTotalMasculina", "Frente Total Masculina", "FrenteTotal"]:
             nome_aba = "Frente Total"
+        elif categoria in ["DTFadulto", "DTF Adulto"]:
+            nome_aba = "DTF ADULTO"
+        elif categoria in ["DTFinfantil", "DTF Infantil"]:
+            nome_aba = "DTF Infantil"
         else:
             nome_aba = categoria
         
         grupos = {}
+        baby_thumb_numbers = {5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 31, 33, 35, 37, 39, 41, 43, 45, 53, 55, 56, 57}
         
         for arq in arquivos:
             if arq.endswith('_thumb.webp'):
@@ -91,8 +96,10 @@ def gerar_dados():
                     
             if ext.lower() in extensoes_validas:
                 thumb_path = f"{pasta_estampas}/{categoria}/{arq}"
+                is_dtf_infantil_baby = False
+                num_dtf_infantil = 0
                 
-                # Extrai ID e variao
+                # Extrai ID e variação
                 if categoria in ["Viscolycra Selo Adulto", "Viscolycra Selo Infantil"]:
                     if categoria == "Viscolycra Selo Infantil" and nome.startswith("SI_"):
                         if " " in nome:
@@ -129,12 +136,31 @@ def gerar_dados():
                         nome_exibicao = nome
                     base_id = nome_exibicao
                     var_raw = None
+                elif categoria in ["DTFadulto", "DTF Adulto"] and (nome.lower().startswith("video_") or nome.lower().startswith("animacao_") or nome.lower().startswith("animado_")):
+                    try:
+                        numero = int(nome.split("_")[1])
+                        nome_exibicao = str(numero).zfill(4)
+                    except:
+                        nome_exibicao = nome
+                    base_id = nome_exibicao
+                    var_raw = None
+                elif categoria in ["DTFinfantil", "DTF Infantil"] and nome.lower().startswith("mockup_"):
+                    raw_num = nome[7:]
+                    is_dtf_infantil_baby = raw_num.lower().endswith("baby")
+                    clean_num_str = raw_num[:-4] if is_dtf_infantil_baby else raw_num
+                    try:
+                        num_dtf_infantil = int(clean_num_str)
+                        nome_exibicao = str(num_dtf_infantil).zfill(4)
+                    except:
+                        nome_exibicao = raw_num
+                    base_id = nome_exibicao
+                    var_raw = None
                 else:
                     nome_exibicao = nome
                     base_id = nome
                     var_raw = None
                 
-                # Trata thumbnail genrica
+                # Trata thumbnail genérica
                 full_thumb_path = ""
                 if ext.lower() in ['.gif', '.mp4']:
                     if categoria in ["Viscolycra Selo Adulto", "Viscolycra Selo Infantil"]:
@@ -167,6 +193,9 @@ def gerar_dados():
                                 resultado = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                                 if resultado.returncode == 0 and os.path.exists(temp_frame):
                                     with Image.open(temp_frame) as img:
+                                        if categoria in ["DTFadulto", "DTF Adulto"]:
+                                            w, h = img.size
+                                            img = img.crop((0, 0, w - 8, h))
                                         rgb_img = img.convert('RGB')
                                         rgb_img.thumbnail((800, 800), Image.Resampling.LANCZOS)
                                         rgb_img.save(full_thumb_path, 'webp', quality=85, optimize=True)
@@ -176,13 +205,31 @@ def gerar_dados():
                             except:
                                 thumb_path = f"{pasta_estampas}/{categoria}/{arq}"
                                 
-                if base_id not in grupos:
-                    grupos[base_id] = {
-                        "id": nome_exibicao,
-                        "image": f"{pasta_estampas}/{categoria}/{arq}",
-                        "thumb": thumb_path,
-                        "variations": []
-                    }
+                if categoria in ["DTFinfantil", "DTF Infantil"]:
+                    if base_id not in grupos:
+                        grupos[base_id] = {
+                            "id": nome_exibicao,
+                            "image": f"{pasta_estampas}/{categoria}/{arq}",
+                            "image_baby": f"{pasta_estampas}/{categoria}/{arq}",
+                            "thumb": f"{pasta_estampas}/{categoria}/{arq}",
+                            "variations": []
+                        }
+                    if is_dtf_infantil_baby:
+                        grupos[base_id]["image_baby"] = f"{pasta_estampas}/{categoria}/{arq}"
+                        if num_dtf_infantil in baby_thumb_numbers:
+                            grupos[base_id]["thumb"] = f"{pasta_estampas}/{categoria}/{arq}"
+                    else:
+                        grupos[base_id]["image"] = f"{pasta_estampas}/{categoria}/{arq}"
+                        if num_dtf_infantil not in baby_thumb_numbers:
+                            grupos[base_id]["thumb"] = f"{pasta_estampas}/{categoria}/{arq}"
+                else:
+                    if base_id not in grupos:
+                        grupos[base_id] = {
+                            "id": nome_exibicao,
+                            "image": f"{pasta_estampas}/{categoria}/{arq}",
+                            "thumb": thumb_path,
+                            "variations": []
+                        }
                 
                 if ext.lower() in ['.mp4', '.gif'] and not grupos[base_id]["image"].endswith(('.mp4', '.gif')):
                     grupos[base_id]["image"] = f"{pasta_estampas}/{categoria}/{arq}"

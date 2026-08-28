@@ -203,6 +203,7 @@ header h1 {
     aspect-ratio: 1 / 1;
     border-radius: 8px;
     object-fit: contain;
+    clip-path: inset(0 4px 0 0);
 }
 
 .card .codigo {
@@ -295,6 +296,7 @@ header h1 {
     height: 100%;
     max-height: 200px;
     object-fit: contain;
+    clip-path: inset(0 4px 0 0);
 }
 
 .product-info {
@@ -335,6 +337,7 @@ header h1 {
         max-height: 100%;
         width: 100%;
         object-fit: contain;
+        clip-path: inset(0 4px 0 0);
     }
     .product-info {
         flex: 1;
@@ -1037,6 +1040,7 @@ button, input, .variant-option, .color-option, .print-color-option, .close-btn, 
     object-fit: contain;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    clip-path: inset(0 4px 0 0);
 }
 
 .zoom-tip {

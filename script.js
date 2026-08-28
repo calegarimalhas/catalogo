@@ -326,7 +326,7 @@ function openModal(item) {
     
     if (currentCategory.includes('Sublimação Infantil')) {
         hasStrass = sublimacaoInfantilStrassIds.includes(item.id);
-    } else if (!currentCategory.includes('Body') && !currentCategory.includes('Frente Total') && strassCategories.some(c => currentCategory.includes(c)) && !currentCategory.includes('Selo') && !noStrassItems.includes(item.id)) {
+    } else if (!currentCategory.includes('Body') && !currentCategory.includes('Frente Total') && !currentCategory.includes('DTF') && strassCategories.some(c => currentCategory.includes(c)) && !currentCategory.includes('Selo') && !noStrassItems.includes(item.id)) {
         hasStrass = true;
     }
     
@@ -378,7 +378,10 @@ function openModal(item) {
     const colorSilkscreenBaby = document.getElementById('color-options-silkscreen-baby');
     const colorInfantilSelo = document.getElementById('color-options-infantil-selo');
     const colorBabylookSelo = document.getElementById('color-options-babylook-selo');
-    const colorBody = document.getElementById('color-options-body');
+        const colorDtfPolyester = document.getElementById('color-options-dtf-polyester');
+    const colorDtfBabylook = document.getElementById('color-options-dtf-babylook');
+    const colorDtfInfantilCamiseta = document.getElementById('color-options-dtf-infantil-camiseta');
+    const colorDtfInfantilBaby = document.getElementById('color-options-dtf-infantil-baby');
 
     // Lógica de Modelo de Camiseta (Silkscreen)
     const silkModelContainer = document.getElementById('silk-model-selector-container');
@@ -396,18 +399,80 @@ function openModal(item) {
                         if (colorSilkscreenAdulto) colorSilkscreenAdulto.style.display = 'none';
                         if (colorSilkscreenBaby) colorSilkscreenBaby.style.display = 'flex';
                         const defaultRadio = document.querySelector('#color-options-silkscreen-baby input[name="color-option-silk"][value="Preto"]');
-                        if (defaultRadio) defaultRadio.checked = true;
+                        if(defaultRadio) defaultRadio.checked = true;
                     } else {
                         if (colorSilkscreenBaby) colorSilkscreenBaby.style.display = 'none';
                         if (colorSilkscreenAdulto) colorSilkscreenAdulto.style.display = 'flex';
                         const defaultRadio = document.querySelector('#color-options-silkscreen-adulto input[name="color-option-silk"][value="Preta"]');
-                        if (defaultRadio) defaultRadio.checked = true;
+                        if(defaultRadio) defaultRadio.checked = true;
                     }
                 };
             });
         }
     } else {
         if (silkModelContainer) silkModelContainer.style.display = 'none';
+    }
+
+    // Lógica de Modelo / Tecido (DTF Adulto)
+    const dtfModelContainer = document.getElementById('dtf-model-selector-container');
+    if (currentCategory === 'DTF ADULTO') {
+        if (dtfModelContainer) {
+            dtfModelContainer.style.display = 'block';
+            const defaultModel = document.querySelector('input[name="dtf-model-option"][value="Camiseta Poliéster"]');
+            if (defaultModel) defaultModel.checked = true;
+
+            const dtfModelRadios = document.querySelectorAll('input[name="dtf-model-option"]');
+            dtfModelRadios.forEach(radio => {
+                radio.onchange = (e) => {
+                    const isBaby = e.target.value === 'BabyLook Viscolycra';
+                    if (isBaby) {
+                        if (colorDtfPolyester) colorDtfPolyester.style.display = 'none';
+                        if (colorDtfBabylook) colorDtfBabylook.style.display = 'flex';
+                        const defaultRadio = document.querySelector('#color-options-dtf-babylook input[name="color-option-dtf-babylook"][value="Preto"]');
+                        if(defaultRadio) defaultRadio.checked = true;
+                    } else {
+                        if (colorDtfBabylook) colorDtfBabylook.style.display = 'none';
+                        if (colorDtfPolyester) colorDtfPolyester.style.display = 'flex';
+                        const defaultRadio = document.querySelector('#color-options-dtf-polyester input[name="color-option-dtf-polyester"][value="Preto"]');
+                        if(defaultRadio) defaultRadio.checked = true;
+                    }
+                };
+            });
+        }
+    } else {
+        if (dtfModelContainer) dtfModelContainer.style.display = 'none';
+    }
+
+    // Lógica de Modelo / Tecido (DTF Infantil)
+    const dtfInfantilModelContainer = document.getElementById('dtf-infantil-model-selector-container');
+    if (currentCategory === 'DTF Infantil') {
+        if (dtfInfantilModelContainer) {
+            dtfInfantilModelContainer.style.display = 'block';
+            const defaultModel = document.querySelector('input[name="dtf-infantil-model-option"][value="Camiseta"]');
+            if (defaultModel) defaultModel.checked = true;
+
+            const dtfInfantilModelRadios = document.querySelectorAll('input[name="dtf-infantil-model-option"]');
+            dtfInfantilModelRadios.forEach(radio => {
+                radio.onchange = (e) => {
+                    const isBaby = e.target.value.includes('Baby');
+                    if (isBaby) {
+                        updateMedia(item.image_baby || item.image);
+                        if (colorDtfInfantilCamiseta) colorDtfInfantilCamiseta.style.display = 'none';
+                        if (colorDtfInfantilBaby) colorDtfInfantilBaby.style.display = 'flex';
+                        const defaultRadio = document.querySelector('#color-options-dtf-infantil-baby input[name="color-option-dtf-infantil-baby"][value="Preto"]');
+                        if(defaultRadio) defaultRadio.checked = true;
+                    } else {
+                        updateMedia(item.image);
+                        if (colorDtfInfantilBaby) colorDtfInfantilBaby.style.display = 'none';
+                        if (colorDtfInfantilCamiseta) colorDtfInfantilCamiseta.style.display = 'flex';
+                        const defaultRadio = document.querySelector('#color-options-dtf-infantil-camiseta input[name="color-option-dtf-infantil-camiseta"][value="Preto"]');
+                        if(defaultRadio) defaultRadio.checked = true;
+                    }
+                };
+            });
+        }
+    } else {
+        if (dtfInfantilModelContainer) dtfInfantilModelContainer.style.display = 'none';
     }
     
     // Esconde todos inicialmente
@@ -418,6 +483,10 @@ function openModal(item) {
     if(colorInfantilSelo) colorInfantilSelo.style.display = 'none';
     if(colorBabylookSelo) colorBabylookSelo.style.display = 'none';
     if(colorBody) colorBody.style.display = 'none';
+    if(colorDtfPolyester) colorDtfPolyester.style.display = 'none';
+    if(colorDtfBabylook) colorDtfBabylook.style.display = 'none';
+    if(colorDtfInfantilCamiseta) colorDtfInfantilCamiseta.style.display = 'none';
+    if(colorDtfInfantilBaby) colorDtfInfantilBaby.style.display = 'none';
     
     if (colorContainer) {
         if (currentCategory === 'Body' || currentCategory === 'Body Infantil' || currentCategory === 'estampasbody') {
@@ -463,6 +532,32 @@ function openModal(item) {
                 viscoOnlyOptions.forEach(opt => opt.style.display = 'inline-block');
                 const defaultRadio = document.querySelector('input[name="color-option-babylook-selo"][value="Preta"]');
                 if(defaultRadio) defaultRadio.checked = true;
+            } else if (currentCategory === 'DTF ADULTO') {
+                colorContainer.style.display = 'block';
+                const selectedDtfModel = document.querySelector('input[name="dtf-model-option"]:checked');
+                const isBaby = selectedDtfModel && selectedDtfModel.value === 'BabyLook Viscolycra';
+                if (isBaby) {
+                    if(colorDtfBabylook) colorDtfBabylook.style.display = 'flex';
+                    const defaultRadio = document.querySelector('#color-options-dtf-babylook input[name="color-option-dtf-babylook"][value="Preto"]');
+                    if(defaultRadio) defaultRadio.checked = true;
+                } else {
+                    if(colorDtfPolyester) colorDtfPolyester.style.display = 'flex';
+                    const defaultRadio = document.querySelector('#color-options-dtf-polyester input[name="color-option-dtf-polyester"][value="Preto"]');
+                    if(defaultRadio) defaultRadio.checked = true;
+                }
+            } else if (currentCategory === 'DTF Infantil') {
+                colorContainer.style.display = 'block';
+                const selectedDtfModel = document.querySelector('input[name="dtf-infantil-model-option"]:checked');
+                const isBaby = selectedDtfModel && selectedDtfModel.value.includes('Baby');
+                if (isBaby) {
+                    if(colorDtfInfantilBaby) colorDtfInfantilBaby.style.display = 'flex';
+                    const defaultRadio = document.querySelector('#color-options-dtf-infantil-baby input[name="color-option-dtf-infantil-baby"][value="Preto"]');
+                    if(defaultRadio) defaultRadio.checked = true;
+                } else {
+                    if(colorDtfInfantilCamiseta) colorDtfInfantilCamiseta.style.display = 'flex';
+                    const defaultRadio = document.querySelector('#color-options-dtf-infantil-camiseta input[name="color-option-dtf-infantil-camiseta"][value="Preto"]');
+                    if(defaultRadio) defaultRadio.checked = true;
+                }
             } else {
                 colorContainer.style.display = 'none';
             }
@@ -502,6 +597,16 @@ function openModal(item) {
     }
     if (currentCategory === 'Baby Look Selo' && fabricContainer) {
         const h3 = fabricContainer.querySelector('h3');
+        if (h3) h3.innerText = `${stepNum}. Escolha o Modelo / Tecido:`;
+        stepNum++;
+    }
+    if (currentCategory === 'DTF ADULTO' && dtfModelContainer) {
+        const h3 = dtfModelContainer.querySelector('h3');
+        if (h3) h3.innerText = `${stepNum}. Escolha o Modelo / Tecido:`;
+        stepNum++;
+    }
+    if (currentCategory === 'DTF Infantil' && dtfInfantilModelContainer) {
+        const h3 = dtfInfantilModelContainer.querySelector('h3');
         if (h3) h3.innerText = `${stepNum}. Escolha o Modelo / Tecido:`;
         stepNum++;
     }
@@ -650,6 +755,18 @@ function addToCart() {
         } else if (currentCategory === 'Silkscreen') {
             const selectedColorRadio = document.querySelector('input[name="color-option-silk"]:checked');
             if (selectedColorRadio) colorSelection = selectedColorRadio.value;
+        } else if (currentCategory === 'DTF ADULTO') {
+            const selectedDtfModel = document.querySelector('input[name="dtf-model-option"]:checked');
+            const isBaby = selectedDtfModel && selectedDtfModel.value === 'BabyLook Viscolycra';
+            const radioSelector = isBaby ? '#color-options-dtf-babylook input[name="color-option-dtf-babylook"]:checked' : '#color-options-dtf-polyester input[name="color-option-dtf-polyester"]:checked';
+            const selectedColorRadio = document.querySelector(radioSelector);
+            if (selectedColorRadio) colorSelection = selectedColorRadio.value;
+        } else if (currentCategory === 'DTF Infantil') {
+            const selectedDtfModel = document.querySelector('input[name="dtf-infantil-model-option"]:checked');
+            const isBaby = selectedDtfModel && selectedDtfModel.value.includes('Baby');
+            const radioSelector = isBaby ? '#color-options-dtf-infantil-baby input[name="color-option-dtf-infantil-baby"]:checked' : '#color-options-dtf-infantil-camiseta input[name="color-option-dtf-infantil-camiseta"]:checked';
+            const selectedColorRadio = document.querySelector(radioSelector);
+            if (selectedColorRadio) colorSelection = selectedColorRadio.value;
         } else {
             const selectedColorRadio = document.querySelector('input[name="color-option"]:checked');
             if (selectedColorRadio) colorSelection = selectedColorRadio.value;
@@ -672,12 +789,25 @@ function addToCart() {
         if (selectedModelRadio) silkModelSelection = selectedModelRadio.value;
     }
 
+    // Captura Modelo DTF Adulto ou Infantil se aplicável
+    let dtfModelSelection = '';
+    const dtfModelContainer = document.getElementById('dtf-model-selector-container');
+    const dtfInfantilModelContainer = document.getElementById('dtf-infantil-model-selector-container');
+    if (dtfModelContainer && dtfModelContainer.style.display !== 'none') {
+        const selectedModelRadio = document.querySelector('input[name="dtf-model-option"]:checked');
+        if (selectedModelRadio) dtfModelSelection = selectedModelRadio.value;
+    } else if (dtfInfantilModelContainer && dtfInfantilModelContainer.style.display !== 'none') {
+        const selectedModelRadio = document.querySelector('input[name="dtf-infantil-model-option"]:checked');
+        if (selectedModelRadio) dtfModelSelection = selectedModelRadio.value;
+    }
+
     // Verifica se já tem esse produto no carrinho (considerando variante, tecido, modelo e cor)
     const existingItemIndex = cart.findIndex(item => 
         item.id === currentProduct.id && 
         item.variant === finalVariant && 
         item.fabric === fabricSelection &&
         item.silkModel === silkModelSelection &&
+        item.dtfModel === dtfModelSelection &&
         item.color === colorSelection &&
         item.printColor === printColorSelection
     );
@@ -701,6 +831,7 @@ function addToCart() {
             variant: finalVariant,
             fabric: fabricSelection,
             silkModel: silkModelSelection,
+            dtfModel: dtfModelSelection,
             color: colorSelection,
             printColor: printColorSelection,
             sizes: sizes
@@ -834,6 +965,7 @@ function updateCartUI() {
         let displayTitle = item.id;
         
         let extras = [];
+        if (item.dtfModel) extras.push(`Modelo: ${item.dtfModel}`);
         if (item.silkModel) extras.push(`Modelo: ${item.silkModel}`);
         if (item.category === 'Baby Look Selo') {
             let fabLabel = item.fabric === 'Baby Poliéster' ? 'Baby Poliéster' : 'Baby Visco';
@@ -892,6 +1024,7 @@ function checkout(store) {
         
         items.forEach(item => {
             let extras = [];
+            if (item.dtfModel) extras.push(`Modelo: ${item.dtfModel}`);
             if (item.silkModel) extras.push(`Modelo: ${item.silkModel}`);
             if (item.category === 'Baby Look Selo') {
                 let fabLabel = item.fabric === 'Baby Poliéster' ? 'Baby Poliéster' : 'Baby Visco';

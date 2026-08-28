@@ -277,6 +277,1076 @@ const catalogo = {
             "variations": []
         }
     ],
+    "DTF ADULTO": [
+        {
+            "id": "0001",
+            "image": "estampas/DTFadulto/video_001.mp4",
+            "thumb": "estampas/DTFadulto/video_001_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0002",
+            "image": "estampas/DTFadulto/video_002.mp4",
+            "thumb": "estampas/DTFadulto/video_002_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0003",
+            "image": "estampas/DTFadulto/video_003.mp4",
+            "thumb": "estampas/DTFadulto/video_003_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0004",
+            "image": "estampas/DTFadulto/video_004.mp4",
+            "thumb": "estampas/DTFadulto/video_004_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0005",
+            "image": "estampas/DTFadulto/video_005.mp4",
+            "thumb": "estampas/DTFadulto/video_005_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0006",
+            "image": "estampas/DTFadulto/video_006.mp4",
+            "thumb": "estampas/DTFadulto/video_006_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0007",
+            "image": "estampas/DTFadulto/video_007.mp4",
+            "thumb": "estampas/DTFadulto/video_007_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0008",
+            "image": "estampas/DTFadulto/video_008.mp4",
+            "thumb": "estampas/DTFadulto/video_008_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0009",
+            "image": "estampas/DTFadulto/video_009.mp4",
+            "thumb": "estampas/DTFadulto/video_009_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0010",
+            "image": "estampas/DTFadulto/video_010.mp4",
+            "thumb": "estampas/DTFadulto/video_010_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0011",
+            "image": "estampas/DTFadulto/video_011.mp4",
+            "thumb": "estampas/DTFadulto/video_011_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0012",
+            "image": "estampas/DTFadulto/video_012.mp4",
+            "thumb": "estampas/DTFadulto/video_012_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0013",
+            "image": "estampas/DTFadulto/video_013.mp4",
+            "thumb": "estampas/DTFadulto/video_013_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0014",
+            "image": "estampas/DTFadulto/video_014.mp4",
+            "thumb": "estampas/DTFadulto/video_014_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0015",
+            "image": "estampas/DTFadulto/video_015.mp4",
+            "thumb": "estampas/DTFadulto/video_015_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0016",
+            "image": "estampas/DTFadulto/video_016.mp4",
+            "thumb": "estampas/DTFadulto/video_016_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0017",
+            "image": "estampas/DTFadulto/video_017.mp4",
+            "thumb": "estampas/DTFadulto/video_017_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0018",
+            "image": "estampas/DTFadulto/video_018.mp4",
+            "thumb": "estampas/DTFadulto/video_018_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0019",
+            "image": "estampas/DTFadulto/video_019.mp4",
+            "thumb": "estampas/DTFadulto/video_019_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0020",
+            "image": "estampas/DTFadulto/video_020.mp4",
+            "thumb": "estampas/DTFadulto/video_020_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0021",
+            "image": "estampas/DTFadulto/video_021.mp4",
+            "thumb": "estampas/DTFadulto/video_021_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0022",
+            "image": "estampas/DTFadulto/video_022.mp4",
+            "thumb": "estampas/DTFadulto/video_022_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0023",
+            "image": "estampas/DTFadulto/video_023.mp4",
+            "thumb": "estampas/DTFadulto/video_023_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0024",
+            "image": "estampas/DTFadulto/video_024.mp4",
+            "thumb": "estampas/DTFadulto/video_024_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0025",
+            "image": "estampas/DTFadulto/video_025.mp4",
+            "thumb": "estampas/DTFadulto/video_025_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0026",
+            "image": "estampas/DTFadulto/video_026.mp4",
+            "thumb": "estampas/DTFadulto/video_026_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0027",
+            "image": "estampas/DTFadulto/video_027.mp4",
+            "thumb": "estampas/DTFadulto/video_027_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0028",
+            "image": "estampas/DTFadulto/video_028.mp4",
+            "thumb": "estampas/DTFadulto/video_028_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0029",
+            "image": "estampas/DTFadulto/video_029.mp4",
+            "thumb": "estampas/DTFadulto/video_029_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0030",
+            "image": "estampas/DTFadulto/video_030.mp4",
+            "thumb": "estampas/DTFadulto/video_030_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0031",
+            "image": "estampas/DTFadulto/video_031.mp4",
+            "thumb": "estampas/DTFadulto/video_031_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0032",
+            "image": "estampas/DTFadulto/video_032.mp4",
+            "thumb": "estampas/DTFadulto/video_032_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0033",
+            "image": "estampas/DTFadulto/video_033.mp4",
+            "thumb": "estampas/DTFadulto/video_033_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0034",
+            "image": "estampas/DTFadulto/video_034.mp4",
+            "thumb": "estampas/DTFadulto/video_034_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0035",
+            "image": "estampas/DTFadulto/video_035.mp4",
+            "thumb": "estampas/DTFadulto/video_035_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0036",
+            "image": "estampas/DTFadulto/video_036.mp4",
+            "thumb": "estampas/DTFadulto/video_036_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0037",
+            "image": "estampas/DTFadulto/video_037.mp4",
+            "thumb": "estampas/DTFadulto/video_037_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0038",
+            "image": "estampas/DTFadulto/video_038.mp4",
+            "thumb": "estampas/DTFadulto/video_038_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0039",
+            "image": "estampas/DTFadulto/video_039.mp4",
+            "thumb": "estampas/DTFadulto/video_039_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0040",
+            "image": "estampas/DTFadulto/video_040.mp4",
+            "thumb": "estampas/DTFadulto/video_040_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0041",
+            "image": "estampas/DTFadulto/video_041.mp4",
+            "thumb": "estampas/DTFadulto/video_041_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0042",
+            "image": "estampas/DTFadulto/video_042.mp4",
+            "thumb": "estampas/DTFadulto/video_042_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0043",
+            "image": "estampas/DTFadulto/video_043.mp4",
+            "thumb": "estampas/DTFadulto/video_043_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0044",
+            "image": "estampas/DTFadulto/video_044.mp4",
+            "thumb": "estampas/DTFadulto/video_044_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0045",
+            "image": "estampas/DTFadulto/video_045.mp4",
+            "thumb": "estampas/DTFadulto/video_045_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0046",
+            "image": "estampas/DTFadulto/video_046.mp4",
+            "thumb": "estampas/DTFadulto/video_046_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0047",
+            "image": "estampas/DTFadulto/video_047.mp4",
+            "thumb": "estampas/DTFadulto/video_047_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0048",
+            "image": "estampas/DTFadulto/video_048.mp4",
+            "thumb": "estampas/DTFadulto/video_048_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0049",
+            "image": "estampas/DTFadulto/video_049.mp4",
+            "thumb": "estampas/DTFadulto/video_049_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0050",
+            "image": "estampas/DTFadulto/video_050.mp4",
+            "thumb": "estampas/DTFadulto/video_050_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0051",
+            "image": "estampas/DTFadulto/video_051.mp4",
+            "thumb": "estampas/DTFadulto/video_051_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0052",
+            "image": "estampas/DTFadulto/video_052.mp4",
+            "thumb": "estampas/DTFadulto/video_052_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0053",
+            "image": "estampas/DTFadulto/video_053.mp4",
+            "thumb": "estampas/DTFadulto/video_053_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0054",
+            "image": "estampas/DTFadulto/video_054.mp4",
+            "thumb": "estampas/DTFadulto/video_054_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0055",
+            "image": "estampas/DTFadulto/video_055.mp4",
+            "thumb": "estampas/DTFadulto/video_055_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0056",
+            "image": "estampas/DTFadulto/video_056.mp4",
+            "thumb": "estampas/DTFadulto/video_056_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0057",
+            "image": "estampas/DTFadulto/video_057.mp4",
+            "thumb": "estampas/DTFadulto/video_057_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0058",
+            "image": "estampas/DTFadulto/video_058.mp4",
+            "thumb": "estampas/DTFadulto/video_058_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0059",
+            "image": "estampas/DTFadulto/video_059.mp4",
+            "thumb": "estampas/DTFadulto/video_059_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0060",
+            "image": "estampas/DTFadulto/video_060.mp4",
+            "thumb": "estampas/DTFadulto/video_060_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0061",
+            "image": "estampas/DTFadulto/video_061.mp4",
+            "thumb": "estampas/DTFadulto/video_061_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0062",
+            "image": "estampas/DTFadulto/video_062.mp4",
+            "thumb": "estampas/DTFadulto/video_062_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0063",
+            "image": "estampas/DTFadulto/video_063.mp4",
+            "thumb": "estampas/DTFadulto/video_063_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0064",
+            "image": "estampas/DTFadulto/video_064.mp4",
+            "thumb": "estampas/DTFadulto/video_064_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0065",
+            "image": "estampas/DTFadulto/video_065.mp4",
+            "thumb": "estampas/DTFadulto/video_065_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0066",
+            "image": "estampas/DTFadulto/video_066.mp4",
+            "thumb": "estampas/DTFadulto/video_066_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0067",
+            "image": "estampas/DTFadulto/video_067.mp4",
+            "thumb": "estampas/DTFadulto/video_067_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0068",
+            "image": "estampas/DTFadulto/video_068.mp4",
+            "thumb": "estampas/DTFadulto/video_068_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0069",
+            "image": "estampas/DTFadulto/video_069.mp4",
+            "thumb": "estampas/DTFadulto/video_069_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0070",
+            "image": "estampas/DTFadulto/video_070.mp4",
+            "thumb": "estampas/DTFadulto/video_070_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0071",
+            "image": "estampas/DTFadulto/video_071.mp4",
+            "thumb": "estampas/DTFadulto/video_071_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0072",
+            "image": "estampas/DTFadulto/video_072.mp4",
+            "thumb": "estampas/DTFadulto/video_072_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0073",
+            "image": "estampas/DTFadulto/video_073.mp4",
+            "thumb": "estampas/DTFadulto/video_073_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0074",
+            "image": "estampas/DTFadulto/video_074.mp4",
+            "thumb": "estampas/DTFadulto/video_074_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0075",
+            "image": "estampas/DTFadulto/video_075.mp4",
+            "thumb": "estampas/DTFadulto/video_075_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0076",
+            "image": "estampas/DTFadulto/video_076.mp4",
+            "thumb": "estampas/DTFadulto/video_076_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0077",
+            "image": "estampas/DTFadulto/video_077.mp4",
+            "thumb": "estampas/DTFadulto/video_077_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0078",
+            "image": "estampas/DTFadulto/video_078.mp4",
+            "thumb": "estampas/DTFadulto/video_078_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0079",
+            "image": "estampas/DTFadulto/video_079.mp4",
+            "thumb": "estampas/DTFadulto/video_079_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0080",
+            "image": "estampas/DTFadulto/video_080.mp4",
+            "thumb": "estampas/DTFadulto/video_080_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0081",
+            "image": "estampas/DTFadulto/video_081.mp4",
+            "thumb": "estampas/DTFadulto/video_081_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0082",
+            "image": "estampas/DTFadulto/video_082.mp4",
+            "thumb": "estampas/DTFadulto/video_082_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0083",
+            "image": "estampas/DTFadulto/video_083.mp4",
+            "thumb": "estampas/DTFadulto/video_083_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0084",
+            "image": "estampas/DTFadulto/video_084.mp4",
+            "thumb": "estampas/DTFadulto/video_084_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0085",
+            "image": "estampas/DTFadulto/video_085.mp4",
+            "thumb": "estampas/DTFadulto/video_085_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0086",
+            "image": "estampas/DTFadulto/video_086.mp4",
+            "thumb": "estampas/DTFadulto/video_086_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0087",
+            "image": "estampas/DTFadulto/video_087.mp4",
+            "thumb": "estampas/DTFadulto/video_087_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0088",
+            "image": "estampas/DTFadulto/video_088.mp4",
+            "thumb": "estampas/DTFadulto/video_088_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0089",
+            "image": "estampas/DTFadulto/video_089.mp4",
+            "thumb": "estampas/DTFadulto/video_089_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0090",
+            "image": "estampas/DTFadulto/video_090.mp4",
+            "thumb": "estampas/DTFadulto/video_090_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0091",
+            "image": "estampas/DTFadulto/video_091.mp4",
+            "thumb": "estampas/DTFadulto/video_091_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0092",
+            "image": "estampas/DTFadulto/video_092.mp4",
+            "thumb": "estampas/DTFadulto/video_092_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0093",
+            "image": "estampas/DTFadulto/video_093.mp4",
+            "thumb": "estampas/DTFadulto/video_093_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0094",
+            "image": "estampas/DTFadulto/video_094.mp4",
+            "thumb": "estampas/DTFadulto/video_094_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0095",
+            "image": "estampas/DTFadulto/video_095.mp4",
+            "thumb": "estampas/DTFadulto/video_095_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0096",
+            "image": "estampas/DTFadulto/video_096.mp4",
+            "thumb": "estampas/DTFadulto/video_096_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0097",
+            "image": "estampas/DTFadulto/video_097.mp4",
+            "thumb": "estampas/DTFadulto/video_097_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0098",
+            "image": "estampas/DTFadulto/video_098.mp4",
+            "thumb": "estampas/DTFadulto/video_098_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0099",
+            "image": "estampas/DTFadulto/video_099.mp4",
+            "thumb": "estampas/DTFadulto/video_099_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0100",
+            "image": "estampas/DTFadulto/video_100.mp4",
+            "thumb": "estampas/DTFadulto/video_100_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0101",
+            "image": "estampas/DTFadulto/video_101.mp4",
+            "thumb": "estampas/DTFadulto/video_101_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0102",
+            "image": "estampas/DTFadulto/video_102.mp4",
+            "thumb": "estampas/DTFadulto/video_102_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0103",
+            "image": "estampas/DTFadulto/video_103.mp4",
+            "thumb": "estampas/DTFadulto/video_103_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0104",
+            "image": "estampas/DTFadulto/video_104.mp4",
+            "thumb": "estampas/DTFadulto/video_104_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0105",
+            "image": "estampas/DTFadulto/video_105.mp4",
+            "thumb": "estampas/DTFadulto/video_105_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0106",
+            "image": "estampas/DTFadulto/video_106.mp4",
+            "thumb": "estampas/DTFadulto/video_106_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0107",
+            "image": "estampas/DTFadulto/video_107.mp4",
+            "thumb": "estampas/DTFadulto/video_107_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0108",
+            "image": "estampas/DTFadulto/video_108.mp4",
+            "thumb": "estampas/DTFadulto/video_108_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0109",
+            "image": "estampas/DTFadulto/video_109.mp4",
+            "thumb": "estampas/DTFadulto/video_109_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0110",
+            "image": "estampas/DTFadulto/video_110.mp4",
+            "thumb": "estampas/DTFadulto/video_110_thumb.webp",
+            "variations": []
+        }
+    ],
+    "DTF Infantil": [
+        {
+            "id": "0001",
+            "image": "estampas/DTFinfantil/mockup_001.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_001Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_001.webp",
+            "variations": []
+        },
+        {
+            "id": "0002",
+            "image": "estampas/DTFinfantil/mockup_002.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_002Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_002.webp",
+            "variations": []
+        },
+        {
+            "id": "0003",
+            "image": "estampas/DTFinfantil/mockup_003.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_003Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_003.webp",
+            "variations": []
+        },
+        {
+            "id": "0004",
+            "image": "estampas/DTFinfantil/mockup_004.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_004Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_004.webp",
+            "variations": []
+        },
+        {
+            "id": "0005",
+            "image": "estampas/DTFinfantil/mockup_005.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_005Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_005Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0006",
+            "image": "estampas/DTFinfantil/mockup_006.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_006Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_006Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0007",
+            "image": "estampas/DTFinfantil/mockup_007.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_007Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_007Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0008",
+            "image": "estampas/DTFinfantil/mockup_008.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_008Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_008Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0009",
+            "image": "estampas/DTFinfantil/mockup_009.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_009Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_009Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0010",
+            "image": "estampas/DTFinfantil/mockup_010.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_010Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_010Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0011",
+            "image": "estampas/DTFinfantil/mockup_011.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_011Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_011Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0012",
+            "image": "estampas/DTFinfantil/mockup_012.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_012Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_012Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0013",
+            "image": "estampas/DTFinfantil/mockup_013.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_013Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_013Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0014",
+            "image": "estampas/DTFinfantil/mockup_014.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_014Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_014Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0015",
+            "image": "estampas/DTFinfantil/mockup_015.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_015Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_015Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0016",
+            "image": "estampas/DTFinfantil/mockup_016.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_016Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_016Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0017",
+            "image": "estampas/DTFinfantil/mockup_017.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_017Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_017Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0018",
+            "image": "estampas/DTFinfantil/mockup_018.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_018Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_018Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0019",
+            "image": "estampas/DTFinfantil/mockup_019.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_019Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_019.webp",
+            "variations": []
+        },
+        {
+            "id": "0020",
+            "image": "estampas/DTFinfantil/mockup_020.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_020Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_020.webp",
+            "variations": []
+        },
+        {
+            "id": "0021",
+            "image": "estampas/DTFinfantil/mockup_021.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_021Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_021.webp",
+            "variations": []
+        },
+        {
+            "id": "0022",
+            "image": "estampas/DTFinfantil/mockup_022.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_022Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_022.webp",
+            "variations": []
+        },
+        {
+            "id": "0023",
+            "image": "estampas/DTFinfantil/mockup_023.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_023Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_023.webp",
+            "variations": []
+        },
+        {
+            "id": "0024",
+            "image": "estampas/DTFinfantil/mockup_024.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_024Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_024.webp",
+            "variations": []
+        },
+        {
+            "id": "0025",
+            "image": "estampas/DTFinfantil/mockup_025.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_025Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_025.webp",
+            "variations": []
+        },
+        {
+            "id": "0026",
+            "image": "estampas/DTFinfantil/mockup_026.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_026Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_026.webp",
+            "variations": []
+        },
+        {
+            "id": "0027",
+            "image": "estampas/DTFinfantil/mockup_027.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_027Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_027.webp",
+            "variations": []
+        },
+        {
+            "id": "0028",
+            "image": "estampas/DTFinfantil/mockup_028.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_028Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_028.webp",
+            "variations": []
+        },
+        {
+            "id": "0029",
+            "image": "estampas/DTFinfantil/mockup_029.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_029Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_029.webp",
+            "variations": []
+        },
+        {
+            "id": "0030",
+            "image": "estampas/DTFinfantil/mockup_030.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_030Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_030.webp",
+            "variations": []
+        },
+        {
+            "id": "0031",
+            "image": "estampas/DTFinfantil/mockup_031.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_031Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_031Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0032",
+            "image": "estampas/DTFinfantil/mockup_032.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_032Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_032.webp",
+            "variations": []
+        },
+        {
+            "id": "0033",
+            "image": "estampas/DTFinfantil/mockup_033.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_033Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_033Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0034",
+            "image": "estampas/DTFinfantil/mockup_034.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_034Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_034.webp",
+            "variations": []
+        },
+        {
+            "id": "0035",
+            "image": "estampas/DTFinfantil/mockup_035.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_035Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_035Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0036",
+            "image": "estampas/DTFinfantil/mockup_036.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_036Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_036.webp",
+            "variations": []
+        },
+        {
+            "id": "0037",
+            "image": "estampas/DTFinfantil/mockup_037.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_037Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_037Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0038",
+            "image": "estampas/DTFinfantil/mockup_038.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_038Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_038.webp",
+            "variations": []
+        },
+        {
+            "id": "0039",
+            "image": "estampas/DTFinfantil/mockup_039.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_039Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_039Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0040",
+            "image": "estampas/DTFinfantil/mockup_040.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_040Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_040.webp",
+            "variations": []
+        },
+        {
+            "id": "0041",
+            "image": "estampas/DTFinfantil/mockup_041.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_041Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_041Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0042",
+            "image": "estampas/DTFinfantil/mockup_042.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_042Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_042.webp",
+            "variations": []
+        },
+        {
+            "id": "0043",
+            "image": "estampas/DTFinfantil/mockup_043.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_043Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_043Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0044",
+            "image": "estampas/DTFinfantil/mockup_044.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_044Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_044.webp",
+            "variations": []
+        },
+        {
+            "id": "0045",
+            "image": "estampas/DTFinfantil/mockup_045.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_045Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_045Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0046",
+            "image": "estampas/DTFinfantil/mockup_046.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_046Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_046.webp",
+            "variations": []
+        },
+        {
+            "id": "0047",
+            "image": "estampas/DTFinfantil/mockup_047.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_047Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_047.webp",
+            "variations": []
+        },
+        {
+            "id": "0048",
+            "image": "estampas/DTFinfantil/mockup_048.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_048Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_048.webp",
+            "variations": []
+        },
+        {
+            "id": "0049",
+            "image": "estampas/DTFinfantil/mockup_049.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_049Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_049.webp",
+            "variations": []
+        },
+        {
+            "id": "0050",
+            "image": "estampas/DTFinfantil/mockup_050.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_050Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_050.webp",
+            "variations": []
+        },
+        {
+            "id": "0051",
+            "image": "estampas/DTFinfantil/mockup_051.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_051Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_051.webp",
+            "variations": []
+        },
+        {
+            "id": "0052",
+            "image": "estampas/DTFinfantil/mockup_052.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_052Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_052.webp",
+            "variations": []
+        },
+        {
+            "id": "0053",
+            "image": "estampas/DTFinfantil/mockup_053.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_053Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_053Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0054",
+            "image": "estampas/DTFinfantil/mockup_054.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_054Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_054.webp",
+            "variations": []
+        },
+        {
+            "id": "0055",
+            "image": "estampas/DTFinfantil/mockup_055.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_055Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_055Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0056",
+            "image": "estampas/DTFinfantil/mockup_056.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_056Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_056Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0057",
+            "image": "estampas/DTFinfantil/mockup_057.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_057Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_057Baby.webp",
+            "variations": []
+        },
+        {
+            "id": "0058",
+            "image": "estampas/DTFinfantil/mockup_058.webp",
+            "image_baby": "estampas/DTFinfantil/mockup_058Baby.webp",
+            "thumb": "estampas/DTFinfantil/mockup_058.webp",
+            "variations": []
+        }
+    ],
     "Body": [
         {
             "id": "0001",
@@ -2913,6 +3983,36 @@ const catalogo = {
             "image": "estampas/SublimacaoAdulta/mockup_0208.webp",
             "thumb": "estampas/SublimacaoAdulta/mockup_0208.webp",
             "variations": []
+        },
+        {
+            "id": "0209",
+            "image": "estampas/SublimacaoAdulta/mockup_0209.jpg",
+            "thumb": "estampas/SublimacaoAdulta/mockup_0209.jpg",
+            "variations": []
+        },
+        {
+            "id": "0210",
+            "image": "estampas/SublimacaoAdulta/mockup_0210.jpg",
+            "thumb": "estampas/SublimacaoAdulta/mockup_0210.jpg",
+            "variations": []
+        },
+        {
+            "id": "0211",
+            "image": "estampas/SublimacaoAdulta/mockup_0211.jpg",
+            "thumb": "estampas/SublimacaoAdulta/mockup_0211.jpg",
+            "variations": []
+        },
+        {
+            "id": "0212",
+            "image": "estampas/SublimacaoAdulta/mockup_0212.jpg",
+            "thumb": "estampas/SublimacaoAdulta/mockup_0212.jpg",
+            "variations": []
+        },
+        {
+            "id": "0213",
+            "image": "estampas/SublimacaoAdulta/mockup_0213.jpg",
+            "thumb": "estampas/SublimacaoAdulta/mockup_0213.jpg",
+            "variations": []
         }
     ],
     "Sublima\u00e7\u00e3o Infantil": [
@@ -3849,6 +4949,12 @@ const catalogo = {
             "id": "0064",
             "image": "estampas/Viscolycra Selo Adulto/0064.mp4",
             "thumb": "estampas/Viscolycra Selo Adulto/0064_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0065",
+            "image": "estampas/Viscolycra Selo Adulto/0065.mp4",
+            "thumb": "estampas/Viscolycra Selo Adulto/0065_thumb.webp",
             "variations": []
         }
     ],
