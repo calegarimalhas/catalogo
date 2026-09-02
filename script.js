@@ -922,6 +922,14 @@ function updateCartUI() {
     }, 0);
     cartCount.innerText = totalItems;
     
+    // Calcula o preço total do pedido
+    let totalPrice = 0;
+    cart.forEach(item => {
+        const qty = Object.values(item.sizes).reduce((a, b) => a + b, 0);
+        const unitPrice = getItemUnitPrice(item);
+        totalPrice += qty * unitPrice;
+    });
+
     // Atualiza barra flutuante de carrinho na parte inferior
     const stickyBar = document.getElementById('sticky-cart-bar');
     const stickyText = document.getElementById('sticky-cart-text');
@@ -929,13 +937,18 @@ function updateCartUI() {
         if (totalItems > 0) {
             stickyBar.style.display = 'flex';
             if (stickyText) {
-                stickyText.innerText = `Ver Meu Pedido (${totalItems} ${totalItems === 1 ? 'peça' : 'peças'})`;
+                stickyText.innerText = `Ver Meu Pedido (${totalItems} ${totalItems === 1 ? 'peça' : 'peças'} • ${formatMoney(totalPrice)})`;
             }
         } else {
             stickyBar.style.display = 'none';
         }
     }
     
+    // Elementos do Resumo de Preço no Footer do Carrinho
+    const cartSummaryContainer = document.getElementById('cart-summary');
+    const summaryPiecesEl = document.getElementById('cart-summary-pieces');
+    const summaryTotalPriceEl = document.getElementById('cart-summary-total-price');
+
     // Atualiza lista do carrinho
     const cartItemsContainer = document.getElementById('cart-items');
     
@@ -945,6 +958,7 @@ function updateCartUI() {
         const btnGua = document.getElementById('checkout-btn-guaratingueta');
         if(btnAp) btnAp.disabled = true;
         if(btnGua) btnGua.disabled = true;
+        if (cartSummaryContainer) cartSummaryContainer.style.display = 'none';
         return;
     }
     
@@ -952,6 +966,13 @@ function updateCartUI() {
     const btnGua = document.getElementById('checkout-btn-guaratingueta');
     if(btnAp) btnAp.disabled = false;
     if(btnGua) btnGua.disabled = false;
+
+    if (cartSummaryContainer) {
+        cartSummaryContainer.style.display = 'block';
+        if (summaryPiecesEl) summaryPiecesEl.innerText = `${totalItems} ${totalItems === 1 ? 'peça' : 'peças'}`;
+        if (summaryTotalPriceEl) summaryTotalPriceEl.innerText = formatMoney(totalPrice);
+    }
+
     cartItemsContainer.innerHTML = '';
     
     cart.forEach((item, index) => {
@@ -959,9 +980,16 @@ function updateCartUI() {
         div.className = 'cart-item';
         
         let sizesText = [];
+        let itemQty = 0;
         for (const [size, qty] of Object.entries(item.sizes)) {
-            if (qty > 0) sizesText.push(`${qty}x ${size}`);
+            if (qty > 0) {
+                sizesText.push(`${qty}x ${size}`);
+                itemQty += qty;
+            }
         }
+
+        const unitPrice = getItemUnitPrice(item);
+        const itemSubtotal = itemQty * unitPrice;
         
         let displayTitle = item.id;
         
@@ -984,6 +1012,10 @@ function updateCartUI() {
             <div class="cart-item-info">
                 <div class="cart-item-title">${displayTitle} ${extrasText}</div>
                 <div class="cart-item-sizes">Tam: ${sizesText.join(', ')}</div>
+                <div class="cart-item-price">
+                    <span class="cart-item-unit-price">${itemQty}x ${formatMoney(unitPrice)}</span>
+                    <span class="cart-item-subtotal">${formatMoney(itemSubtotal)}</span>
+                </div>
             </div>
             <button class="remove-item" onclick="removeFromCart(${index})" title="Remover item">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="16" height="16" fill="currentColor"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
@@ -991,6 +1023,73 @@ function updateCartUI() {
         `;
         cartItemsContainer.appendChild(div);
     });
+}
+
+function getItemGroupKey(item) {
+    const cat = item.category || '';
+    
+    if (cat === 'Silkscreen') {
+        const silkM = item.silkModel || 'Adulto';
+        if (silkM === 'Baby Viscolycra') {
+            return 'SILKSCREEN BABY LOOK VISCOLYCRA';
+        } else if (silkM === 'Infantil') {
+            return 'SILKSCREEN INFANTIL';
+        } else {
+            return 'SILKSCREEN ADULTO';
+        }
+    }
+
+    if (cat === 'DTF ADULTO') {
+        const dtfM = item.dtfModel || 'Camiseta Poliéster';
+        if (dtfM === 'BabyLook Viscolycra') {
+            return 'DTF ADULTO BABYLOOK VISCOLYCRA';
+        } else {
+            return 'DTF ADULTO CAMISETA POLIÉSTER';
+        }
+    }
+
+    if (cat === 'DTF Infantil') {
+        const dtfM = item.dtfModel || 'Camiseta';
+        if (dtfM.includes('Baby')) {
+            return 'DTF INFANTIL BABY LOOK VISCOLYCRA';
+        } else {
+            return 'DTF INFANTIL CAMISETA';
+        }
+    }
+
+    if (cat === 'Baby Look Selo') {
+        if (item.fabric === 'Baby Poliéster') {
+            return 'BABY POLIÉSTER SELO';
+        } else {
+            return 'VISCOLYCRA SELO ADULTA';
+        }
+    }
+
+    if (cat === 'Infantil') {
+        return 'FRENTE TOTAL INFANTIL';
+    }
+
+    if (cat.includes('Sublimação Adulta') || cat.includes('SublimacaoAdulto')) {
+        return 'SUBLIMAÇÃO ADULTA';
+    }
+
+    if (cat.includes('Sublimação Infantil') || cat.includes('SublimacaoInfantil')) {
+        return 'SUBLIMAÇÃO INFANTIL';
+    }
+
+    if (cat === 'Baby Look') {
+        return 'BABY LOOK FRENTE TOTAL';
+    }
+
+    if (cat === 'Frente Total') {
+        return 'FRENTE TOTAL ADULTO';
+    }
+
+    if (cat.includes('Body')) {
+        return 'BODY ESTAMPADO';
+    }
+
+    return cat.toUpperCase();
 }
 
 // Finalização (WhatsApp)
@@ -1003,16 +1102,12 @@ function checkout(store) {
     }
     
     let text = "*Novo Pedido - Calegari Malhas*\n\n";
+    let grandTotalPieces = 0;
     
     // Agrupa os itens do carrinho por categoria / modelo de tecido
     const groupedCart = {};
     cart.forEach(item => {
-        let groupKey = item.category;
-        if (item.category === 'Baby Look Selo') {
-            groupKey = item.fabric === 'Baby Poliéster' ? 'BABY POLIÉSTER SELO' : 'VISCOLYCRA SELO ADULTA';
-        } else if (item.category === 'Infantil') {
-            groupKey = 'FRENTE TOTAL INFANTIL';
-        }
+        const groupKey = getItemGroupKey(item);
         if (!groupedCart[groupKey]) {
             groupedCart[groupKey] = [];
         }
@@ -1021,32 +1116,42 @@ function checkout(store) {
     
     // Constrói a mensagem segmentada
     for (const [groupTitle, items] of Object.entries(groupedCart)) {
-        text += `*--- ${groupTitle.toUpperCase()} ---*\n`;
+        text += `*--- ${groupTitle} ---*\n`;
+        let groupTotalPieces = 0;
         
         items.forEach(item => {
             let extras = [];
-            if (item.dtfModel) extras.push(`Modelo: ${item.dtfModel}`);
-            if (item.silkModel) extras.push(`Modelo: ${item.silkModel}`);
             if (item.category === 'Baby Look Selo') {
                 let fabLabel = item.fabric === 'Baby Poliéster' ? 'Baby Poliéster' : 'Baby Visco';
-                extras.push(`${fabLabel}: ${item.color}`);
+                if (item.color) extras.push(`${fabLabel}: ${item.color}`);
             } else if (item.color) {
                 let colorLabel = (item.category && item.category.includes('Body')) ? 'Viés' : 'Camisa';
                 extras.push(`${colorLabel}: ${item.color}`);
             }
             if (item.printColor) extras.push(`Estampa: ${item.printColor}`);
             if (item.variant) extras.push(item.variant);
-            let extrasText = extras.length > 0 ? `(${extras.join(' - ')})` : '';
+            let extrasText = extras.length > 0 ? ` (${extras.join(' - ')})` : '';
             
-            text += `*Estampa: ${item.id}* ${extrasText}\n`;
+            let itemQty = 0;
             let sizesText = [];
             for (const [size, qty] of Object.entries(item.sizes)) {
-                if (qty > 0) sizesText.push(`${qty}x ${size}`);
+                if (qty > 0) {
+                    sizesText.push(`${qty}x ${size}`);
+                    itemQty += qty;
+                }
             }
+
+            groupTotalPieces += itemQty;
+            grandTotalPieces += itemQty;
+            
+            text += `*Estampa: ${item.id}*${extrasText}\n`;
             text += `Tamanhos: ${sizesText.join(', ')}\n\n`;
         });
+
+        text += `*${groupTotalPieces} ${groupTotalPieces === 1 ? 'peça.' : 'peças.'}*\n\n`;
     }
     
+    text += `*TOTAL DO PEDIDO: ${grandTotalPieces} ${grandTotalPieces === 1 ? 'peça' : 'peças'}*\n\n`;
     text += "_Pedido gerado pelo Catálogo Digital_";
     
     const encodedText = encodeURIComponent(text);

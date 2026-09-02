@@ -656,6 +656,28 @@ header h1 {
     color: var(--text-light);
 }
 
+.cart-item-price {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    margin-top: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9f9f9;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.cart-item-unit-price {
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.cart-item-subtotal {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
 .remove-item {
     color: #ff4757;
     background: none;
@@ -668,6 +690,32 @@ header h1 {
 .cart-footer {
     padding: 20px;
     border-top: 1px solid #eee;
+}
+
+.cart-summary {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 15px;
+    border: 1px solid #e9ecef;
+}
+
+.cart-summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+    color: #495057;
+    margin-bottom: 6px;
+}
+
+.cart-summary-total {
+    border-top: 1px dashed #ced4da;
+    padding-top: 8px;
+    margin-top: 8px;
+    font-size: 1.15rem;
+    font-weight: bold;
+    color: var(--primary-color);
 }
 
 .checkout-btn {
