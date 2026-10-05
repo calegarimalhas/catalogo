@@ -13,6 +13,12 @@ const TABELA_PRECOS = {
             "preco": 12.80
           },
           {
+            "produto": "Camiseta Machão - Sublimação religiosa",
+            "publico": "Adulto",
+            "tamanhos": "P ao GG",
+            "preco": 12.80
+          },
+          {
             "produto": "Camiseta branca - Sublimação religiosa",
             "publico": "Infantil",
             "tamanhos": "P ao GG",
@@ -126,6 +132,12 @@ const TABELA_PRECOS = {
         "itens": [
           {
             "produto": "Camiseta Poliéster DTF",
+            "publico": "Adulto",
+            "tamanhos": "Não especificado",
+            "preco": 15.00
+          },
+          {
+            "produto": "Camiseta Machão DTF",
             "publico": "Adulto",
             "tamanhos": "Não especificado",
             "preco": 15.00

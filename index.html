@@ -144,7 +144,22 @@
                         </div>
                     </div>
 
-                    <!-- Seletor de Modelo DTF Adulto (Camiseta Poliéster / BabyLook Viscolycra) -->
+                    <!-- Seletor de Modelo Sublimação Adulto (Camiseta / Camiseta Machão) -->
+                    <div id="sublimacao-adulto-model-selector-container" class="variant-selector" style="display: none;">
+                        <h3>Modelo:</h3>
+                        <div class="variant-options">
+                            <label class="variant-option">
+                                <input type="radio" name="sublimacao-adulto-model-option" value="Camiseta" checked>
+                                <span class="variant-btn">Camiseta</span>
+                            </label>
+                            <label class="variant-option">
+                                <input type="radio" name="sublimacao-adulto-model-option" value="Camiseta Machão">
+                                <span class="variant-btn">Camiseta Machão</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Seletor de Modelo DTF Adulto (Camiseta Poliéster / BabyLook Viscolycra / Camiseta Machão) -->
                     <div id="dtf-model-selector-container" class="variant-selector" style="display: none;">
                         <h3>Modelo / Tecido:</h3>
                         <div class="variant-options">
@@ -155,6 +170,10 @@
                             <label class="variant-option">
                                 <input type="radio" name="dtf-model-option" value="BabyLook Viscolycra">
                                 <span class="variant-btn">BabyLook Viscolycra</span>
+                            </label>
+                            <label class="variant-option">
+                                <input type="radio" name="dtf-model-option" value="Camiseta Machão">
+                                <span class="variant-btn">Camiseta Machão</span>
                             </label>
                         </div>
                     </div>
@@ -186,6 +205,34 @@
                             <label class="color-option">
                                 <input type="radio" name="color-option-adulto" value="Mescla">
                                 <span class="color-btn" style="background: #a9a9a9; color: white;">Mescla</span>
+                            </label>
+                        </div>
+
+                        <!-- Cores Sublimação Adulto - Camiseta Machão -->
+                        <div id="color-options-sublimacao-machao" class="color-options" style="display: none;">
+                            <label class="color-option">
+                                <input type="radio" name="color-option-sublimacao-machao" value="Branca" checked>
+                                <span class="color-btn" style="background: white; border-color: #ddd;">Branca</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-sublimacao-machao" value="Mescla">
+                                <span class="color-btn" style="background: #a9a9a9; color: white;">Mescla</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-sublimacao-machao" value="Preto">
+                                <span class="color-btn" style="background: black; color: white;">Preto</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-sublimacao-machao" value="Vermelho">
+                                <span class="color-btn" style="background: #e30000; color: white;">Vermelho</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-sublimacao-machao" value="Royal">
+                                <span class="color-btn" style="background: #2b53a3; color: white;">Royal</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-sublimacao-machao" value="Marinho">
+                                <span class="color-btn" style="background: #000080; color: white;">Marinho</span>
                             </label>
                         </div>
                         
@@ -389,7 +436,7 @@
                             </label>
                         </div>
                         
-                        <!-- Cores DTF Adulto - Camiseta Poliéster -->
+                        <!-- Cores DTF Adulto - Camiseta Poliéster / Camiseta Machão -->
                         <div id="color-options-dtf-polyester" class="color-options" style="display: none;">
                             <label class="color-option">
                                 <input type="radio" name="color-option-dtf-polyester" value="Preto" checked>
@@ -406,6 +453,14 @@
                             <label class="color-option">
                                 <input type="radio" name="color-option-dtf-polyester" value="Marinho">
                                 <span class="color-btn" style="background: #000080; color: white;">Marinho</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-dtf-polyester" value="Mescla">
+                                <span class="color-btn" style="background: #a9a9a9; color: white;">Mescla</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-dtf-polyester" value="Branco">
+                                <span class="color-btn" style="background: white; border-color: #ddd; color: black;">Branco</span>
                             </label>
                         </div>
 
@@ -710,8 +765,8 @@
     <!-- Toast de Feedback -->
     <div id="toast-container" class="toast-container"></div>
 
-    <script src="tabela_precos.js?v=44"></script>
+    <script src="tabela_precos.js?v=45"></script>
     <script src="dados.js?v=43"></script>
-    <script src="script.js?v=43"></script>
+    <script src="script.js?v=44"></script>
 </body>
 </html>
