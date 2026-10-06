@@ -937,6 +937,162 @@ const catalogo = {
             "image": "estampas/DTFadulto/video_110.mp4",
             "thumb": "estampas/DTFadulto/video_110_thumb.webp",
             "variations": []
+        },
+        {
+            "id": "0111",
+            "image": "estampas/DTFadulto/video_111.mp4",
+            "thumb": "estampas/DTFadulto/video_111_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0112",
+            "image": "estampas/DTFadulto/video_112.mp4",
+            "thumb": "estampas/DTFadulto/video_112_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0113",
+            "image": "estampas/DTFadulto/video_113.mp4",
+            "thumb": "estampas/DTFadulto/video_113_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0114",
+            "image": "estampas/DTFadulto/video_114.mp4",
+            "thumb": "estampas/DTFadulto/video_114_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0115",
+            "image": "estampas/DTFadulto/video_115.mp4",
+            "thumb": "estampas/DTFadulto/video_115_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0116",
+            "image": "estampas/DTFadulto/video_116.mp4",
+            "thumb": "estampas/DTFadulto/video_116_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0117",
+            "image": "estampas/DTFadulto/video_117.mp4",
+            "thumb": "estampas/DTFadulto/video_117_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0118",
+            "image": "estampas/DTFadulto/video_118.mp4",
+            "thumb": "estampas/DTFadulto/video_118_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0119",
+            "image": "estampas/DTFadulto/video_119.mp4",
+            "thumb": "estampas/DTFadulto/video_119_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0120",
+            "image": "estampas/DTFadulto/video_120.mp4",
+            "thumb": "estampas/DTFadulto/video_120_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0121",
+            "image": "estampas/DTFadulto/video_121.mp4",
+            "thumb": "estampas/DTFadulto/video_121_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0122",
+            "image": "estampas/DTFadulto/video_122.mp4",
+            "thumb": "estampas/DTFadulto/video_122_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0123",
+            "image": "estampas/DTFadulto/video_123.mp4",
+            "thumb": "estampas/DTFadulto/video_123_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0124",
+            "image": "estampas/DTFadulto/video_124.mp4",
+            "thumb": "estampas/DTFadulto/video_124_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0125",
+            "image": "estampas/DTFadulto/video_125.mp4",
+            "thumb": "estampas/DTFadulto/video_125_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0126",
+            "image": "estampas/DTFadulto/video_126.mp4",
+            "thumb": "estampas/DTFadulto/video_126_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0127",
+            "image": "estampas/DTFadulto/video_127.mp4",
+            "thumb": "estampas/DTFadulto/video_127_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0128",
+            "image": "estampas/DTFadulto/video_128.mp4",
+            "thumb": "estampas/DTFadulto/video_128_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0129",
+            "image": "estampas/DTFadulto/video_129.mp4",
+            "thumb": "estampas/DTFadulto/video_129_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0130",
+            "image": "estampas/DTFadulto/video_130.mp4",
+            "thumb": "estampas/DTFadulto/video_130_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0131",
+            "image": "estampas/DTFadulto/video_131.mp4",
+            "thumb": "estampas/DTFadulto/video_131_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0132",
+            "image": "estampas/DTFadulto/video_132.mp4",
+            "thumb": "estampas/DTFadulto/video_132_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0133",
+            "image": "estampas/DTFadulto/video_133.mp4",
+            "thumb": "estampas/DTFadulto/video_133_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0134",
+            "image": "estampas/DTFadulto/video_134.mp4",
+            "thumb": "estampas/DTFadulto/video_134_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0135",
+            "image": "estampas/DTFadulto/video_135.mp4",
+            "thumb": "estampas/DTFadulto/video_135_thumb.webp",
+            "variations": []
+        },
+        {
+            "id": "0136",
+            "image": "estampas/DTFadulto/video_136.mp4",
+            "thumb": "estampas/DTFadulto/video_136_thumb.webp",
+            "variations": []
         }
     ],
     "DTF Infantil": [
