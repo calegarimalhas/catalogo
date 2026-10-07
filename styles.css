@@ -1425,4 +1425,250 @@ button, input, .variant-option, .color-option, .print-color-option, .close-btn, 
     }
 }
 
+/* ==========================================================================
+   FAIXA EM LOOP ESTILO ESTEIRA: MAIS VENDIDAS
+   ========================================================================== */
+.destaques-marquee-bar {
+    width: 100%;
+    background: linear-gradient(90deg, #091e3a 0%, #0056b3 50%, #091e3a 100%);
+    color: #ffffff;
+    overflow: hidden;
+    padding: 10px 0;
+    white-space: nowrap;
+    border-top: 2px solid #ffd700;
+    border-bottom: 2px solid #ffd700;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    user-select: none;
+    position: relative;
+    z-index: 10;
+}
+
+.destaques-marquee-track {
+    display: inline-flex;
+    animation: marquee-scroll 24s linear infinite;
+    will-change: transform;
+}
+
+.destaques-marquee-track:hover {
+    animation-play-state: paused;
+}
+
+.destaques-marquee-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding-right: 14px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.destaques-marquee-content .marquee-tag {
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+}
+
+.destaques-marquee-content .marquee-sep {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+}
+
+.destaques-marquee-content .marquee-text {
+    color: #ffffff;
+}
+
+@keyframes marquee-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* ==========================================================================
+   CARDS DESTAQUES - MAIS VENDIDAS (RANKING COM CONTORNOS)
+   ========================================================================== */
+.card-destaque {
+    position: relative;
+    overflow: hidden;
+    border-radius: 14px;
+    padding: 12px 10px 14px 10px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    background: #ffffff;
+}
+
+.card-destaque:hover {
+    transform: translateY(-6px) scale(1.02);
+}
+
+/* Ribbons / Selos do Ranking no topo */
+.destaque-ribbon {
+    width: calc(100% + 20px);
+    margin: -12px -10px 10px -10px;
+    padding: 6px 4px;
+    text-align: center;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.ribbon-diamante {
+    background: linear-gradient(135deg, #00d2ff 0%, #0077b6 100%);
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.ribbon-ouro {
+    background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
+    color: #2b1d00;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.ribbon-prata {
+    background: linear-gradient(135deg, #cfd8dc 0%, #607d8b 100%);
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.ribbon-bronze {
+    background: linear-gradient(135deg, #e08e45 0%, #8d4925 100%);
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.ribbon-normal {
+    background: linear-gradient(135deg, #eceff1 0%, #cfd8dc 100%);
+    color: #37474f;
+    font-size: 0.76rem;
+    font-weight: 700;
+}
+
+/* Contorno ao redor da imagem (Imagem Wrapper) */
+.destaque-img-box {
+    width: 100%;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    box-sizing: border-box;
+    transition: all 0.25s ease;
+}
+
+.destaque-img-box img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    display: block;
+    clip-path: inset(0 4px 0 0);
+}
+
+/* 1° Diamante: Contorno ciano brilhante */
+.tier-diamante {
+    border: 2px solid rgba(0, 210, 255, 0.7);
+    box-shadow: 0 4px 18px rgba(0, 210, 255, 0.25);
+    background: linear-gradient(180deg, #f0fbff 0%, #ffffff 40%);
+}
+.img-ring-diamante {
+    border: 3.5px solid #00e5ff !important;
+    box-shadow: 0 0 14px rgba(0, 229, 255, 0.65), inset 0 0 8px rgba(0, 229, 255, 0.3) !important;
+}
+
+/* 2° Ouro: Contorno dourado metálico */
+.tier-ouro {
+    border: 2px solid rgba(255, 215, 0, 0.7);
+    box-shadow: 0 4px 18px rgba(255, 215, 0, 0.25);
+    background: linear-gradient(180deg, #fffef0 0%, #ffffff 40%);
+}
+.img-ring-ouro {
+    border: 3.5px solid #ffd700 !important;
+    box-shadow: 0 0 14px rgba(255, 215, 0, 0.65), inset 0 0 8px rgba(255, 215, 0, 0.3) !important;
+}
+
+/* 3° Prata: Contorno prateado reluzente */
+.tier-prata {
+    border: 2px solid rgba(176, 190, 197, 0.7);
+    box-shadow: 0 4px 16px rgba(176, 190, 197, 0.22);
+    background: linear-gradient(180deg, #f5f7fa 0%, #ffffff 40%);
+}
+.img-ring-prata {
+    border: 3.5px solid #b0bec5 !important;
+    box-shadow: 0 0 12px rgba(176, 190, 197, 0.55), inset 0 0 6px rgba(176, 190, 197, 0.25) !important;
+}
+
+/* 4° Bronze: Contorno bronze polido */
+.tier-bronze {
+    border: 2px solid rgba(205, 127, 50, 0.7);
+    box-shadow: 0 4px 16px rgba(205, 127, 50, 0.22);
+    background: linear-gradient(180deg, #fcf6f2 0%, #ffffff 40%);
+}
+.img-ring-bronze {
+    border: 3.5px solid #cd7f32 !important;
+    box-shadow: 0 0 12px rgba(205, 127, 50, 0.5), inset 0 0 6px rgba(205, 127, 50, 0.25) !important;
+}
+
+/* 5° ao 8°: Normal */
+.tier-normal {
+    border: 1px solid #e2e8f0;
+}
+.img-ring-normal {
+    border: 1px solid #e2e8f0;
+}
+
+/* Tag da categoria no card de destaque */
+.destaque-category-tag {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: #475569;
+    background: #f1f5f9;
+    padding: 3px 8px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid #e2e8f0;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.destaque-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.destaque-info .codigo {
+    margin-top: 4px;
+    font-size: 1.05rem;
+    font-weight: 800;
+}
+
+.video-badge-pill {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    background: rgba(0, 0, 0, 0.75);
+    color: #ffffff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    backdrop-filter: blur(2px);
+}
+
+
 

@@ -1,5 +1,7 @@
 // Estado da Aplicação
-let currentCategory = '';
+const DESTAQUES_TAB = '⭐ Destaques';
+let currentActiveTab = DESTAQUES_TAB;
+let currentCategory = DESTAQUES_TAB;
 let currentSubFilter = 'Todos';
 let currentProduct = null;
 let searchQuery = '';
@@ -19,6 +21,97 @@ const strassCategories = ['Frente Total Infantil', 'Frente Total BabyLook', 'Inf
 const noStrassItems = ['FTI-002', 'FTI-004', 'FTI-009', 'FTI-015', 'FTI-019', 'FTI-020', 'FTI-021', 'FTI-022', 'FTI-023'];
 const sublimacaoInfantilStrassIds = ['0002', '0004', '0005', '0006', '0008', '0009', '0010', '0012', '0013', '0014', '0015', '0016', '0018', '0020', '0029', '0035', '0036'];
 
+// Configuração do Ranking "Mais Vendidas" (Destaques)
+const DESTAQUES_CONFIG = [
+    {
+        rank: 1,
+        tier: 'diamante',
+        label: '1º DIAMANTE',
+        icon: '💎',
+        category: 'DTF Adulto',
+        id: '0110',
+        path: 'estampas/DTFadulto/Nossa Senhora Aparecida/video_110.mp4'
+    },
+    {
+        rank: 2,
+        tier: 'ouro',
+        label: '2º OURO',
+        icon: '🥇',
+        category: 'DTF Infantil',
+        id: '0058',
+        path: 'estampas/DTFinfantil/Nossa Senhora Aparecida/mockup_058Baby.webp'
+    },
+    {
+        rank: 3,
+        tier: 'prata',
+        label: '3º PRATA',
+        icon: '🥈',
+        category: 'Silkscreen',
+        id: '0002',
+        path: 'estampas/silkscreen/Outros/animado_0002.mp4'
+    },
+    {
+        rank: 4,
+        tier: 'bronze',
+        label: '4º BRONZE',
+        icon: '🥉',
+        category: 'Baby Look Selo',
+        id: '0009',
+        path: 'estampas/Viscolycra Selo Adulto/Nossa Senhora Aparecida/0009.mp4'
+    },
+    {
+        rank: 5,
+        tier: 'normal',
+        label: '5º LUGAR',
+        icon: '⭐',
+        category: 'Silkscreen',
+        id: '0001',
+        path: 'estampas/silkscreen/Nossa Senhora Aparecida/animado_0001.mp4'
+    },
+    {
+        rank: 6,
+        tier: 'normal',
+        label: '6º LUGAR',
+        icon: '⭐',
+        category: 'Frente Total BabyLook',
+        id: 'BBLK045',
+        path: 'estampas/BabyLook/Nossa Senhora Aparecida/BBLK045.webp'
+    },
+    {
+        rank: 7,
+        tier: 'normal',
+        label: '7º LUGAR',
+        icon: '⭐',
+        category: 'Frente Total BabyLook',
+        id: 'BBLK036',
+        path: 'estampas/BabyLook/São Bento/BBLK036.webp'
+    },
+    {
+        rank: 8,
+        tier: 'normal',
+        label: '8º LUGAR',
+        icon: '⭐',
+        category: 'Sublimação Infantil',
+        id: '0010',
+        path: 'estampas/SublimacaoInfantil/Nossa Senhora Aparecida/animacao_10.mp4'
+    }
+];
+
+function getDestaquesList() {
+    return DESTAQUES_CONFIG.map(cfg => {
+        const catItems = catalogo[cfg.category] || [];
+        const original = catItems.find(it => it.id === cfg.id || it.image === cfg.path || it.thumb === cfg.path || (it.variations && it.variations.some(v => v.image === cfg.path)) || it.image_baby === cfg.path) || {};
+        const isVideo = cfg.path.toLowerCase().endsWith('.mp4');
+        const thumb = (isVideo && original.thumb) ? original.thumb : cfg.path;
+        return {
+            ...original,
+            ...cfg,
+            thumb: thumb,
+            image: original.image || cfg.path
+        };
+    });
+}
+
 // Elementos DOM
 const tabsContainer = document.getElementById('tabs-container');
 const catalogContainer = document.getElementById('catalog-container');
@@ -35,13 +128,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const categories = Object.keys(catalogo);
-    currentCategory = categories[0];
+    currentCategory = DESTAQUES_TAB;
+    currentActiveTab = DESTAQUES_TAB;
     currentSubFilter = 'Todos';
     currentPage = 1;
     
     renderTabs(categories);
-    renderSubFilters(currentCategory);
-    renderCatalog();
+    renderDestaques();
     updateCartUI();
 
     setupToolbar();
@@ -238,24 +331,80 @@ function renderSubFilters(category) {
 // Renderização das Abas de Categorias
 function renderTabs(categories) {
     tabsContainer.innerHTML = '';
-    categories.forEach(cat => {
+    const allTabs = [DESTAQUES_TAB, ...categories];
+    allTabs.forEach(cat => {
         const btn = document.createElement('button');
-        btn.className = `tab ${cat === currentCategory ? 'active' : ''}`;
+        btn.className = `tab ${cat === currentActiveTab ? 'active' : ''}`;
         btn.innerText = cat;
         btn.onclick = () => {
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             btn.classList.add('active');
             btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            currentActiveTab = cat;
             currentCategory = cat;
-            currentSubFilter = 'Todos';
             currentPage = 1;
-            renderSubFilters(cat);
-            renderCatalog();
+
+            if (cat === DESTAQUES_TAB) {
+                renderDestaques();
+            } else {
+                const marqueeBar = document.getElementById('destaques-marquee-bar');
+                if (marqueeBar) marqueeBar.style.display = 'none';
+                const toolbar = document.querySelector('.catalog-toolbar');
+                if (toolbar) toolbar.style.display = 'flex';
+                currentSubFilter = 'Todos';
+                renderSubFilters(cat);
+                renderCatalog();
+            }
             setTimeout(updateTabsArrows, 300);
         };
         tabsContainer.appendChild(btn);
     });
     setTimeout(updateTabsArrows, 100);
+}
+
+// Renderização Especial da Página de Destaques (Mais Vendidas)
+function renderDestaques() {
+    // 1. Faixa Esteira
+    const marqueeBar = document.getElementById('destaques-marquee-bar');
+    if (marqueeBar) marqueeBar.style.display = 'block';
+
+    // 2. Toolbar, Subfiltros e Paginação ocultos na visão curada
+    const toolbar = document.querySelector('.catalog-toolbar');
+    if (toolbar) toolbar.style.display = 'none';
+    const subfiltersContainer = document.getElementById('subfilters-container');
+    if (subfiltersContainer) subfiltersContainer.style.display = 'none';
+    const paginationContainer = document.getElementById('pagination-container');
+    if (paginationContainer) paginationContainer.style.display = 'none';
+
+    // 3. Montar cards das Mais Vendidas
+    const items = getDestaquesList();
+    catalogContainer.innerHTML = '';
+
+    items.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = `card card-destaque tier-${item.tier}`;
+        card.onclick = () => openModal(item, item.category);
+
+        const isVideo = (item.image && item.image.toLowerCase().endsWith('.mp4'));
+        const ringClass = item.tier === 'normal' ? 'img-ring-normal' : `img-ring-${item.tier}`;
+        const ribbonClass = item.tier === 'normal' ? 'ribbon-normal' : `ribbon-${item.tier}`;
+
+        card.innerHTML = `
+            <div class="destaque-ribbon ${ribbonClass}">
+                <span class="ribbon-icon">${item.icon}</span>
+                <span class="ribbon-label">${item.label}</span>
+            </div>
+            <div class="destaque-img-box ${ringClass}">
+                <img src="${item.thumb || item.image}" alt="Estampa ${item.id}" fetchpriority="high">
+                ${isVideo ? '<span class="video-badge-pill">▶ Vídeo</span>' : ''}
+            </div>
+            <div class="destaque-info">
+                <span class="destaque-category-tag">${item.category}</span>
+                <div class="codigo">${item.id}</div>
+            </div>
+        `;
+        catalogContainer.appendChild(card);
+    });
 }
 
 // Filtra, Busca e Ordena os Itens
@@ -388,8 +537,11 @@ function goToPage(page) {
     }
 }
 
-function openModal(item) {
+function openModal(item, categoryOverride = null) {
     currentProduct = item;
+    if (categoryOverride || item.category) {
+        currentCategory = categoryOverride || item.category;
+    }
     const modal = document.getElementById('product-modal');
     
     // Configura Imagem ou VÃ­deo no Modal
@@ -884,6 +1036,9 @@ function closeModal(isPopState = false) {
     if (modal.style.display !== 'none') {
         modal.style.display = 'none';
         currentProduct = null;
+        if (currentActiveTab === DESTAQUES_TAB) {
+            currentCategory = DESTAQUES_TAB;
+        }
         if (!isPopState && window.location.hash === '#produto') {
             history.back();
         }
