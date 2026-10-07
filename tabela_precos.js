@@ -98,10 +98,16 @@ const TABELA_PRECOS = {
             "preco": 22.40
           },
           {
-            "produto": "Selo Camiseta ou Baby ViscoLycra",
+            "produto": "Selo Baby Look Viscolycra",
             "publico": "Infantil",
             "tamanhos": "P ao GG",
             "preco": 14.60
+          },
+          {
+            "produto": "Selo Camiseta",
+            "publico": "Infantil",
+            "tamanhos": "P ao GG",
+            "preco": 14.00
           }
         ]
       },
@@ -171,9 +177,10 @@ function getItemUnitPrice(item) {
     const variant = item.variant || '';
     const dtfModel = item.dtfModel || '';
     const silkModel = item.silkModel || '';
+    const infantilSeloModel = item.infantilSeloModel || item.model || '';
 
-    // 1. Sublimação Adulta
-    if (cat.includes('Sublimação Adulta') || cat.includes('SublimacaoAdulto')) {
+    // 1. Sublimação Adulto
+    if (cat.includes('Sublimação Adulta') || cat.includes('Sublimação Adulto') || cat.includes('SublimacaoAdulto')) {
         return 12.80;
     }
 
@@ -185,18 +192,18 @@ function getItemUnitPrice(item) {
         return 8.10;
     }
 
-    // 3. Baby Look (Catálogo "Baby Look")
-    if (cat === 'Baby Look') {
+    // 3. Frente Total BabyLook (antiga "Baby Look")
+    if (cat === 'Baby Look' || cat === 'Frente Total BabyLook' || cat.includes('BabyLook Frente total')) {
         return 22.90;
     }
 
-    // 4. Frente Total (Catálogo "Frente Total")
-    if (cat === 'Frente Total') {
+    // 4. Frente Total Camiseta (antiga "Frente Total")
+    if (cat === 'Frente Total' || cat === 'Frente Total Camiseta') {
         return 24.50;
     }
 
-    // 5. Infantil (Viscolycra Infantil Frente Inteira / Frente Total Infantil)
-    if (cat === 'Infantil') {
+    // 5. Frente Total Infantil (antiga "Infantil")
+    if (cat === 'Infantil' || cat === 'Frente Total Infantil') {
         if (variant === 'Com Pedrinha' || variant.toLowerCase().includes('com pedrinha') || variant.toLowerCase().includes('strass')) {
             return 14.50;
         }
@@ -219,8 +226,11 @@ function getItemUnitPrice(item) {
         return 22.40;
     }
 
-    // 8. Visco Infantil Selo (Selo Camiseta ou Baby ViscoLycra coloridas - Infantil)
-    if (cat.includes('Visco Infantil Selo') || cat.includes('Viscolycra Selo Infantil')) {
+    // 8. Infantil Selo (antiga "Visco Infantil Selo")
+    if (cat.includes('Infantil Selo') || cat.includes('Visco Infantil Selo') || cat.includes('Viscolycra Selo Infantil')) {
+        if (infantilSeloModel === 'Camiseta') {
+            return 14.00;
+        }
         return 14.60;
     }
 
@@ -229,8 +239,8 @@ function getItemUnitPrice(item) {
         return 12.00;
     }
 
-    // 10. DTF ADULTO
-    if (cat === 'DTF ADULTO') {
+    // 10. DTF Adulto
+    if (cat === 'DTF ADULTO' || cat === 'DTF Adulto') {
         if (dtfModel === 'BabyLook Viscolycra') {
             return 19.00;
         }
@@ -248,9 +258,18 @@ function getItemUnitPrice(item) {
     // Fallbacks inteligentes baseados em palavras-chave
     const catLower = cat.toLowerCase();
     if (catLower.includes('body')) return 12.00;
-    if (catLower.includes('frente total')) return 24.50;
-    if (catLower.includes('baby look selo')) return 22.40;
-    if (catLower.includes('visco') && catLower.includes('infantil')) return 14.60;
+    if (catLower.includes('babylook') || catLower.includes('baby look')) {
+        if (catLower.includes('selo')) return 22.40;
+        return 22.90;
+    }
+    if (catLower.includes('frente total infantil')) return variant.includes('Pedrinha') ? 14.50 : 13.00;
+    if (catLower.includes('frente total camiseta') || catLower === 'frente total') return 24.50;
+    if (catLower.includes('infantil selo') || (catLower.includes('visco') && catLower.includes('infantil'))) {
+        if (infantilSeloModel === 'Camiseta') {
+            return 14.00;
+        }
+        return 14.60;
+    }
     if (catLower.includes('silk')) {
         if (silkModel === 'Infantil') return 9.90;
         if (silkModel.includes('Baby')) return 19.80;

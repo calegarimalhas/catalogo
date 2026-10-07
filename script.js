@@ -1,6 +1,12 @@
 // Estado da Aplicação
 let currentCategory = '';
 let currentSubFilter = 'Todos';
+let currentProduct = null;
+let searchQuery = '';
+let sortOrder = 'asc';
+let currentPage = 1;
+const ITEMS_PER_PAGE = 24;
+
 let cart = JSON.parse(localStorage.getItem('calegari_cart')) || [];
 
 function saveCart() {
@@ -9,78 +15,9 @@ function saveCart() {
 const WHATSAPP_NUMBER = '5512991431935'; 
 
 // Configurações de Variantes (Strass)
-const strassCategories = ['Infantil', 'Baby Look', 'estampas/Infantil', 'estampas/Baby Look'];
+const strassCategories = ['Frente Total Infantil', 'Frente Total BabyLook', 'Infantil', 'Baby Look', 'estampas/Infantil', 'estampas/Baby Look'];
 const noStrassItems = ['FTI-002', 'FTI-004', 'FTI-009', 'FTI-015', 'FTI-019', 'FTI-020', 'FTI-021', 'FTI-022', 'FTI-023'];
 const sublimacaoInfantilStrassIds = ['0002', '0004', '0005', '0006', '0008', '0009', '0010', '0012', '0013', '0014', '0015', '0016', '0018', '0020', '0029', '0035', '0036'];
-
-// Dicionário de Filtros por Categoria/Tema
-const FILTROS_CATEGORIAS = {
-    "Baby Look": {
-        "Nossa Senhora Aparecida": ["BBLK001", "BBLK002", "BBLK003", "BBLK004", "BBLK005", "BBLK008", "BBLK009", "BBLK010", "BBLK011", "BBLK012", "BBLK013", "BBLK014", "BBLK015", "BBLK016", "BBLK017", "BBLK018", "BBLK020", "BBLK021", "BBLK022", "BBLK023", "BBLK024", "BBLK025", "BBLK026", "BBLK027", "BBLK028", "BBLK040", "BBLK043", "BBLK044", "BBLK045", "BBLK046"],
-        "São Miguel": ["BBLK007", "BBLK029"],
-        "Nossa Senhora das Graças": ["BBLK019", "BBLK035", "BBLK037"],
-        "Nossa Senhora de Fátima": ["BBLK006", "BBLK030", "BBLK032", "BBLK038"],
-        "São Bento": ["BBLK031", "BBLK036"],
-        "Nossa Senhora de Guadalupe": ["BBLK033", "BBLK039"],
-        "Sagrada Família": ["BBLK034"],
-        "Santíssimo": ["BBLK042"],
-        "São José": ["BBLK041"]
-    },
-    "Body": {
-        "Nossa Senhora Aparecida": ["0002", "0003", "0005", "0006", "0007", "0020", "0021", "0023", "0024", "0029", "0031", "0032", "0033"],
-        "Anjinhos": ["0001", "0004", "0008", "0009", "0018", "0019", "0022", "0025", "0026", "0027", "0028", "0030"],
-        "Futebol": ["0037", "0038", "0039", "0040", "0041", "0042", "0043", "0044", "0045", "0046", "0047", "0048"],
-        "Desenhos": ["0034", "0035", "0036"],
-        "Fé": ["0010", "0011", "0012", "0013", "0014", "0015", "0016", "0017"]
-    },
-    "Frente Total": {
-        "Nossa Senhora Aparecida": ["FT001", "FT002", "FT003", "FT004", "FT005", "FT010", "FT034", "FT037", "FT038", "FT043", "FT044", "FT045", "FT046", "FT061", "FT071", "FT073", "FT075", "FT076", "FT077", "FT078"],
-        "Nossa Senhora de Fátima": ["FT006", "FT021", "FT022", "FT023", "FT024", "FT067"],
-        "São Bento": ["FT007", "FT011", "FT012", "FT049", "FT057"],
-        "Cristo": ["FT008", "FT009", "FT013", "FT014", "FT015", "FT026", "FT027", "FT040", "FT041", "FT051"],
-        "Nossa Senhora das Graças": ["FT029", "FT048", "FT059", "FT068", "FT069", "FT070"],
-        "São Miguel": ["FT031", "FT032", "FT042"],
-        "São Jorge": ["FT025", "FT035", "FT036", "FT056"],
-        "Outros": ["FT016", "FT017", "FT018", "FT019", "FT020", "FT028", "FT030", "FT033", "FT039", "FT047", "FT050", "FT052", "FT053", "FT054", "FT055", "FT058", "FT060", "FT062", "FT063", "FT064", "FT065", "FT066", "FT072", "FT074"]
-    },
-    "Infantil": {
-        "Nossa Senhora Aparecida": ["FTI-005", "FTI-006", "FTI-007", "FTI-010", "FTI-012", "FTI-016", "FTI-018", "FTI-022", "FTI-023", "FTI-024", "FTI-025", "FTI-026", "FTI-027"],
-        "Anjinhos": ["FTI-001", "FTI-002", "FTI-003", "FTI-004", "FTI-008", "FTI-009"],
-        "Cristo": ["FTI-013", "FTI-014", "FTI-015"],
-        "São Bento": ["FTI-021"],
-        "São Miguel": ["FTI-019"],
-        "Outros": ["FTI-011", "FTI-017", "FTI-020"]
-    },
-    "Visco Infantil Selo": {
-        "Nossa Senhora Aparecida": ["SI-001", "SI-002", "SI-004", "SI-005", "SI-007", "SI-008", "SI-009"],
-        "Anjinhos": ["SI-003", "SI-006"],
-        "Outros": ["SI-010"]
-    },
-    "Baby Look Selo": {
-        "Nossa Senhora Aparecida": ["0001", "0002", "0006", "0007", "0009", "0013", "0014", "0016", "0017", "0018", "0023", "0024", "0025", "0027", "0029", "0031", "0035", "0037", "0039", "0040", "0041", "0042", "0043", "0044", "0045", "0050", "0051", "0056", "0057", "0059", "0062", "0063"],
-        "São Bento": ["0005", "0008", "0046", "0058"],
-        "Nossa Senhora de Fátima": ["0055"],
-        "Nossa Senhora das Graças": ["0015", "0053", "0054"],
-        "São Miguel": ["0019", "0047"],
-        "Cristo": ["0004", "0012", "0033", "0061"],
-        "Outros": ["0003", "0010", "0011", "0020", "0021", "0022", "0026", "0028", "0030", "0032", "0034", "0036", "0038", "0048", "0049", "0052", "0060", "0064"]
-    },
-    "Sublimação Infantil": {
-        "Nossa Senhora Aparecida": ["0001", "0002", "0003", "0004", "0005", "0006", "0007", "0008", "0009", "0010", "0011", "0012", "0013", "0014", "0015", "0016", "0023", "0024", "0029", "0030", "0031", "0032", "0035", "0036", "0037", "0038", "0039", "0040", "0041", "0042", "0044", "0045", "0046", "0047", "0048", "0051", "0052", "0054", "0055", "0056", "0059", "0060", "0062", "0063", "0066"],
-        "Anjinhos": ["0017", "0018", "0019", "0020", "0025", "0026", "0027", "0028", "0043", "0049", "0050", "0064", "0065", "0067", "0068"],
-        "São Bento": ["0061"],
-        "Outros": ["0021", "0022", "0033", "0034", "0053", "0057", "0058", "0069", "0070", "0071", "0072", "0073", "0074", "0075", "0076"]
-    },
-    "Silkscreen": {
-        "Nossa Senhora Aparecida": ["0001", "0005", "0006", "0013", "0014", "0019", "0023", "0024", "0026", "0028", "0032", "0033", "0034", "0035", "0038", "0039", "0045", "0047", "0048"],
-        "São Bento": ["0003", "0008", "0018", "0037", "0066", "0067"],
-        "São Miguel": ["0015"],
-        "São Jorge": ["0022", "0059", "0060"],
-        "Nossa Senhora das Graças": ["0044", "0052"],
-        "Cristo": ["0043", "0046", "0055", "0056", "0061", "0062", "0063", "0064", "0068", "0072", "0073", "0075", "0076"],
-        "Outros": ["0002", "0004", "0007", "0009", "0010", "0011", "0012", "0016", "0017", "0020", "0021", "0025", "0027", "0029", "0030", "0031", "0036", "0040", "0041", "0042", "0049", "0050", "0051", "0053", "0054", "0057", "0058", "0065", "0069", "0070", "0071", "0074", "0077"]
-    }
-};
 
 // Elementos DOM
 const tabsContainer = document.getElementById('tabs-container');
@@ -100,11 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const categories = Object.keys(catalogo);
     currentCategory = categories[0];
     currentSubFilter = 'Todos';
+    currentPage = 1;
     
     renderTabs(categories);
     renderSubFilters(currentCategory);
-    renderCatalog(currentCategory);
+    renderCatalog();
     updateCartUI();
+
+    setupToolbar();
+    setupQuickScroll();
 
     const tabsNav = document.getElementById('tabs-container');
     if (tabsNav) {
@@ -114,6 +55,76 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTabsArrows();
     setTimeout(updateTabsArrows, 200);
 });
+
+// Configuração da Barra de Ferramentas (Busca e Ordenação)
+function setupToolbar() {
+    const searchInput = document.getElementById('catalog-search');
+    const clearBtn = document.getElementById('search-clear-btn');
+    const sortSelect = document.getElementById('catalog-sort');
+
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            searchQuery = e.target.value;
+            currentPage = 1;
+            if (clearBtn) {
+                clearBtn.style.display = searchQuery ? 'flex' : 'none';
+            }
+            renderCatalog();
+        });
+    }
+
+    if (clearBtn) {
+        clearBtn.onclick = () => {
+            if (searchInput) searchInput.value = '';
+            searchQuery = '';
+            clearBtn.style.display = 'none';
+            currentPage = 1;
+            renderCatalog();
+        };
+    }
+
+    if (sortSelect) {
+        sortSelect.addEventListener('change', (e) => {
+            sortOrder = e.target.value;
+            currentPage = 1;
+            renderCatalog();
+        });
+    }
+}
+
+// Configuração dos Botões Flutuantes Rápidos (Topo e Fim)
+function setupQuickScroll() {
+    const btnTop = document.getElementById('btn-scroll-top');
+    const btnBottom = document.getElementById('btn-scroll-bottom');
+
+    if (btnTop) {
+        btnTop.onclick = () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+    }
+    if (btnBottom) {
+        btnBottom.onclick = () => {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        };
+    }
+
+    const handleScroll = () => {
+        const scrollY = window.scrollY;
+        const maxScroll = document.body.scrollHeight - window.innerHeight;
+        
+        if (btnTop) {
+            btnTop.style.opacity = scrollY > 250 ? '1' : '0.25';
+            btnTop.style.pointerEvents = scrollY > 250 ? 'auto' : 'none';
+        }
+        if (btnBottom) {
+            btnBottom.style.opacity = scrollY < maxScroll - 250 ? '1' : '0.25';
+            btnBottom.style.pointerEvents = scrollY < maxScroll - 250 ? 'auto' : 'none';
+        }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+}
 
 // Funções para controle da navegação das abas por setas
 function scrollTabs(amount) {
@@ -158,6 +169,25 @@ function updateTabsArrows() {
     }
 }
 
+// Obter Temas Disponíveis na Categoria Atual (Descoberta Automática de Subpastas)
+function getCategoryThemes(category) {
+    const items = catalogo[category] || [];
+    const themeSet = new Set();
+    items.forEach(item => {
+        if (item.tema && item.tema.trim() !== '') {
+            themeSet.add(item.tema.trim());
+        }
+    });
+    const themes = Array.from(themeSet);
+    // Ordena temas alfabeticamente, garantindo que 'Outros' fique no final
+    themes.sort((a, b) => {
+        if (a.toLowerCase() === 'outros') return 1;
+        if (b.toLowerCase() === 'outros') return -1;
+        return a.localeCompare(b, 'pt-BR');
+    });
+    return themes;
+}
+
 // Renderização dos Sub-filtros por Tema
 function renderSubFilters(category) {
     const container = document.getElementById('subfilters-container');
@@ -165,9 +195,10 @@ function renderSubFilters(category) {
     
     if (!container || !list) return;
     
-    const categoryFilters = FILTROS_CATEGORIAS[category];
+    const themes = getCategoryThemes(category);
     
-    if (!categoryFilters || Object.keys(categoryFilters).length === 0) {
+    // Se não houver subtemas ou apenas 1 ("Outros"), oculta a barra
+    if (themes.length <= 1) {
         container.style.display = 'none';
         list.innerHTML = '';
         currentSubFilter = 'Todos';
@@ -183,26 +214,28 @@ function renderSubFilters(category) {
     allBtn.innerText = 'Todos';
     allBtn.onclick = () => {
         currentSubFilter = 'Todos';
+        currentPage = 1;
         renderSubFilters(category);
-        renderCatalog(category);
+        renderCatalog();
     };
     list.appendChild(allBtn);
     
     // Botões dos Temas
-    for (const themeName of Object.keys(categoryFilters)) {
+    themes.forEach(themeName => {
         const btn = document.createElement('button');
         btn.className = `subfilter-btn ${currentSubFilter === themeName ? 'active' : ''}`;
         btn.innerText = themeName;
         btn.onclick = () => {
             currentSubFilter = themeName;
+            currentPage = 1;
             renderSubFilters(category);
-            renderCatalog(category);
+            renderCatalog();
         };
         list.appendChild(btn);
-    }
+    });
 }
 
-// Renderização das Abas
+// Renderização das Abas de Categorias
 function renderTabs(categories) {
     tabsContainer.innerHTML = '';
     categories.forEach(cat => {
@@ -215,8 +248,9 @@ function renderTabs(categories) {
             btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             currentCategory = cat;
             currentSubFilter = 'Todos';
+            currentPage = 1;
             renderSubFilters(cat);
-            renderCatalog(cat);
+            renderCatalog();
             setTimeout(updateTabsArrows, 300);
         };
         tabsContainer.appendChild(btn);
@@ -224,37 +258,135 @@ function renderTabs(categories) {
     setTimeout(updateTabsArrows, 100);
 }
 
-// Renderização do Catálogo
-function renderCatalog(category) {
-    catalogContainer.innerHTML = '';
-    let items = catalogo[category] || [];
+// Filtra, Busca e Ordena os Itens
+function getFilteredItems() {
+    let items = catalogo[currentCategory] || [];
     
-    if (currentSubFilter && currentSubFilter !== 'Todos' && FILTROS_CATEGORIAS[category] && FILTROS_CATEGORIAS[category][currentSubFilter]) {
-        const allowedIds = FILTROS_CATEGORIAS[category][currentSubFilter];
-        items = items.filter(item => allowedIds.includes(item.id));
+    // 1. Filtro por Tema (Sub-filtro)
+    if (currentSubFilter && currentSubFilter !== 'Todos') {
+        items = items.filter(item => (item.tema || 'Outros') === currentSubFilter);
     }
     
-    if (items.length === 0) {
-        catalogContainer.innerHTML = '<p style="text-align:center;width:100%;padding:40px;color:#666;">Nenhuma estampa encontrada para este filtro.</p>';
+    // 2. Busca Instantânea
+    if (searchQuery.trim()) {
+        const term = searchQuery.trim().toLowerCase();
+        items = items.filter(item => {
+            const idMatch = item.id && item.id.toLowerCase().includes(term);
+            const temaMatch = item.tema && item.tema.toLowerCase().includes(term);
+            return idMatch || temaMatch;
+        });
+    }
+    
+    // 3. Ordenação
+    items = [...items];
+    if (sortOrder === 'desc') {
+        items.sort((a, b) => b.id.localeCompare(a.id, undefined, { numeric: true, sensitivity: 'base' }));
+    } else {
+        items.sort((a, b) => a.id.localeCompare(b.id, undefined, { numeric: true, sensitivity: 'base' }));
+    }
+    
+    return items;
+}
+
+// Renderização do Catálogo com Paginação
+function renderCatalog() {
+    catalogContainer.innerHTML = '';
+    const filteredItems = getFilteredItems();
+    const totalItems = filteredItems.length;
+    
+    if (totalItems === 0) {
+        catalogContainer.innerHTML = `
+            <div style="text-align: center; width: 100%; padding: 50px 15px; color: #666;">
+                <p style="font-size: 1.15rem; font-weight: 700; margin-bottom: 6px;">Nenhuma estampa encontrada.</p>
+                <p style="font-size: 0.92rem; color: #888;">Tente outro termo na busca ou selecione outro tema.</p>
+            </div>
+        `;
+        renderPagination(0, 1);
         return;
     }
     
-    items.forEach((item, index) => {
+    const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+    if (currentPage > totalPages) currentPage = totalPages;
+    if (currentPage < 1) currentPage = 1;
+    
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, totalItems);
+    const pageItems = filteredItems.slice(startIndex, endIndex);
+    
+    pageItems.forEach((item, index) => {
         const card = document.createElement('div');
         card.className = 'card';
         card.onclick = () => openModal(item);
         
-        let loadingAttr = index < 4 ? 'fetchpriority="high"' : 'loading="lazy" decoding="async"';
+        let loadingAttr = index < 6 ? 'fetchpriority="high"' : 'loading="lazy" decoding="async"';
         card.innerHTML = `
             <img src="${item.thumb || item.image}" alt="Estampa ${item.id}" ${loadingAttr}>
             <div class="codigo">${item.id}</div>
         `;
         catalogContainer.appendChild(card);
     });
+    
+    renderPagination(totalItems, totalPages);
 }
 
-// Lógica do Modal de Produto
-let currentProduct = null;
+// Renderização da Barra de Paginação
+function renderPagination(totalItems, totalPages) {
+    const container = document.getElementById('pagination-container');
+    if (!container) return;
+    
+    if (totalPages <= 1) {
+        container.style.display = 'none';
+        container.innerHTML = '';
+        return;
+    }
+    
+    container.style.display = 'flex';
+    container.innerHTML = `
+        <div class="pagination-info">
+            Página <strong>${currentPage}</strong> de <strong>${totalPages}</strong>
+            <span class="pagination-total">(${totalItems} estampas)</span>
+        </div>
+        <div class="pagination-controls">
+            <button class="pag-btn" id="pag-first" title="Primeira página" ${currentPage === 1 ? 'disabled' : ''}>« Primeira</button>
+            <button class="pag-btn" id="pag-prev" title="Página anterior" ${currentPage === 1 ? 'disabled' : ''}>‹ Anterior</button>
+            <div class="pag-pages" id="pag-pages-list"></div>
+            <button class="pag-btn" id="pag-next" title="Próxima página" ${currentPage === totalPages ? 'disabled' : ''}>Próxima ›</button>
+            <button class="pag-btn" id="pag-last" title="Última página (ir ao fim)" ${currentPage === totalPages ? 'disabled' : ''}>Última »</button>
+        </div>
+    `;
+    
+    document.getElementById('pag-first').onclick = () => goToPage(1);
+    document.getElementById('pag-prev').onclick = () => goToPage(currentPage - 1);
+    document.getElementById('pag-next').onclick = () => goToPage(currentPage + 1);
+    document.getElementById('pag-last').onclick = () => goToPage(totalPages);
+    
+    // Geração de botões numéricos
+    const pagesList = document.getElementById('pag-pages-list');
+    const maxVisible = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisible - 1);
+    if (endPage - startPage + 1 < maxVisible) {
+        startPage = Math.max(1, endPage - maxVisible + 1);
+    }
+    
+    for (let p = startPage; p <= endPage; p++) {
+        const pageBtn = document.createElement('button');
+        pageBtn.className = `pag-num-btn ${p === currentPage ? 'active' : ''}`;
+        pageBtn.innerText = p;
+        pageBtn.onclick = () => goToPage(p);
+        pagesList.appendChild(pageBtn);
+    }
+}
+
+// Navegação para uma Página com Rolagem Suave para o Topo do Catálogo
+function goToPage(page) {
+    currentPage = page;
+    renderCatalog();
+    const anchor = document.querySelector('.catalog-toolbar') || tabsContainer;
+    if (anchor) {
+        anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
 
 function openModal(item) {
     currentProduct = item;
@@ -326,7 +458,7 @@ function openModal(item) {
     
     if (currentCategory.includes('Sublimação Infantil')) {
         hasStrass = sublimacaoInfantilStrassIds.includes(item.id);
-    } else if (!currentCategory.includes('Body') && !currentCategory.includes('Frente Total') && !currentCategory.includes('DTF') && strassCategories.some(c => currentCategory.includes(c)) && !currentCategory.includes('Selo') && !noStrassItems.includes(item.id)) {
+    } else if (!currentCategory.includes('Body') && currentCategory !== 'Frente Total Camiseta' && currentCategory !== 'Frente Total' && !currentCategory.includes('DTF') && strassCategories.some(c => currentCategory.includes(c)) && !currentCategory.includes('Selo') && !noStrassItems.includes(item.id)) {
         hasStrass = true;
     }
     
@@ -377,7 +509,8 @@ function openModal(item) {
     const colorInfantil = document.getElementById('color-options-infantil');
     const colorSilkscreenAdulto = document.getElementById('color-options-silkscreen-adulto');
     const colorSilkscreenBaby = document.getElementById('color-options-silkscreen-baby');
-    const colorInfantilSelo = document.getElementById('color-options-infantil-selo');
+    const colorInfantilSeloCamiseta = document.getElementById('color-options-infantil-selo-camiseta');
+    const colorInfantilSeloBaby = document.getElementById('color-options-infantil-selo-baby');
     const colorBabylookSelo = document.getElementById('color-options-babylook-selo');
     const colorBody = document.getElementById('color-options-body');
     const colorDtfPolyester = document.getElementById('color-options-dtf-polyester');
@@ -387,7 +520,7 @@ function openModal(item) {
 
     // Lógica do Modelo de Camiseta (Sublimação Adulto)
     const sublimacaoAdultoModelContainer = document.getElementById('sublimacao-adulto-model-selector-container');
-    if (currentCategory.includes('Sublimação Adulta')) {
+    if (currentCategory.includes('Sublimação Adulta') || currentCategory.includes('Sublimação Adulto')) {
         if (sublimacaoAdultoModelContainer) {
             sublimacaoAdultoModelContainer.style.display = 'block';
             const defaultModel = document.querySelector('input[name="sublimacao-adulto-model-option"][value="Camiseta"]');
@@ -447,7 +580,7 @@ function openModal(item) {
 
     // Lógica de Modelo / Tecido (DTF Adulto)
     const dtfModelContainer = document.getElementById('dtf-model-selector-container');
-    if (currentCategory === 'DTF ADULTO') {
+    if (currentCategory === 'DTF ADULTO' || currentCategory === 'DTF Adulto') {
         if (dtfModelContainer) {
             dtfModelContainer.style.display = 'block';
             const defaultModel = document.querySelector('input[name="dtf-model-option"][value="Camiseta Poliéster"]');
@@ -506,6 +639,36 @@ function openModal(item) {
     } else {
         if (dtfInfantilModelContainer) dtfInfantilModelContainer.style.display = 'none';
     }
+
+    // Lógica de Modelo / Tecido (Infantil Selo)
+    const infantilSeloModelContainer = document.getElementById('infantil-selo-model-selector-container');
+    if (currentCategory.includes('Infantil Selo') || currentCategory.includes('Visco Infantil Selo') || currentCategory === 'Viscolycra Infantil Selo') {
+        if (infantilSeloModelContainer) {
+            infantilSeloModelContainer.style.display = 'block';
+            const defaultModel = document.querySelector('input[name="infantil-selo-model-option"][value="Camiseta"]');
+            if (defaultModel) defaultModel.checked = true;
+
+            const infantilSeloModelRadios = document.querySelectorAll('input[name="infantil-selo-model-option"]');
+            infantilSeloModelRadios.forEach(radio => {
+                radio.onchange = (e) => {
+                    const isBaby = e.target.value === 'Baby Look Viscolycra';
+                    if (isBaby) {
+                        if (colorInfantilSeloCamiseta) colorInfantilSeloCamiseta.style.display = 'none';
+                        if (colorInfantilSeloBaby) colorInfantilSeloBaby.style.display = 'flex';
+                        const defaultRadio = document.querySelector('#color-options-infantil-selo-baby input[name="color-option-infantil-selo-baby"][value="Preto"]');
+                        if (defaultRadio) defaultRadio.checked = true;
+                    } else {
+                        if (colorInfantilSeloBaby) colorInfantilSeloBaby.style.display = 'none';
+                        if (colorInfantilSeloCamiseta) colorInfantilSeloCamiseta.style.display = 'flex';
+                        const defaultRadio = document.querySelector('#color-options-infantil-selo-camiseta input[name="color-option-infantil-selo-camiseta"][value="Preto"]');
+                        if (defaultRadio) defaultRadio.checked = true;
+                    }
+                };
+            });
+        }
+    } else {
+        if (infantilSeloModelContainer) infantilSeloModelContainer.style.display = 'none';
+    }
     
     // Esconde todos inicialmente
     if(colorAdulto) colorAdulto.style.display = 'none';
@@ -513,7 +676,8 @@ function openModal(item) {
     if(colorInfantil) colorInfantil.style.display = 'none';
     if(colorSilkscreenAdulto) colorSilkscreenAdulto.style.display = 'none';
     if(colorSilkscreenBaby) colorSilkscreenBaby.style.display = 'none';
-    if(colorInfantilSelo) colorInfantilSelo.style.display = 'none';
+    if(colorInfantilSeloCamiseta) colorInfantilSeloCamiseta.style.display = 'none';
+    if(colorInfantilSeloBaby) colorInfantilSeloBaby.style.display = 'none';
     if(colorBabylookSelo) colorBabylookSelo.style.display = 'none';
     if(colorBody) colorBody.style.display = 'none';
     if(colorDtfPolyester) colorDtfPolyester.style.display = 'none';
@@ -530,7 +694,7 @@ function openModal(item) {
             if(defaultRadio) defaultRadio.checked = true;
         } else {
             if(colorTitle) colorTitle.innerText = 'Cor da Camisa:';
-            if (currentCategory.includes('Sublimação Adulta')) {
+            if (currentCategory.includes('Sublimação Adulta') || currentCategory.includes('Sublimação Adulto')) {
                 colorContainer.style.display = 'block';
                 const selectedSubModel = document.querySelector('input[name="sublimacao-adulto-model-option"]:checked');
                 const isMachao = selectedSubModel && selectedSubModel.value === 'Camiseta Machão';
@@ -561,11 +725,21 @@ function openModal(item) {
                     const defaultRadio = document.querySelector('#color-options-silkscreen-adulto input[name="color-option-silk"][value="Preta"]');
                     if(defaultRadio) defaultRadio.checked = true;
                 }
-            } else if (currentCategory.includes('Visco Infantil Selo') || currentCategory === 'Viscolycra Infantil Selo') {
+            } else if (currentCategory.includes('Infantil Selo') || currentCategory.includes('Visco Infantil Selo') || currentCategory === 'Viscolycra Infantil Selo') {
                 colorContainer.style.display = 'block';
-                if(colorInfantilSelo) colorInfantilSelo.style.display = 'flex';
-                const defaultRadio = document.querySelector('#color-options-infantil-selo input[name="color-option"][value="Preta"]');
-                if(defaultRadio) defaultRadio.checked = true;
+                const selectedModel = document.querySelector('input[name="infantil-selo-model-option"]:checked');
+                const isBaby = selectedModel && selectedModel.value === 'Baby Look Viscolycra';
+                if (isBaby) {
+                    if (colorInfantilSeloCamiseta) colorInfantilSeloCamiseta.style.display = 'none';
+                    if (colorInfantilSeloBaby) colorInfantilSeloBaby.style.display = 'flex';
+                    const defaultRadio = document.querySelector('#color-options-infantil-selo-baby input[name="color-option-infantil-selo-baby"][value="Preto"]');
+                    if (defaultRadio) defaultRadio.checked = true;
+                } else {
+                    if (colorInfantilSeloBaby) colorInfantilSeloBaby.style.display = 'none';
+                    if (colorInfantilSeloCamiseta) colorInfantilSeloCamiseta.style.display = 'flex';
+                    const defaultRadio = document.querySelector('#color-options-infantil-selo-camiseta input[name="color-option-infantil-selo-camiseta"][value="Preto"]');
+                    if (defaultRadio) defaultRadio.checked = true;
+                }
             } else if (currentCategory === 'Baby Look Selo') {
                 colorContainer.style.display = 'block';
                 if(colorBabylookSelo) colorBabylookSelo.style.display = 'flex';
@@ -573,7 +747,7 @@ function openModal(item) {
                 viscoOnlyOptions.forEach(opt => opt.style.display = 'inline-block');
                 const defaultRadio = document.querySelector('input[name="color-option-babylook-selo"][value="Preta"]');
                 if(defaultRadio) defaultRadio.checked = true;
-            } else if (currentCategory === 'DTF ADULTO') {
+            } else if (currentCategory === 'DTF ADULTO' || currentCategory === 'DTF Adulto') {
                 colorContainer.style.display = 'block';
                 const selectedDtfModel = document.querySelector('input[name="dtf-model-option"]:checked');
                 const isBaby = selectedDtfModel && selectedDtfModel.value === 'BabyLook Viscolycra';
@@ -622,7 +796,7 @@ function openModal(item) {
     
     // Mostra o tamanho XG apenas para Baby Look
     const xgContainer = document.getElementById('group-size-xg');
-    if (currentCategory.includes('Baby Look')) {
+    if (currentCategory.includes('Baby Look') || currentCategory.includes('BabyLook')) {
         xgContainer.style.display = 'flex';
     } else {
         xgContainer.style.display = 'none';
@@ -636,7 +810,7 @@ function openModal(item) {
         if (h3) h3.innerText = `${stepNum}. Escolha o Acabamento:`;
         stepNum++;
     }
-    if (currentCategory.includes('Sublimação Adulta') && sublimacaoAdultoModelContainer) {
+    if ((currentCategory.includes('Sublimação Adulta') || currentCategory.includes('Sublimação Adulto')) && sublimacaoAdultoModelContainer) {
         const h3 = sublimacaoAdultoModelContainer.querySelector('h3');
         if (h3) h3.innerText = `${stepNum}. Escolha o Modelo:`;
         stepNum++;
@@ -646,13 +820,18 @@ function openModal(item) {
         if (h3) h3.innerText = `${stepNum}. Escolha o Modelo / Tecido:`;
         stepNum++;
     }
-    if (currentCategory === 'DTF ADULTO' && dtfModelContainer) {
+    if ((currentCategory === 'DTF ADULTO' || currentCategory === 'DTF Adulto') && dtfModelContainer) {
         const h3 = dtfModelContainer.querySelector('h3');
         if (h3) h3.innerText = `${stepNum}. Escolha o Modelo / Tecido:`;
         stepNum++;
     }
     if (currentCategory === 'DTF Infantil' && dtfInfantilModelContainer) {
         const h3 = dtfInfantilModelContainer.querySelector('h3');
+        if (h3) h3.innerText = `${stepNum}. Escolha o Modelo / Tecido:`;
+        stepNum++;
+    }
+    if ((currentCategory.includes('Infantil Selo') || currentCategory.includes('Visco Infantil Selo') || currentCategory === 'Viscolycra Infantil Selo') && infantilSeloModelContainer) {
+        const h3 = infantilSeloModelContainer.querySelector('h3');
         if (h3) h3.innerText = `${stepNum}. Escolha o Modelo / Tecido:`;
         stepNum++;
     }
@@ -678,9 +857,20 @@ function openModal(item) {
         sizeHelpTip.innerText = `👇 ${stepNum}. Escolha a quantidade de cada tamanho:`;
     }
     
-    // Atualiza PP para categorias Infantis (exceto Body e a aba Infantil)
+    // Atualiza PP para categorias Infantis:
+    // - Body e Frente Total Infantil: Não possuem PP.
+    // - Infantil Selo: Somente a estampa SI-004 possui PP (as demais são apenas P ao GG).
+    // - DTF Infantil e Sublimação Infantil: Possuem PP.
     const ppContainer = document.getElementById('group-size-pp');
-    if (currentCategory.includes('Infantil') && currentCategory !== 'Infantil' && !currentCategory.includes('Body')) {
+    const isInfantilSelo = currentCategory.includes('Infantil Selo') || currentCategory.includes('Visco Infantil Selo') || currentCategory === 'Viscolycra Infantil Selo';
+    if (isInfantilSelo) {
+        const isSi004 = item && (item.id === 'SI-004' || item.id === 'SI_004' || String(item.id).toUpperCase().replace(/[_ ]/g, '-') === 'SI-004');
+        if (isSi004) {
+            ppContainer.style.display = 'flex';
+        } else {
+            ppContainer.style.display = 'none';
+        }
+    } else if (currentCategory.includes('Infantil') && currentCategory !== 'Infantil' && currentCategory !== 'Frente Total Infantil' && !currentCategory.includes('Body')) {
         ppContainer.style.display = 'flex';
     } else {
         ppContainer.style.display = 'none';
@@ -730,6 +920,15 @@ function addToCart() {
         'GG': parseInt(document.getElementById('size-gg').value) || 0,
         'XG': parseInt(document.getElementById('size-xg').value) || 0,
     };
+
+    const ppContainer = document.getElementById('group-size-pp');
+    if (ppContainer && ppContainer.style.display === 'none') {
+        sizes['PP'] = 0;
+    }
+    const xgContainer = document.getElementById('group-size-xg');
+    if (xgContainer && xgContainer.style.display === 'none') {
+        sizes['XG'] = 0;
+    }
     
     const totalItems = Object.values(sizes).reduce((a, b) => a + b, 0);
     
@@ -786,10 +985,10 @@ function addToCart() {
     let colorSelection = '';
     const colorContainer = document.getElementById('color-selector-container');
     if (colorContainer.style.display !== 'none') {
-        if (currentCategory === 'Body Infantil' || currentCategory === 'estampasbody') {
+        if (currentCategory === 'Body Infantil' || currentCategory === 'estampasbody' || currentCategory === 'Body') {
             const selectedColorRadio = document.querySelector('input[name="color-option-body"]:checked');
             if (selectedColorRadio) colorSelection = selectedColorRadio.value;
-        } else if (currentCategory === 'Sublimação Adulta Branca' || currentCategory.includes('Sublimação Adulta')) {
+        } else if (currentCategory === 'Sublimação Adulta Branca' || currentCategory.includes('Sublimação Adulta') || currentCategory.includes('Sublimação Adulto')) {
             const selectedSubModel = document.querySelector('input[name="sublimacao-adulto-model-option"]:checked');
             const isMachao = selectedSubModel && selectedSubModel.value === 'Camiseta Machão';
             const radioSelector = isMachao ? '#color-options-sublimacao-machao input[name="color-option-sublimacao-machao"]:checked' : '#color-options-adulto input[name="color-option-adulto"]:checked';
@@ -804,7 +1003,13 @@ function addToCart() {
         } else if (currentCategory === 'Silkscreen') {
             const selectedColorRadio = document.querySelector('input[name="color-option-silk"]:checked');
             if (selectedColorRadio) colorSelection = selectedColorRadio.value;
-        } else if (currentCategory === 'DTF ADULTO') {
+        } else if (currentCategory.includes('Infantil Selo') || currentCategory.includes('Visco Infantil Selo') || currentCategory === 'Viscolycra Infantil Selo') {
+            const selectedModel = document.querySelector('input[name="infantil-selo-model-option"]:checked');
+            const isBaby = selectedModel && selectedModel.value === 'Baby Look Viscolycra';
+            const radioSelector = isBaby ? '#color-options-infantil-selo-baby input[name="color-option-infantil-selo-baby"]:checked' : '#color-options-infantil-selo-camiseta input[name="color-option-infantil-selo-camiseta"]:checked';
+            const selectedColorRadio = document.querySelector(radioSelector);
+            if (selectedColorRadio) colorSelection = selectedColorRadio.value;
+        } else if (currentCategory === 'DTF ADULTO' || currentCategory === 'DTF Adulto') {
             const selectedDtfModel = document.querySelector('input[name="dtf-model-option"]:checked');
             const isBaby = selectedDtfModel && selectedDtfModel.value === 'BabyLook Viscolycra';
             const radioSelector = isBaby ? '#color-options-dtf-babylook input[name="color-option-dtf-babylook"]:checked' : '#color-options-dtf-polyester input[name="color-option-dtf-polyester"]:checked';
@@ -850,6 +1055,14 @@ function addToCart() {
         if (selectedModelRadio) dtfModelSelection = selectedModelRadio.value;
     }
 
+    // Captura Modelo Infantil Selo se aplicável
+    let infantilSeloModelSelection = '';
+    const infantilSeloModelContainer = document.getElementById('infantil-selo-model-selector-container');
+    if (infantilSeloModelContainer && infantilSeloModelContainer.style.display !== 'none') {
+        const selectedModelRadio = document.querySelector('input[name="infantil-selo-model-option"]:checked');
+        if (selectedModelRadio) infantilSeloModelSelection = selectedModelRadio.value;
+    }
+
     // Captura Modelo Sublimação Adulto se aplicável
     let sublimacaoModelSelection = '';
     const sublimacaoAdultoModelContainer = document.getElementById('sublimacao-adulto-model-selector-container');
@@ -866,6 +1079,7 @@ function addToCart() {
         item.silkModel === silkModelSelection &&
         item.dtfModel === dtfModelSelection &&
         item.sublimacaoModel === sublimacaoModelSelection &&
+        item.infantilSeloModel === infantilSeloModelSelection &&
         item.color === colorSelection &&
         item.printColor === printColorSelection
     );
@@ -891,6 +1105,7 @@ function addToCart() {
             silkModel: silkModelSelection,
             dtfModel: dtfModelSelection,
             sublimacaoModel: sublimacaoModelSelection,
+            infantilSeloModel: infantilSeloModelSelection,
             color: colorSelection,
             printColor: printColorSelection,
             sizes: sizes
@@ -1055,6 +1270,7 @@ function updateCartUI() {
         if (item.sublimacaoModel) extras.push(`Modelo: ${item.sublimacaoModel}`);
         if (item.dtfModel) extras.push(`Modelo: ${item.dtfModel}`);
         if (item.silkModel) extras.push(`Modelo: ${item.silkModel}`);
+        if (item.infantilSeloModel) extras.push(`Modelo: ${item.infantilSeloModel}`);
         if (item.category === 'Baby Look Selo') {
             let fabLabel = item.fabric === 'Baby Poliéster' ? 'Baby Poliéster' : 'Baby Visco';
             extras.push(`${fabLabel}: ${item.color}`);
@@ -1098,7 +1314,7 @@ function getItemGroupKey(item) {
         }
     }
 
-    if (cat === 'DTF ADULTO') {
+    if (cat === 'DTF ADULTO' || cat === 'DTF Adulto') {
         const dtfM = item.dtfModel || 'Camiseta Poliéster';
         if (dtfM === 'BabyLook Viscolycra') {
             return 'DTF ADULTO BABYLOOK VISCOLYCRA';
@@ -1126,11 +1342,19 @@ function getItemGroupKey(item) {
         }
     }
 
-    if (cat === 'Infantil') {
+    if (cat.includes('Infantil Selo') || cat.includes('Visco Infantil Selo') || cat.includes('Viscolycra Infantil Selo')) {
+        const seloM = item.infantilSeloModel || 'Camiseta';
+        if (seloM === 'Baby Look Viscolycra' || seloM.includes('Baby')) {
+            return 'INFANTIL SELO BABY LOOK VISCOLYCRA';
+        }
+        return 'INFANTIL SELO CAMISETA';
+    }
+
+    if (cat === 'Infantil' || cat === 'Frente Total Infantil') {
         return 'FRENTE TOTAL INFANTIL';
     }
 
-    if (cat.includes('Sublimação Adulta') || cat.includes('SublimacaoAdulto')) {
+    if (cat.includes('Sublimação Adulta') || cat.includes('Sublimação Adulto') || cat.includes('SublimacaoAdulto')) {
         const subM = item.sublimacaoModel || 'Camiseta';
         if (subM === 'Camiseta Machão') {
             return 'SUBLIMAÇÃO ADULTA CAMISETA MACHÃO';
@@ -1142,11 +1366,11 @@ function getItemGroupKey(item) {
         return 'SUBLIMAÇÃO INFANTIL';
     }
 
-    if (cat === 'Baby Look') {
+    if (cat === 'Baby Look' || cat === 'Frente Total BabyLook' || cat.includes('BabyLook Frente total')) {
         return 'BABY LOOK FRENTE TOTAL';
     }
 
-    if (cat === 'Frente Total') {
+    if (cat === 'Frente Total' || cat === 'Frente Total Camiseta') {
         return 'FRENTE TOTAL ADULTO';
     }
 

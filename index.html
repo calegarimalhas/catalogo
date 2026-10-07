@@ -64,6 +64,22 @@
         </div>
     </header>
 
+    <!-- Barra de Ferramentas: Busca Rápida e Ordenação -->
+    <div class="catalog-toolbar">
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="catalog-search" placeholder="Buscar código ou tema (ex: 45, BBLK, Aparecida...)" autocomplete="off">
+            <button id="search-clear-btn" class="search-clear-btn" style="display: none;" title="Limpar busca">×</button>
+        </div>
+        <div class="sort-box">
+            <label for="catalog-sort">Ordem:</label>
+            <select id="catalog-sort">
+                <option value="asc">Numérica (01 ➔ 99)</option>
+                <option value="desc">Mais Recentes (Novidades)</option>
+            </select>
+        </div>
+    </div>
+
     <!-- Sub-filtros por Tema (Solto e Empilhável) -->
     <div id="subfilters-container" class="subfilters-container" style="display: none;">
         <div id="subfilters-list" class="subfilters-list"></div>
@@ -72,6 +88,9 @@
     <main id="catalog-container">
         <!-- O grid de imagens será gerado via JS -->
     </main>
+
+    <!-- Paginação Completa -->
+    <div id="pagination-container" class="pagination-container" style="display: none;"></div>
 
     <!-- Modal do Produto -->
     <div id="product-modal" class="modal">
@@ -192,6 +211,21 @@
                             </label>
                         </div>
                     </div>
+
+                    <!-- Seletor de Modelo Infantil Selo (Camiseta / Baby Look Viscolycra) -->
+                    <div id="infantil-selo-model-selector-container" class="variant-selector" style="display: none;">
+                        <h3>Modelo / Tecido:</h3>
+                        <div class="variant-options">
+                            <label class="variant-option">
+                                <input type="radio" name="infantil-selo-model-option" value="Camiseta" checked>
+                                <span class="variant-btn">Camiseta</span>
+                            </label>
+                            <label class="variant-option">
+                                <input type="radio" name="infantil-selo-model-option" value="Baby Look Viscolycra">
+                                <span class="variant-btn">Baby Look Viscolycra</span>
+                            </label>
+                        </div>
+                    </div>
                     
                     <div id="color-selector-container" class="variant-selector" style="display: none;">
                         <h3>Cor da Camisa:</h3>
@@ -272,22 +306,78 @@
                             </label>
                         </div>
                         
-                        <!-- Cores Sublimação Infantil Selo -->
-                        <div id="color-options-infantil-selo" class="color-options" style="display: none;">
+                        <!-- Cores Infantil Selo - Camiseta (13 cores) -->
+                        <div id="color-options-infantil-selo-camiseta" class="color-options" style="display: none;">
                             <label class="color-option">
-                                <input type="radio" name="color-option" value="Preta" checked>
-                                <span class="color-btn" style="background: black; color: white;">Preta</span>
+                                <input type="radio" name="color-option-infantil-selo-camiseta" value="Preto" checked>
+                                <span class="color-btn" style="background: black; color: white;">Preto</span>
                             </label>
                             <label class="color-option">
-                                <input type="radio" name="color-option" value="Rosa">
-                                <span class="color-btn" style="background: #ffc0cb; color: black;">Rosa</span>
+                                <input type="radio" name="color-option-infantil-selo-camiseta" value="Azul Turquesa">
+                                <span class="color-btn" style="background: #28d7cf; color: white;">Azul Turquesa</span>
                             </label>
                             <label class="color-option">
-                                <input type="radio" name="color-option" value="Marinho">
+                                <input type="radio" name="color-option-infantil-selo-camiseta" value="Rosa Chiclete">
+                                <span class="color-btn" style="background: #ff9eb5; color: white;">Rosa Chiclete</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-infantil-selo-camiseta" value="Rosa Bebê">
+                                <span class="color-btn" style="background: #ffb6c1; color: black; text-shadow: none;">Rosa Bebê</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-infantil-selo-camiseta" value="Azul Bebê">
+                                <span class="color-btn" style="background: #72c5f6; color: black; text-shadow: none;">Azul Bebê</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-infantil-selo-camiseta" value="Mescla">
+                                <span class="color-btn" style="background: #a9a9a9; color: white;">Mescla</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-infantil-selo-camiseta" value="Amarelo">
+                                <span class="color-btn" style="background: #ffd700; color: black; text-shadow: none;">Amarelo</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-infantil-selo-camiseta" value="Lilás">
+                                <span class="color-btn" style="background: #c8a2c8; color: black; text-shadow: none;">Lilás</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-infantil-selo-camiseta" value="Laranja">
+                                <span class="color-btn" style="background: #ff8c00; color: white;">Laranja</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-infantil-selo-camiseta" value="Vermelho">
+                                <span class="color-btn" style="background: #d60000; color: white;">Vermelho</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-infantil-selo-camiseta" value="Azul Royal">
+                                <span class="color-btn" style="background: #2b53a3; color: white;">Azul Royal</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-infantil-selo-camiseta" value="Azul Marinho">
+                                <span class="color-btn" style="background: #000080; color: white;">Azul Marinho</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-infantil-selo-camiseta" value="Verde Bandeira">
+                                <span class="color-btn" style="background: #008000; color: white;">Verde Bandeira</span>
+                            </label>
+                        </div>
+                        
+                        <!-- Cores Infantil Selo - Baby Look Viscolycra (4 cores) -->
+                        <div id="color-options-infantil-selo-baby" class="color-options" style="display: none;">
+                            <label class="color-option">
+                                <input type="radio" name="color-option-infantil-selo-baby" value="Preto" checked>
+                                <span class="color-btn" style="background: black; color: white;">Preto</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-infantil-selo-baby" value="Rosa">
+                                <span class="color-btn" style="background: #ffc0cb; color: black; text-shadow: none;">Rosa</span>
+                            </label>
+                            <label class="color-option">
+                                <input type="radio" name="color-option-infantil-selo-baby" value="Marinho">
                                 <span class="color-btn" style="background: #000080; color: white;">Marinho</span>
                             </label>
                             <label class="color-option">
-                                <input type="radio" name="color-option" value="Vinho">
+                                <input type="radio" name="color-option-infantil-selo-baby" value="Vinho">
                                 <span class="color-btn" style="background: #722f37; color: white;">Vinho</span>
                             </label>
                         </div>
@@ -765,8 +855,14 @@
     <!-- Toast de Feedback -->
     <div id="toast-container" class="toast-container"></div>
 
-    <script src="tabela_precos.js?v=45"></script>
-    <script src="dados.js?v=43"></script>
-    <script src="script.js?v=44"></script>
+    <!-- Botões Flutuantes Rápidos: Topo e Fim -->
+    <div class="quick-scroll-controls">
+        <button id="btn-scroll-top" class="quick-scroll-btn" title="Voltar ao Topo" aria-label="Voltar ao Topo">▲</button>
+        <button id="btn-scroll-bottom" class="quick-scroll-btn" title="Ir para o Fim" aria-label="Ir para o Fim">▼</button>
+    </div>
+
+    <script src="tabela_precos.js?v=46"></script>
+    <script src="dados.js?v=44"></script>
+    <script src="script.js?v=46"></script>
 </body>
 </html>
