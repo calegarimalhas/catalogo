@@ -85,7 +85,7 @@ def gerar_dados():
         elif categoria.lower() == "silkscreen":
             nome_aba = "Silkscreen"
         elif categoria == "Viscolycra Selo Adulto":
-            nome_aba = "Baby Look Selo"
+            nome_aba = "Adulto Selo"
         elif categoria == "Viscolycra Selo Infantil":
             nome_aba = "Infantil Selo"
         elif categoria == "estampasbody":
@@ -286,7 +286,7 @@ def gerar_dados():
         "Frente Total BabyLook",
         "Frente Total Infantil",
         "Frente Total Camiseta",
-        "Baby Look Selo",
+        "Adulto Selo",
         "Infantil Selo",
         "Silkscreen",
         "Body",

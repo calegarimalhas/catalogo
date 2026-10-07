@@ -221,8 +221,8 @@ function getItemUnitPrice(item) {
         return 13.50;
     }
 
-    // 7. Baby Look Selo (Selo Camiseta ou Baby ViscoLycra coloridas - Adulto)
-    if (cat === 'Baby Look Selo') {
+    // 7. Adulto Selo (antiga Baby Look Selo - Selo Camiseta ou Baby ViscoLycra coloridas - Adulto)
+    if (cat === 'Adulto Selo' || cat === 'Baby Look Selo') {
         return 22.40;
     }
 
@@ -258,6 +258,7 @@ function getItemUnitPrice(item) {
     // Fallbacks inteligentes baseados em palavras-chave
     const catLower = cat.toLowerCase();
     if (catLower.includes('body')) return 12.00;
+    if (catLower.includes('adulto selo') || (catLower.includes('selo') && catLower.includes('adulto'))) return 22.40;
     if (catLower.includes('babylook') || catLower.includes('baby look')) {
         if (catLower.includes('selo')) return 22.40;
         return 22.90;

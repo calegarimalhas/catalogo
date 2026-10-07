@@ -55,7 +55,7 @@ const DESTAQUES_CONFIG = [
         tier: 'bronze',
         label: '4º BRONZE',
         icon: '🥉',
-        category: 'Baby Look Selo',
+        category: 'Adulto Selo',
         id: '0009',
         path: 'estampas/Viscolycra Selo Adulto/Nossa Senhora Aparecida/0009.mp4'
     },
@@ -622,29 +622,48 @@ function openModal(item, categoryOverride = null) {
         if (strassContainer) strassContainer.style.display = 'none';
     }
     
-    // Lógica de Tecido / Modelo (Baby Look Selo)
+    // Lógica de Tecido / Modelo (Adulto Selo / Baby Look Selo)
     const fabricContainer = document.getElementById('fabric-selector-container');
-    if (currentCategory === 'Baby Look Selo') {
+    const colorAdultoSeloCamiseta = document.getElementById('color-options-adulto-selo-camiseta');
+    if (currentCategory === 'Adulto Selo' || currentCategory === 'Baby Look Selo') {
         if (fabricContainer) {
             fabricContainer.style.display = 'block';
             const defaultFabric = document.querySelector('input[name="fabric-option"][value="Baby Visco"]');
             if (defaultFabric) defaultFabric.checked = true;
             
-            // Listener para alternar cores dependendo do tecido
+            // Listener para alternar cores e tamanhos dependendo do tecido/modelo
             const fabricRadios = document.querySelectorAll('input[name="fabric-option"]');
             fabricRadios.forEach(radio => {
                 radio.onchange = (e) => {
-                    const isPolyester = e.target.value === 'Baby Poliéster';
-                    const viscoOnlyOptions = document.querySelectorAll('.color-opt-baby-visco-only');
-                    viscoOnlyOptions.forEach(opt => {
-                        opt.style.display = isPolyester ? 'none' : 'inline-block';
-                    });
-                    if (isPolyester) {
+                    const val = e.target.value;
+                    const xgContainer = document.getElementById('group-size-xg');
+                    if (val === 'Camiseta Poliéster') {
+                        if (colorBabylookSelo) colorBabylookSelo.style.display = 'none';
+                        if (colorAdultoSeloCamiseta) colorAdultoSeloCamiseta.style.display = 'flex';
+                        const defaultColor = document.querySelector('#color-options-adulto-selo-camiseta input[name="color-option-adulto-selo-camiseta"][value="Preta"]');
+                        if (defaultColor) defaultColor.checked = true;
+                        if (xgContainer) {
+                            xgContainer.style.display = 'none';
+                            const xgInput = document.getElementById('size-xg');
+                            if (xgInput) xgInput.value = '0';
+                        }
+                    } else if (val === 'Baby Poliéster') {
+                        if (colorAdultoSeloCamiseta) colorAdultoSeloCamiseta.style.display = 'none';
+                        if (colorBabylookSelo) colorBabylookSelo.style.display = 'flex';
+                        const viscoOnlyOptions = document.querySelectorAll('.color-opt-baby-visco-only');
+                        viscoOnlyOptions.forEach(opt => opt.style.display = 'none');
                         const checkedColor = document.querySelector('input[name="color-option-babylook-selo"]:checked');
                         if (checkedColor && (checkedColor.value === 'Pink' || checkedColor.value === 'Vinho')) {
                             const defaultColor = document.querySelector('input[name="color-option-babylook-selo"][value="Marinho"]');
                             if (defaultColor) defaultColor.checked = true;
                         }
+                        if (xgContainer) xgContainer.style.display = 'flex';
+                    } else { // Baby Visco
+                        if (colorAdultoSeloCamiseta) colorAdultoSeloCamiseta.style.display = 'none';
+                        if (colorBabylookSelo) colorBabylookSelo.style.display = 'flex';
+                        const viscoOnlyOptions = document.querySelectorAll('.color-opt-baby-visco-only');
+                        viscoOnlyOptions.forEach(opt => opt.style.display = 'inline-block');
+                        if (xgContainer) xgContainer.style.display = 'flex';
                     }
                 };
             });
@@ -831,6 +850,7 @@ function openModal(item, categoryOverride = null) {
     if(colorInfantilSeloCamiseta) colorInfantilSeloCamiseta.style.display = 'none';
     if(colorInfantilSeloBaby) colorInfantilSeloBaby.style.display = 'none';
     if(colorBabylookSelo) colorBabylookSelo.style.display = 'none';
+    if(colorAdultoSeloCamiseta) colorAdultoSeloCamiseta.style.display = 'none';
     if(colorBody) colorBody.style.display = 'none';
     if(colorDtfPolyester) colorDtfPolyester.style.display = 'none';
     if(colorDtfBabylook) colorDtfBabylook.style.display = 'none';
@@ -892,13 +912,30 @@ function openModal(item, categoryOverride = null) {
                     const defaultRadio = document.querySelector('#color-options-infantil-selo-camiseta input[name="color-option-infantil-selo-camiseta"][value="Preto"]');
                     if (defaultRadio) defaultRadio.checked = true;
                 }
-            } else if (currentCategory === 'Baby Look Selo') {
+            } else if (currentCategory === 'Adulto Selo' || currentCategory === 'Baby Look Selo') {
                 colorContainer.style.display = 'block';
-                if(colorBabylookSelo) colorBabylookSelo.style.display = 'flex';
-                const viscoOnlyOptions = document.querySelectorAll('.color-opt-baby-visco-only');
-                viscoOnlyOptions.forEach(opt => opt.style.display = 'inline-block');
-                const defaultRadio = document.querySelector('input[name="color-option-babylook-selo"][value="Preta"]');
-                if(defaultRadio) defaultRadio.checked = true;
+                const selectedFabric = document.querySelector('input[name="fabric-option"]:checked');
+                const fabVal = selectedFabric ? selectedFabric.value : 'Baby Visco';
+                if (fabVal === 'Camiseta Poliéster') {
+                    if (colorBabylookSelo) colorBabylookSelo.style.display = 'none';
+                    if (colorAdultoSeloCamiseta) colorAdultoSeloCamiseta.style.display = 'flex';
+                    const defaultRadio = document.querySelector('#color-options-adulto-selo-camiseta input[name="color-option-adulto-selo-camiseta"][value="Preta"]');
+                    if (defaultRadio) defaultRadio.checked = true;
+                } else if (fabVal === 'Baby Poliéster') {
+                    if (colorAdultoSeloCamiseta) colorAdultoSeloCamiseta.style.display = 'none';
+                    if (colorBabylookSelo) colorBabylookSelo.style.display = 'flex';
+                    const viscoOnlyOptions = document.querySelectorAll('.color-opt-baby-visco-only');
+                    viscoOnlyOptions.forEach(opt => opt.style.display = 'none');
+                    const defaultRadio = document.querySelector('input[name="color-option-babylook-selo"][value="Preta"]');
+                    if (defaultRadio) defaultRadio.checked = true;
+                } else { // Baby Visco
+                    if (colorAdultoSeloCamiseta) colorAdultoSeloCamiseta.style.display = 'none';
+                    if (colorBabylookSelo) colorBabylookSelo.style.display = 'flex';
+                    const viscoOnlyOptions = document.querySelectorAll('.color-opt-baby-visco-only');
+                    viscoOnlyOptions.forEach(opt => opt.style.display = 'inline-block');
+                    const defaultRadio = document.querySelector('input[name="color-option-babylook-selo"][value="Preta"]');
+                    if (defaultRadio) defaultRadio.checked = true;
+                }
             } else if (currentCategory === 'DTF ADULTO' || currentCategory === 'DTF Adulto') {
                 colorContainer.style.display = 'block';
                 const selectedDtfModel = document.querySelector('input[name="dtf-model-option"]:checked');
@@ -948,7 +985,12 @@ function openModal(item, categoryOverride = null) {
     
     // Mostra o tamanho XG apenas para Baby Look
     const xgContainer = document.getElementById('group-size-xg');
-    if (currentCategory.includes('Baby Look') || currentCategory.includes('BabyLook')) {
+    const isAdultoSelo = currentCategory === 'Adulto Selo' || currentCategory === 'Baby Look Selo';
+    if (isAdultoSelo) {
+        const selectedFabric = document.querySelector('input[name="fabric-option"]:checked');
+        const isCamiseta = selectedFabric && selectedFabric.value === 'Camiseta Poliéster';
+        xgContainer.style.display = isCamiseta ? 'none' : 'flex';
+    } else if (currentCategory.includes('Baby Look') || currentCategory.includes('BabyLook')) {
         xgContainer.style.display = 'flex';
     } else {
         xgContainer.style.display = 'none';
@@ -967,7 +1009,7 @@ function openModal(item, categoryOverride = null) {
         if (h3) h3.innerText = `${stepNum}. Escolha o Modelo:`;
         stepNum++;
     }
-    if (currentCategory === 'Baby Look Selo' && fabricContainer) {
+    if ((currentCategory === 'Adulto Selo' || currentCategory === 'Baby Look Selo') && fabricContainer) {
         const h3 = fabricContainer.querySelector('h3');
         if (h3) h3.innerText = `${stepNum}. Escolha o Modelo / Tecido:`;
         stepNum++;
@@ -1152,8 +1194,11 @@ function addToCart() {
         } else if (currentCategory === 'Sublimação Infantil') {
             const selectedColorRadio = document.querySelector('input[name="color-option-infantil"]:checked');
             if (selectedColorRadio) colorSelection = selectedColorRadio.value;
-        } else if (currentCategory === 'Baby Look Selo') {
-            const selectedColorRadio = document.querySelector('input[name="color-option-babylook-selo"]:checked');
+        } else if (currentCategory === 'Adulto Selo' || currentCategory === 'Baby Look Selo') {
+            const selectedFabric = document.querySelector('input[name="fabric-option"]:checked');
+            const isCamiseta = selectedFabric && selectedFabric.value === 'Camiseta Poliéster';
+            const radioSelector = isCamiseta ? '#color-options-adulto-selo-camiseta input[name="color-option-adulto-selo-camiseta"]:checked' : '#color-options-babylook-selo input[name="color-option-babylook-selo"]:checked';
+            const selectedColorRadio = document.querySelector(radioSelector);
             if (selectedColorRadio) colorSelection = selectedColorRadio.value;
         } else if (currentCategory === 'Silkscreen') {
             const selectedColorRadio = document.querySelector('input[name="color-option-silk"]:checked');
@@ -1426,8 +1471,8 @@ function updateCartUI() {
         if (item.dtfModel) extras.push(`Modelo: ${item.dtfModel}`);
         if (item.silkModel) extras.push(`Modelo: ${item.silkModel}`);
         if (item.infantilSeloModel) extras.push(`Modelo: ${item.infantilSeloModel}`);
-        if (item.category === 'Baby Look Selo') {
-            let fabLabel = item.fabric === 'Baby Poliéster' ? 'Baby Poliéster' : 'Baby Visco';
+        if (item.category === 'Adulto Selo' || item.category === 'Baby Look Selo') {
+            let fabLabel = item.fabric || 'Baby Visco';
             extras.push(`${fabLabel}: ${item.color}`);
         } else if (item.color) {
             let colorLabel = (item.category && item.category.includes('Body')) ? 'Viés' : 'Camisa';
@@ -1489,8 +1534,10 @@ function getItemGroupKey(item) {
         }
     }
 
-    if (cat === 'Baby Look Selo') {
-        if (item.fabric === 'Baby Poliéster') {
+    if (cat === 'Adulto Selo' || cat === 'Baby Look Selo') {
+        if (item.fabric === 'Camiseta Poliéster') {
+            return 'CAMISETA POLIÉSTER SELO ADULTO';
+        } else if (item.fabric === 'Baby Poliéster') {
             return 'BABY POLIÉSTER SELO';
         } else {
             return 'VISCOLYCRA SELO ADULTA';
@@ -1565,8 +1612,8 @@ function checkout(store) {
         
         items.forEach(item => {
             let extras = [];
-            if (item.category === 'Baby Look Selo') {
-                let fabLabel = item.fabric === 'Baby Poliéster' ? 'Baby Poliéster' : 'Baby Visco';
+            if (item.category === 'Adulto Selo' || item.category === 'Baby Look Selo') {
+                let fabLabel = item.fabric || 'Baby Visco';
                 if (item.color) extras.push(`${fabLabel}: ${item.color}`);
             } else if (item.color) {
                 let colorLabel = (item.category && item.category.includes('Body')) ? 'Viés' : 'Camisa';

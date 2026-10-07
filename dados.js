@@ -2482,7 +2482,7 @@ const catalogo = {
             "variations": []
         }
     ],
-    "Baby Look Selo": [
+    "Adulto Selo": [
         {
             "id": "0001",
             "image": "estampas/Viscolycra Selo Adulto/Nossa Senhora Aparecida/0001.mp4",
