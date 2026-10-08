@@ -870,9 +870,9 @@ const catalogo = {
         },
         {
             "id": "0125",
-            "image": "estampas/DTFadulto/São José/video_125.mp4",
-            "thumb": "estampas/DTFadulto/São José/video_125_thumb.webp",
-            "tema": "São José",
+            "image": "estampas/DTFadulto/Caminho da Fé/video_0125.mp4",
+            "thumb": "estampas/DTFadulto/Caminho da Fé/video_0125_thumb.webp",
+            "tema": "Caminho da Fé",
             "variations": []
         },
         {
@@ -950,6 +950,20 @@ const catalogo = {
             "image": "estampas/DTFadulto/Frases/video_136.mp4",
             "thumb": "estampas/DTFadulto/Frases/video_136_thumb.webp",
             "tema": "Frases",
+            "variations": []
+        },
+        {
+            "id": "0137",
+            "image": "estampas/DTFadulto/Caminho da Fé/video_0137.mp4",
+            "thumb": "estampas/DTFadulto/Caminho da Fé/video_0137_thumb.webp",
+            "tema": "Caminho da Fé",
+            "variations": []
+        },
+        {
+            "id": "0138",
+            "image": "estampas/DTFadulto/Caminho da Fé/video_0138.mp4",
+            "thumb": "estampas/DTFadulto/Caminho da Fé/video_0138_thumb.webp",
+            "tema": "Caminho da Fé",
             "variations": []
         }
     ],
