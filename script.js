@@ -1150,6 +1150,10 @@ window.onclick = function(event) {
     if (event.target === modal) {
         closeModal();
     }
+    const helpModal = document.getElementById('help-modal');
+    if (event.target === helpModal) {
+        closeHelpModal();
+    }
 }
 
 // Lógica do Carrinho
@@ -1413,6 +1417,10 @@ function openHelpModal() {
 function closeHelpModal(isPopState = false) {
     const modal = document.getElementById('help-modal');
     if (modal && modal.style.display !== 'none') {
+        const video = document.getElementById('help-tutorial-video');
+        if (video) {
+            video.pause();
+        }
         modal.style.display = 'none';
         if (!isPopState && window.location.hash === '#ajuda') {
             history.back();
