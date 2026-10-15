@@ -14,7 +14,37 @@ let cart = JSON.parse(localStorage.getItem('calegari_cart')) || [];
 function saveCart() {
     localStorage.setItem('calegari_cart', JSON.stringify(cart));
 }
-const WHATSAPP_NUMBER = '5512991431935'; 
+const WHATSAPP_APARECIDA = '5512991431935'; 
+const WHATSAPP_GUARATINGUETA = '5512992543996';
+const WHATSAPP_NUMBER = WHATSAPP_APARECIDA;
+
+// Detecção de Modo Sem Valores (Versão Geral/Varejo vs Atacado)
+const urlParams = new URLSearchParams(window.location.search);
+let isHidePrices = false;
+
+if (urlParams.has('sem-valores') || urlParams.has('semvalores') || urlParams.has('sem-preco') || urlParams.has('sempreco') || urlParams.get('precos') === '0' || urlParams.get('valores') === '0' || window.location.pathname.includes('sem-valores')) {
+    isHidePrices = true;
+    try { sessionStorage.setItem('calegari_hide_prices', 'true'); } catch(e){}
+} else if (urlParams.has('com-valores') || urlParams.has('comvalores') || urlParams.get('precos') === '1' || urlParams.get('valores') === '1') {
+    isHidePrices = false;
+    try { sessionStorage.removeItem('calegari_hide_prices'); } catch(e){}
+} else {
+    try {
+        if (sessionStorage.getItem('calegari_hide_prices') === 'true') {
+            isHidePrices = true;
+        }
+    } catch(e){}
+}
+
+if (isHidePrices) {
+    if (document.body) {
+        document.body.classList.add('hide-prices');
+    } else {
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('hide-prices');
+        });
+    }
+}
 
 // Configurações de Variantes (Strass)
 const strassCategories = ['Frente Total Infantil', 'Frente Total BabyLook', 'Infantil', 'Baby Look', 'estampas/Infantil', 'estampas/Baby Look'];
@@ -74,8 +104,8 @@ const DESTAQUES_CONFIG = [
         label: '6º LUGAR',
         icon: '⭐',
         category: 'Frente Total BabyLook',
-        id: 'BBLK045',
-        path: 'estampas/BabyLook/Nossa Senhora Aparecida/BBLK045.webp'
+        id: 'BBLK001',
+        path: 'estampas/BabyLook/Nossa Senhora Aparecida/BBLK001.webp'
     },
     {
         rank: 7,
@@ -83,8 +113,8 @@ const DESTAQUES_CONFIG = [
         label: '7º LUGAR',
         icon: '⭐',
         category: 'Frente Total BabyLook',
-        id: 'BBLK036',
-        path: 'estampas/BabyLook/São Bento/BBLK036.webp'
+        id: 'BBLK037',
+        path: 'estampas/BabyLook/Nossa Senhora das Graças/BBLK037.webp'
     },
     {
         rank: 8,
@@ -136,6 +166,23 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTabs(categories);
     renderDestaques();
     updateCartUI();
+
+    // Restaura nome do cliente salvo
+    const savedCustomerName = localStorage.getItem('calegari_customer_name');
+    const customerNameInput = document.getElementById('cart-customer-name');
+    if (savedCustomerName && customerNameInput) {
+        customerNameInput.value = savedCustomerName;
+    }
+    if (customerNameInput) {
+        customerNameInput.addEventListener('input', (e) => {
+            localStorage.setItem('calegari_customer_name', e.target.value);
+            const nameErrorEl = document.getElementById('cart-name-error');
+            if (nameErrorEl && e.target.value.trim()) {
+                nameErrorEl.style.display = 'none';
+                customerNameInput.classList.remove('input-invalid');
+            }
+        });
+    }
 
     setupToolbar();
     setupQuickScroll();
@@ -1410,7 +1457,11 @@ function updateCartUI() {
         if (totalItems > 0) {
             stickyBar.style.display = 'flex';
             if (stickyText) {
-                stickyText.innerText = `Ver Meu Pedido (${totalItems} ${totalItems === 1 ? 'peça' : 'peças'} • ${formatMoney(totalPrice)})`;
+                if (isHidePrices) {
+                    stickyText.innerText = `Ver Meu Pedido (${totalItems} ${totalItems === 1 ? 'peça' : 'peças'})`;
+                } else {
+                    stickyText.innerText = `Ver Meu Pedido (${totalItems} ${totalItems === 1 ? 'peça' : 'peças'} • ${formatMoney(totalPrice)})`;
+                }
             }
         } else {
             stickyBar.style.display = 'none';
@@ -1421,6 +1472,7 @@ function updateCartUI() {
     const cartSummaryContainer = document.getElementById('cart-summary');
     const summaryPiecesEl = document.getElementById('cart-summary-pieces');
     const summaryTotalPriceEl = document.getElementById('cart-summary-total-price');
+    const summaryTotalRow = document.querySelector('.cart-summary-total');
 
     // Atualiza lista do carrinho
     const cartItemsContainer = document.getElementById('cart-items');
@@ -1444,6 +1496,9 @@ function updateCartUI() {
         cartSummaryContainer.style.display = 'block';
         if (summaryPiecesEl) summaryPiecesEl.innerText = `${totalItems} ${totalItems === 1 ? 'peça' : 'peças'}`;
         if (summaryTotalPriceEl) summaryTotalPriceEl.innerText = formatMoney(totalPrice);
+        if (summaryTotalRow) {
+            summaryTotalRow.style.display = isHidePrices ? 'none' : 'flex';
+        }
     }
 
     cartItemsContainer.innerHTML = '';
@@ -1482,15 +1537,19 @@ function updateCartUI() {
         if (item.variant) extras.push(item.variant);
         let extrasText = extras.length > 0 ? `(${extras.join(' - ')})` : '';
         
+        const priceSectionHtml = isHidePrices ? '' : `
+            <div class="cart-item-price">
+                <span class="cart-item-unit-price">${itemQty}x ${formatMoney(unitPrice)}</span>
+                <span class="cart-item-subtotal">${formatMoney(itemSubtotal)}</span>
+            </div>
+        `;
+
         div.innerHTML = `
             <img src="${item.thumb || item.image}" alt="${item.id}">
             <div class="cart-item-info">
                 <div class="cart-item-title">${displayTitle} ${extrasText}</div>
                 <div class="cart-item-sizes">Tam: ${sizesText.join(', ')}</div>
-                <div class="cart-item-price">
-                    <span class="cart-item-unit-price">${itemQty}x ${formatMoney(unitPrice)}</span>
-                    <span class="cart-item-subtotal">${formatMoney(itemSubtotal)}</span>
-                </div>
+                ${priceSectionHtml}
             </div>
             <button class="remove-item" onclick="removeFromCart(${index})" title="Remover item">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="16" height="16" fill="currentColor"><path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg>
@@ -1587,12 +1646,34 @@ function getItemGroupKey(item) {
 function checkout(store) {
     if (cart.length === 0) return;
     
-    let phone = '5512991431935'; // Aparecida (default)
+    const customerNameInput = document.getElementById('cart-customer-name');
+    const customerName = customerNameInput ? customerNameInput.value.trim() : '';
+    const nameErrorEl = document.getElementById('cart-name-error');
+
+    if (!customerName) {
+        if (nameErrorEl) nameErrorEl.style.display = 'block';
+        if (customerNameInput) {
+            customerNameInput.classList.add('input-invalid');
+            customerNameInput.focus();
+        }
+        showToast('⚠️ Por favor, digite seu nome antes de enviar o pedido.');
+        return;
+    }
+
+    if (nameErrorEl) nameErrorEl.style.display = 'none';
+    if (customerNameInput) customerNameInput.classList.remove('input-invalid');
+
+    let phone = WHATSAPP_APARECIDA; // Aparecida (default)
+    let storeName = 'Calegari Aparecida';
     if (store === 'guaratingueta') {
-        phone = '5512991420566';
+        phone = WHATSAPP_GUARATINGUETA; // Guaratinguetá (+55 12 99254-3996)
+        storeName = 'Calegari Guaratinguetá';
     }
     
-    let text = "*Novo Pedido - Calegari Malhas*\n\n";
+    const clientUpper = customerName.toUpperCase();
+    let text = `*NOVO PEDIDO - ${clientUpper}*\n`;
+    text += `📍 *Loja:* ${storeName}\n\n`;
+    
     let grandTotalPieces = 0;
     
     // Agrupa os itens do carrinho por categoria / modelo de tecido
@@ -1642,6 +1723,13 @@ function checkout(store) {
         text += `*${groupTotalPieces} ${groupTotalPieces === 1 ? 'peça.' : 'peças.'}*\n\n`;
     }
     
+    // Observações adicionais
+    const obsInput = document.getElementById('cart-order-obs');
+    const obsText = obsInput ? obsInput.value.trim() : '';
+    if (obsText) {
+        text += `*Observações do Cliente:* ${obsText}\n\n`;
+    }
+
     text += `*TOTAL DO PEDIDO: ${grandTotalPieces} ${grandTotalPieces === 1 ? 'peça' : 'peças'}*\n\n`;
     text += "_Pedido gerado pelo Catálogo Digital_";
     
@@ -1707,3 +1795,16 @@ function closeZoomModal() {
     const zoomModal = document.getElementById('zoom-modal');
     if (zoomModal) zoomModal.style.display = 'none';
 }
+
+function copyCatalogLink(url) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(() => {
+            showToast('✅ Link copiado para a área de transferência!');
+        }).catch(() => {
+            prompt('Copie o link abaixo:', url);
+        });
+    } else {
+        prompt('Copie o link abaixo:', url);
+    }
+}
+

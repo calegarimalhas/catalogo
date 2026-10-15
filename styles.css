@@ -857,87 +857,106 @@ button, input, .variant-option, .color-option, .print-color-option, .close-btn, 
 
 /* Modal de Ajuda */
 .help-modal-content {
-    max-width: 500px;
+    max-width: 490px;
+    max-height: 90vh;
     border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .help-modal-body {
-    padding: 25px 20px;
+    padding: 16px 18px 14px 18px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
+    overflow-y: auto;
+    max-height: calc(90vh - 20px);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+
+.help-modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.help-modal-body::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
 }
 
 .help-modal-body h2 {
     color: var(--primary-color);
-    font-size: 1.3rem;
+    font-size: 1.15rem;
     font-weight: 800;
+    margin: 0;
+    padding-right: 25px;
 }
 
 .help-subtitle {
-    font-size: 0.9rem;
+    font-size: 0.82rem;
     color: var(--text-light);
-    margin-top: -6px;
-    margin-bottom: 5px;
+    margin-top: -3px;
+    margin-bottom: 2px;
 }
 
 .help-steps {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 6px;
 }
 
 .help-step-card {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
+    gap: 10px;
     background: #f8f9fa;
-    padding: 12px 14px;
-    border-radius: 10px;
-    border-left: 4px solid var(--primary-color);
+    padding: 8px 12px;
+    border-radius: 8px;
+    border-left: 3px solid var(--primary-color);
 }
 
 .step-number {
     background: var(--primary-color);
     color: white;
-    width: 26px;
-    height: 26px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     flex-shrink: 0;
 }
 
 .step-info {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 2px;
 }
 
 .step-info strong {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     color: var(--text-dark);
 }
 
 .step-info span {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #555;
-    line-height: 1.3;
+    line-height: 1.25;
 }
 
 .help-close-action-btn {
     background: var(--primary-color);
     color: white;
     border: none;
-    padding: 12px;
-    border-radius: 25px;
+    padding: 10px;
+    border-radius: 20px;
     font-weight: bold;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 8px;
     transition: var(--transition);
 }
 
@@ -1669,6 +1688,82 @@ button, input, .variant-option, .color-option, .print-color-option, .close-btn, 
     gap: 3px;
     backdrop-filter: blur(2px);
 }
+
+/* Identificação do Cliente e Observações no Carrinho */
+.cart-customer-box {
+    margin-top: 14px;
+    margin-bottom: 14px;
+    background: #f8fafc;
+    padding: 12px 14px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+.cart-customer-label {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #334155;
+    margin-bottom: 6px;
+}
+
+.cart-customer-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: #1e293b;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+    font-family: inherit;
+    background: #ffffff;
+}
+
+.cart-customer-input:focus {
+    border-color: #25D366;
+    box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.2);
+}
+
+.cart-customer-input.input-invalid {
+    border-color: #ef4444 !important;
+    background-color: #fef2f2 !important;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2) !important;
+}
+
+.cart-obs-textarea {
+    resize: vertical;
+    min-height: 52px;
+    font-size: 0.88rem;
+}
+
+.cart-name-error {
+    margin-top: 6px;
+    font-size: 0.82rem;
+    color: #dc2626;
+    font-weight: 600;
+}
+
+.checkout-btn-aparecida {
+    background: #25D366;
+}
+
+.checkout-btn-guaratingueta {
+    background: #128C7E;
+}
+
+.checkout-btn-guaratingueta:hover:not(:disabled) {
+    background: #0d6e63;
+}
+
+/* Modo Sem Valores (Versão Varejo / Geral) */
+body.hide-prices .cart-summary-total,
+body.hide-prices .cart-item-price,
+body.hide-prices .price-display {
+    display: none !important;
+}
+
 
 
 
