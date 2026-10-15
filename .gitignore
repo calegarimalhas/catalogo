@@ -1,2 +1,4 @@
 # Ignorar pasta autônoma do projeto de sublimação no Git
 site_sublimacao/
+otimizar_videos.py
+*.tmp*
