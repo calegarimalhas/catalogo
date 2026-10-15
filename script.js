@@ -1411,6 +1411,10 @@ function openHelpModal() {
     if (modal) {
         modal.style.display = 'flex';
         history.pushState({ type: 'help' }, '', '#ajuda');
+        const video = document.getElementById('help-tutorial-video');
+        if (video && video.readyState === 0) {
+            try { video.load(); } catch(e) {}
+        }
     }
 }
 

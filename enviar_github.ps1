@@ -5,7 +5,7 @@ git config http.postBuffer 2147483648
 git config core.compression 0
 
 Write-Host "Enviando os arquivos base do site..." -ForegroundColor Cyan
-git add index.html script.js styles.css dados.js tabela_precos.js gerador_dados.py strass.png tintabranca.png tintadourada.png tintaprata.png sem-valores sem-valores.html tutorial.mp4
+git add index.html script.js styles.css dados.js tabela_precos.js gerador_dados.py strass.png tintabranca.png tintadourada.png tintaprata.png sem-valores sem-valores.html tutorial.mp4 tutorial-poster.jpg
 git commit -m "Arquivos base do site e dados atualizados"
 git push -u origin master
 
