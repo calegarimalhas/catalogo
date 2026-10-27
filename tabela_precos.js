@@ -177,10 +177,17 @@ function getItemUnitPrice(item) {
     const variant = item.variant || '';
     const dtfModel = item.dtfModel || '';
     const silkModel = item.silkModel || '';
+    const sublimacaoModel = item.sublimacaoModel || '';
     const infantilSeloModel = item.infantilSeloModel || item.model || '';
 
     // 1. Sublimação Adulto
     if (cat.includes('Sublimação Adulta') || cat.includes('Sublimação Adulto') || cat.includes('SublimacaoAdulto')) {
+        if (sublimacaoModel === 'Infantil') {
+            if (variant === 'Com Pedrinha' || variant.toLowerCase().includes('com pedrinha') || variant.toLowerCase().includes('strass')) {
+                return 9.70;
+            }
+            return 8.10;
+        }
         return 12.80;
     }
 
@@ -241,6 +248,9 @@ function getItemUnitPrice(item) {
 
     // 10. DTF Adulto
     if (cat === 'DTF ADULTO' || cat === 'DTF Adulto') {
+        if (dtfModel === 'Infantil') {
+            return 9.50;
+        }
         if (dtfModel === 'BabyLook Viscolycra') {
             return 19.00;
         }

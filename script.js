@@ -747,17 +747,37 @@ function openModal(item, categoryOverride = null) {
             const sublimacaoModelRadios = document.querySelectorAll('input[name="sublimacao-adulto-model-option"]');
             sublimacaoModelRadios.forEach(radio => {
                 radio.onchange = (e) => {
-                    const isMachao = e.target.value === 'Camiseta Machão';
-                    if (isMachao) {
+                    const val = e.target.value;
+                    const ppContainer = document.getElementById('group-size-pp');
+                    if (val === 'Infantil') {
                         if (colorAdulto) colorAdulto.style.display = 'none';
+                        if (colorSublimacaoMachao) colorSublimacaoMachao.style.display = 'none';
+                        if (colorInfantil) colorInfantil.style.display = 'flex';
+                        const defaultRadio = document.querySelector('#color-options-infantil input[name="color-option-infantil"][value="Branco"]');
+                        if (defaultRadio) defaultRadio.checked = true;
+                        if (ppContainer) ppContainer.style.display = 'flex';
+                    } else if (val === 'Camiseta Machão') {
+                        if (colorAdulto) colorAdulto.style.display = 'none';
+                        if (colorInfantil) colorInfantil.style.display = 'none';
                         if (colorSublimacaoMachao) colorSublimacaoMachao.style.display = 'flex';
                         const defaultRadio = document.querySelector('#color-options-sublimacao-machao input[name="color-option-sublimacao-machao"][value="Branca"]');
                         if (defaultRadio) defaultRadio.checked = true;
+                        if (ppContainer) {
+                            ppContainer.style.display = 'none';
+                            const ppInput = document.getElementById('size-pp');
+                            if (ppInput) ppInput.value = '0';
+                        }
                     } else {
                         if (colorSublimacaoMachao) colorSublimacaoMachao.style.display = 'none';
+                        if (colorInfantil) colorInfantil.style.display = 'none';
                         if (colorAdulto) colorAdulto.style.display = 'flex';
                         const defaultRadio = document.querySelector('#color-options-adulto input[name="color-option-adulto"][value="Branca"]');
                         if (defaultRadio) defaultRadio.checked = true;
+                        if (ppContainer) {
+                            ppContainer.style.display = 'none';
+                            const ppInput = document.getElementById('size-pp');
+                            if (ppInput) ppInput.value = '0';
+                        }
                     }
                 };
             });
@@ -807,17 +827,37 @@ function openModal(item, categoryOverride = null) {
             const dtfModelRadios = document.querySelectorAll('input[name="dtf-model-option"]');
             dtfModelRadios.forEach(radio => {
                 radio.onchange = (e) => {
-                    const isBaby = e.target.value === 'BabyLook Viscolycra';
-                    if (isBaby) {
+                    const val = e.target.value;
+                    const ppContainer = document.getElementById('group-size-pp');
+                    if (val === 'Infantil') {
                         if (colorDtfPolyester) colorDtfPolyester.style.display = 'none';
+                        if (colorDtfBabylook) colorDtfBabylook.style.display = 'none';
+                        if (colorDtfInfantilCamiseta) colorDtfInfantilCamiseta.style.display = 'flex';
+                        const defaultRadio = document.querySelector('#color-options-dtf-infantil-camiseta input[name="color-option-dtf-infantil-camiseta"][value="Preto"]');
+                        if (defaultRadio) defaultRadio.checked = true;
+                        if (ppContainer) ppContainer.style.display = 'flex';
+                    } else if (val === 'BabyLook Viscolycra') {
+                        if (colorDtfPolyester) colorDtfPolyester.style.display = 'none';
+                        if (colorDtfInfantilCamiseta) colorDtfInfantilCamiseta.style.display = 'none';
                         if (colorDtfBabylook) colorDtfBabylook.style.display = 'flex';
                         const defaultRadio = document.querySelector('#color-options-dtf-babylook input[name="color-option-dtf-babylook"][value="Preto"]');
                         if(defaultRadio) defaultRadio.checked = true;
+                        if (ppContainer) {
+                            ppContainer.style.display = 'none';
+                            const ppInput = document.getElementById('size-pp');
+                            if (ppInput) ppInput.value = '0';
+                        }
                     } else {
                         if (colorDtfBabylook) colorDtfBabylook.style.display = 'none';
+                        if (colorDtfInfantilCamiseta) colorDtfInfantilCamiseta.style.display = 'none';
                         if (colorDtfPolyester) colorDtfPolyester.style.display = 'flex';
                         const defaultRadio = document.querySelector('#color-options-dtf-polyester input[name="color-option-dtf-polyester"][value="Preto"]');
                         if(defaultRadio) defaultRadio.checked = true;
+                        if (ppContainer) {
+                            ppContainer.style.display = 'none';
+                            const ppInput = document.getElementById('size-pp');
+                            if (ppInput) ppInput.value = '0';
+                        }
                     }
                 };
             });
@@ -916,8 +956,12 @@ function openModal(item, categoryOverride = null) {
             if (currentCategory.includes('Sublimação Adulta') || currentCategory.includes('Sublimação Adulto')) {
                 colorContainer.style.display = 'block';
                 const selectedSubModel = document.querySelector('input[name="sublimacao-adulto-model-option"]:checked');
-                const isMachao = selectedSubModel && selectedSubModel.value === 'Camiseta Machão';
-                if (isMachao) {
+                const subModelVal = selectedSubModel ? selectedSubModel.value : 'Camiseta';
+                if (subModelVal === 'Infantil') {
+                    if (colorInfantil) colorInfantil.style.display = 'flex';
+                    const defaultRadio = document.querySelector('#color-options-infantil input[name="color-option-infantil"][value="Branco"]');
+                    if (defaultRadio) defaultRadio.checked = true;
+                } else if (subModelVal === 'Camiseta Machão') {
                     if (colorSublimacaoMachao) colorSublimacaoMachao.style.display = 'flex';
                     const defaultRadio = document.querySelector('#color-options-sublimacao-machao input[name="color-option-sublimacao-machao"][value="Branca"]');
                     if (defaultRadio) defaultRadio.checked = true;
@@ -986,8 +1030,12 @@ function openModal(item, categoryOverride = null) {
             } else if (currentCategory === 'DTF ADULTO' || currentCategory === 'DTF Adulto') {
                 colorContainer.style.display = 'block';
                 const selectedDtfModel = document.querySelector('input[name="dtf-model-option"]:checked');
-                const isBaby = selectedDtfModel && selectedDtfModel.value === 'BabyLook Viscolycra';
-                if (isBaby) {
+                const dtfVal = selectedDtfModel ? selectedDtfModel.value : 'Camiseta Poliéster';
+                if (dtfVal === 'Infantil') {
+                    if (colorDtfInfantilCamiseta) colorDtfInfantilCamiseta.style.display = 'flex';
+                    const defaultRadio = document.querySelector('#color-options-dtf-infantil-camiseta input[name="color-option-dtf-infantil-camiseta"][value="Preto"]');
+                    if (defaultRadio) defaultRadio.checked = true;
+                } else if (dtfVal === 'BabyLook Viscolycra') {
                     if(colorDtfBabylook) colorDtfBabylook.style.display = 'flex';
                     const defaultRadio = document.querySelector('#color-options-dtf-babylook input[name="color-option-dtf-babylook"][value="Preto"]');
                     if(defaultRadio) defaultRadio.checked = true;
@@ -1238,8 +1286,15 @@ function addToCart() {
             if (selectedColorRadio) colorSelection = selectedColorRadio.value;
         } else if (currentCategory === 'Sublimação Adulta Branca' || currentCategory.includes('Sublimação Adulta') || currentCategory.includes('Sublimação Adulto')) {
             const selectedSubModel = document.querySelector('input[name="sublimacao-adulto-model-option"]:checked');
-            const isMachao = selectedSubModel && selectedSubModel.value === 'Camiseta Machão';
-            const radioSelector = isMachao ? '#color-options-sublimacao-machao input[name="color-option-sublimacao-machao"]:checked' : '#color-options-adulto input[name="color-option-adulto"]:checked';
+            const subModelVal = selectedSubModel ? selectedSubModel.value : 'Camiseta';
+            let radioSelector;
+            if (subModelVal === 'Infantil') {
+                radioSelector = '#color-options-infantil input[name="color-option-infantil"]:checked';
+            } else if (subModelVal === 'Camiseta Machão') {
+                radioSelector = '#color-options-sublimacao-machao input[name="color-option-sublimacao-machao"]:checked';
+            } else {
+                radioSelector = '#color-options-adulto input[name="color-option-adulto"]:checked';
+            }
             const selectedColorRadio = document.querySelector(radioSelector);
             if (selectedColorRadio) colorSelection = selectedColorRadio.value;
         } else if (currentCategory === 'Sublimação Infantil') {
@@ -1262,8 +1317,15 @@ function addToCart() {
             if (selectedColorRadio) colorSelection = selectedColorRadio.value;
         } else if (currentCategory === 'DTF ADULTO' || currentCategory === 'DTF Adulto') {
             const selectedDtfModel = document.querySelector('input[name="dtf-model-option"]:checked');
-            const isBaby = selectedDtfModel && selectedDtfModel.value === 'BabyLook Viscolycra';
-            const radioSelector = isBaby ? '#color-options-dtf-babylook input[name="color-option-dtf-babylook"]:checked' : '#color-options-dtf-polyester input[name="color-option-dtf-polyester"]:checked';
+            const dtfVal = selectedDtfModel ? selectedDtfModel.value : 'Camiseta Poliéster';
+            let radioSelector;
+            if (dtfVal === 'Infantil') {
+                radioSelector = '#color-options-dtf-infantil-camiseta input[name="color-option-dtf-infantil-camiseta"]:checked';
+            } else if (dtfVal === 'BabyLook Viscolycra') {
+                radioSelector = '#color-options-dtf-babylook input[name="color-option-dtf-babylook"]:checked';
+            } else {
+                radioSelector = '#color-options-dtf-polyester input[name="color-option-dtf-polyester"]:checked';
+            }
             const selectedColorRadio = document.querySelector(radioSelector);
             if (selectedColorRadio) colorSelection = selectedColorRadio.value;
         } else if (currentCategory === 'DTF Infantil') {
@@ -1534,8 +1596,20 @@ function updateCartUI() {
         let displayTitle = item.id;
         
         let extras = [];
-        if (item.sublimacaoModel) extras.push(`Modelo: ${item.sublimacaoModel}`);
-        if (item.dtfModel) extras.push(`Modelo: ${item.dtfModel}`);
+        if (item.sublimacaoModel) {
+            if (item.sublimacaoModel === 'Infantil') {
+                extras.push('Modelo: Infantil (Arte Adulto)');
+            } else {
+                extras.push(`Modelo: ${item.sublimacaoModel}`);
+            }
+        }
+        if (item.dtfModel) {
+            if (item.dtfModel === 'Infantil') {
+                extras.push('Modelo: Infantil (Arte Adulto)');
+            } else {
+                extras.push(`Modelo: ${item.dtfModel}`);
+            }
+        }
         if (item.silkModel) extras.push(`Modelo: ${item.silkModel}`);
         if (item.infantilSeloModel) extras.push(`Modelo: ${item.infantilSeloModel}`);
         if (item.category === 'Adulto Selo' || item.category === 'Baby Look Selo') {
@@ -1587,7 +1661,9 @@ function getItemGroupKey(item) {
 
     if (cat === 'DTF ADULTO' || cat === 'DTF Adulto') {
         const dtfM = item.dtfModel || 'Camiseta Poliéster';
-        if (dtfM === 'BabyLook Viscolycra') {
+        if (dtfM === 'Infantil') {
+            return 'DTF INFANTIL (ARTE ADULTO)';
+        } else if (dtfM === 'BabyLook Viscolycra') {
             return 'DTF ADULTO BABYLOOK VISCOLYCRA';
         } else if (dtfM === 'Camiseta Machão') {
             return 'DTF ADULTO CAMISETA MACHÃO';
@@ -1629,7 +1705,9 @@ function getItemGroupKey(item) {
 
     if (cat.includes('Sublimação Adulta') || cat.includes('Sublimação Adulto') || cat.includes('SublimacaoAdulto')) {
         const subM = item.sublimacaoModel || 'Camiseta';
-        if (subM === 'Camiseta Machão') {
+        if (subM === 'Infantil') {
+            return 'SUBLIMAÇÃO INFANTIL (ARTE ADULTO)';
+        } else if (subM === 'Camiseta Machão') {
             return 'SUBLIMAÇÃO ADULTA CAMISETA MACHÃO';
         }
         return 'SUBLIMAÇÃO ADULTA';
@@ -1705,6 +1783,13 @@ function checkout(store) {
         
         items.forEach(item => {
             let extras = [];
+            if (item.sublimacaoModel === 'Infantil' || item.dtfModel === 'Infantil') {
+                extras.push('MODELO INFANTIL - ARTE ADULTO');
+            } else if (item.sublimacaoModel && item.sublimacaoModel !== 'Camiseta') {
+                extras.push(`Modelo: ${item.sublimacaoModel}`);
+            } else if (item.dtfModel && item.dtfModel !== 'Camiseta Poliéster') {
+                extras.push(`Modelo: ${item.dtfModel}`);
+            }
             if (item.category === 'Adulto Selo' || item.category === 'Baby Look Selo') {
                 let fabLabel = item.fabric || 'Baby Visco';
                 if (item.color) extras.push(`${fabLabel}: ${item.color}`);
