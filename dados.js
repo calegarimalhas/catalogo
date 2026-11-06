@@ -6052,6 +6052,34 @@ const catalogo = {
             "thumb": "estampas/SublimacaoInfantil/Outros/animacao_0076_thumb.webp",
             "tema": "Outros",
             "variations": []
+        },
+        {
+            "id": "0077",
+            "image": "estampas/SublimacaoInfantil/Nossa Senhora Aparecida/animacao_0077.mp4",
+            "thumb": "estampas/SublimacaoInfantil/Nossa Senhora Aparecida/animacao_0077.mp4",
+            "tema": "Nossa Senhora Aparecida",
+            "variations": []
+        },
+        {
+            "id": "0078",
+            "image": "estampas/SublimacaoInfantil/Nossa Senhora Aparecida/animacao_0078.mp4",
+            "thumb": "estampas/SublimacaoInfantil/Nossa Senhora Aparecida/animacao_0078_thumb.webp",
+            "tema": "Nossa Senhora Aparecida",
+            "variations": []
+        },
+        {
+            "id": "0079",
+            "image": "estampas/SublimacaoInfantil/Nossa Senhora Aparecida/animacao_0079.mp4",
+            "thumb": "estampas/SublimacaoInfantil/Nossa Senhora Aparecida/animacao_0079_thumb.webp",
+            "tema": "Nossa Senhora Aparecida",
+            "variations": []
+        },
+        {
+            "id": "0080",
+            "image": "estampas/SublimacaoInfantil/Nossa Senhora Aparecida/animacao_0080.mp4",
+            "thumb": "estampas/SublimacaoInfantil/Nossa Senhora Aparecida/animacao_0080_thumb.webp",
+            "tema": "Nossa Senhora Aparecida",
+            "variations": []
         }
     ]
 };
