@@ -6056,7 +6056,7 @@ const catalogo = {
         {
             "id": "0077",
             "image": "estampas/SublimacaoInfantil/Nossa Senhora Aparecida/animacao_0077.mp4",
-            "thumb": "estampas/SublimacaoInfantil/Nossa Senhora Aparecida/animacao_0077.mp4",
+            "thumb": "estampas/SublimacaoInfantil/Nossa Senhora Aparecida/animacao_0077_thumb.webp",
             "tema": "Nossa Senhora Aparecida",
             "variations": []
         },
