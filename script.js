@@ -700,7 +700,7 @@ function openModal(item, categoryOverride = null) {
                         const viscoOnlyOptions = document.querySelectorAll('.color-opt-baby-visco-only');
                         viscoOnlyOptions.forEach(opt => opt.style.display = 'none');
                         const checkedColor = document.querySelector('input[name="color-option-babylook-selo"]:checked');
-                        if (checkedColor && (checkedColor.value === 'Pink' || checkedColor.value === 'Vinho')) {
+                        if (checkedColor && (checkedColor.value === 'Pink' || checkedColor.value === 'Vinho' || checkedColor.value === 'Rosa BB' || checkedColor.value === 'Azul BB' || checkedColor.value === 'Amarelo' || checkedColor.value === 'Azul Royal' || checkedColor.value === 'Verde Musgo' || checkedColor.value === 'Marrom')) {
                             const defaultColor = document.querySelector('input[name="color-option-babylook-selo"][value="Marinho"]');
                             if (defaultColor) defaultColor.checked = true;
                         }
