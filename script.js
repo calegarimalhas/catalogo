@@ -726,6 +726,7 @@ function openModal(item, categoryOverride = null) {
     const colorSublimacaoMachao = document.getElementById('color-options-sublimacao-machao');
     const colorInfantil = document.getElementById('color-options-infantil');
     const colorSilkscreenAdulto = document.getElementById('color-options-silkscreen-adulto');
+    const colorSilkscreenInfantil = document.getElementById('color-options-silkscreen-infantil');
     const colorSilkscreenBaby = document.getElementById('color-options-silkscreen-baby');
     const colorInfantilSeloCamiseta = document.getElementById('color-options-infantil-selo-camiseta');
     const colorInfantilSeloBaby = document.getElementById('color-options-infantil-selo-baby');
@@ -797,17 +798,31 @@ function openModal(item, categoryOverride = null) {
             const silkModelRadios = document.querySelectorAll('input[name="silk-model-option"]');
             silkModelRadios.forEach(radio => {
                 radio.onchange = (e) => {
-                    const isBaby = e.target.value === 'Baby Viscolycra';
-                    if (isBaby) {
-                        if (colorSilkscreenAdulto) colorSilkscreenAdulto.style.display = 'none';
+                    const modelVal = e.target.value;
+                    if (colorSilkscreenAdulto) colorSilkscreenAdulto.style.display = 'none';
+                    if (colorSilkscreenInfantil) colorSilkscreenInfantil.style.display = 'none';
+                    if (colorSilkscreenBaby) colorSilkscreenBaby.style.display = 'none';
+
+                    if (modelVal === 'Baby Viscolycra') {
                         if (colorSilkscreenBaby) colorSilkscreenBaby.style.display = 'flex';
                         const defaultRadio = document.querySelector('#color-options-silkscreen-baby input[name="color-option-silk"][value="Preto"]');
-                        if(defaultRadio) defaultRadio.checked = true;
+                        if (defaultRadio) defaultRadio.checked = true;
+                        if (ppContainer) ppContainer.style.display = 'none';
+                        const ppInput = document.getElementById('size-pp');
+                        if (ppInput) ppInput.value = 0;
+                    } else if (modelVal === 'Infantil') {
+                        if (colorSilkscreenInfantil) colorSilkscreenInfantil.style.display = 'flex';
+                        const defaultRadio = document.querySelector('#color-options-silkscreen-infantil input[name="color-option-silk"][value="Branco"]') ||
+                                             document.querySelector('#color-options-silkscreen-infantil input[name="color-option-silk"][value="Preto"]');
+                        if (defaultRadio) defaultRadio.checked = true;
+                        if (ppContainer) ppContainer.style.display = 'flex';
                     } else {
-                        if (colorSilkscreenBaby) colorSilkscreenBaby.style.display = 'none';
                         if (colorSilkscreenAdulto) colorSilkscreenAdulto.style.display = 'flex';
                         const defaultRadio = document.querySelector('#color-options-silkscreen-adulto input[name="color-option-silk"][value="Preta"]');
-                        if(defaultRadio) defaultRadio.checked = true;
+                        if (defaultRadio) defaultRadio.checked = true;
+                        if (ppContainer) ppContainer.style.display = 'none';
+                        const ppInput = document.getElementById('size-pp');
+                        if (ppInput) ppInput.value = 0;
                     }
                 };
             });
@@ -933,6 +948,7 @@ function openModal(item, categoryOverride = null) {
     if(colorSublimacaoMachao) colorSublimacaoMachao.style.display = 'none';
     if(colorInfantil) colorInfantil.style.display = 'none';
     if(colorSilkscreenAdulto) colorSilkscreenAdulto.style.display = 'none';
+    if(colorSilkscreenInfantil) colorSilkscreenInfantil.style.display = 'none';
     if(colorSilkscreenBaby) colorSilkscreenBaby.style.display = 'none';
     if(colorInfantilSeloCamiseta) colorInfantilSeloCamiseta.style.display = 'none';
     if(colorInfantilSeloBaby) colorInfantilSeloBaby.style.display = 'none';
@@ -978,15 +994,20 @@ function openModal(item, categoryOverride = null) {
             } else if (currentCategory === 'Silkscreen') {
                 colorContainer.style.display = 'block';
                 const silkModelRadio = document.querySelector('input[name="silk-model-option"]:checked');
-                const isBabyVisco = silkModelRadio && silkModelRadio.value === 'Baby Viscolycra';
-                if (isBabyVisco) {
+                const modelVal = silkModelRadio ? silkModelRadio.value : 'Adulto';
+                if (modelVal === 'Baby Viscolycra') {
                     if (colorSilkscreenBaby) colorSilkscreenBaby.style.display = 'flex';
                     const defaultRadio = document.querySelector('#color-options-silkscreen-baby input[name="color-option-silk"][value="Preto"]');
-                    if(defaultRadio) defaultRadio.checked = true;
+                    if (defaultRadio) defaultRadio.checked = true;
+                } else if (modelVal === 'Infantil') {
+                    if (colorSilkscreenInfantil) colorSilkscreenInfantil.style.display = 'flex';
+                    const defaultRadio = document.querySelector('#color-options-silkscreen-infantil input[name="color-option-silk"][value="Branco"]') ||
+                                         document.querySelector('#color-options-silkscreen-infantil input[name="color-option-silk"][value="Preto"]');
+                    if (defaultRadio) defaultRadio.checked = true;
                 } else {
                     if (colorSilkscreenAdulto) colorSilkscreenAdulto.style.display = 'flex';
                     const defaultRadio = document.querySelector('#color-options-silkscreen-adulto input[name="color-option-silk"][value="Preta"]');
-                    if(defaultRadio) defaultRadio.checked = true;
+                    if (defaultRadio) defaultRadio.checked = true;
                 }
             } else if (currentCategory.includes('Infantil Selo') || currentCategory.includes('Visco Infantil Selo') || currentCategory === 'Viscolycra Infantil Selo') {
                 colorContainer.style.display = 'block';
@@ -1159,6 +1180,13 @@ function openModal(item, categoryOverride = null) {
         } else {
             ppContainer.style.display = 'none';
         }
+    } else if (currentCategory === 'Silkscreen') {
+        const silkModelRadio = document.querySelector('input[name="silk-model-option"]:checked');
+        if (silkModelRadio && silkModelRadio.value === 'Infantil') {
+            ppContainer.style.display = 'flex';
+        } else {
+            ppContainer.style.display = 'none';
+        }
     } else if (currentCategory.includes('Infantil') && currentCategory !== 'Infantil' && currentCategory !== 'Frente Total Infantil' && !currentCategory.includes('Body')) {
         ppContainer.style.display = 'flex';
     } else {
@@ -1307,7 +1335,15 @@ function addToCart() {
             const selectedColorRadio = document.querySelector(radioSelector);
             if (selectedColorRadio) colorSelection = selectedColorRadio.value;
         } else if (currentCategory === 'Silkscreen') {
-            const selectedColorRadio = document.querySelector('input[name="color-option-silk"]:checked');
+            const selectedSilkModel = document.querySelector('input[name="silk-model-option"]:checked');
+            const silkVal = selectedSilkModel ? selectedSilkModel.value : 'Adulto';
+            let radioSelector = '#color-options-silkscreen-adulto input[name="color-option-silk"]:checked';
+            if (silkVal === 'Infantil') {
+                radioSelector = '#color-options-silkscreen-infantil input[name="color-option-silk"]:checked';
+            } else if (silkVal === 'Baby Viscolycra') {
+                radioSelector = '#color-options-silkscreen-baby input[name="color-option-silk"]:checked';
+            }
+            const selectedColorRadio = document.querySelector(radioSelector) || document.querySelector('input[name="color-option-silk"]:checked');
             if (selectedColorRadio) colorSelection = selectedColorRadio.value;
         } else if (currentCategory.includes('Infantil Selo') || currentCategory.includes('Visco Infantil Selo') || currentCategory === 'Viscolycra Infantil Selo') {
             const selectedModel = document.querySelector('input[name="infantil-selo-model-option"]:checked');

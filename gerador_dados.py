@@ -309,5 +309,70 @@ def gerar_dados():
         
     print(f"\nSucesso! 'dados.js' gerado com um total de {total_estampas} estampas em {len(dados_catalogo)} categorias na ordem correta.")
 
+    # Sincroniza automaticamente o JSON da loja (calegari-eshop) se existir ao lado
+    try:
+        import urllib.parse
+        eshop_json_path = os.path.abspath(os.path.join(diretorio_base, "..", "calegari-eshop", "src", "data", "micrositeCatalogData.json"))
+        if os.path.exists(os.path.dirname(eshop_json_path)):
+            prefix_map = {
+                "DTF Adulto": "DTFA",
+                "DTF Infantil": "DTFI",
+                "Frente Total BabyLook": "FTBLK",
+                "Frente Total Infantil": "FTI",
+                "Frente Total Camiseta": "FTCAM",
+                "Adulto Selo": "SELAD",
+                "Infantil Selo": "SI",
+                "Silkscreen": "SILK",
+                "Body": "BODY",
+                "Sublimação Adulto": "SUBAD",
+                "Sublimação Infantil": "SUBINF"
+            }
+            def enc_url(rel_p):
+                if not rel_p:
+                    return None
+                clean_p = rel_p.replace("\\", "/")
+                return "https://calegariestampas.com.br/" + "/".join(urllib.parse.quote(s, safe="") for s in clean_p.split("/"))
+
+            eshop_list = []
+            for cat_name, items in dados_catalogo.items():
+                prefix = prefix_map.get(cat_name, cat_name[:4].upper())
+                for it in items:
+                    raw_id = str(it.get("id", "")).strip()
+                    uid = raw_id if raw_id.upper().startswith(prefix + "-") else f"{prefix}-{raw_id}"
+                    img_raw = it.get("image", "")
+                    is_vid = isinstance(img_raw, str) and img_raw.lower().endswith(".mp4")
+                    img_url = enc_url(it.get("thumb") or img_raw)
+                    vid_url = enc_url(img_raw) if is_vid else None
+                    baby_url = enc_url(it.get("image_baby")) if it.get("image_baby") else None
+                    vars_out = []
+                    for v in it.get("variations", []):
+                        v_img = v.get("image", "")
+                        v_is_vid = isinstance(v_img, str) and v_img.lower().endswith(".mp4")
+                        v_entry = {
+                            "name": v.get("name", ""),
+                            "image_url": img_url if v_is_vid else enc_url(v_img)
+                        }
+                        if v_is_vid:
+                            v_entry["video_url"] = enc_url(v_img)
+                        vars_out.append(v_entry)
+                    entry = {
+                        "id": uid,
+                        "rawId": raw_id,
+                        "category": cat_name,
+                        "tema": it.get("tema") or "Outros",
+                        "imageUrl": img_url,
+                    }
+                    if vid_url:
+                        entry["videoUrl"] = vid_url
+                    entry["variations"] = vars_out
+                    if baby_url:
+                        entry["imageBaby"] = baby_url
+                    eshop_list.append(entry)
+            with open(eshop_json_path, "w", encoding="utf-8") as ef:
+                json.dump(eshop_list, ef, indent=2, ensure_ascii=False)
+            print(f"Sincronizado automaticamente com a loja e-shop: {len(eshop_list)} estampas em '{eshop_json_path}'.")
+    except Exception as e:
+        print(f"Aviso ao sincronizar com calegari-eshop: {e}")
+
 if __name__ == '__main__':
     gerar_dados()

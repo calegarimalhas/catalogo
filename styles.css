@@ -491,7 +491,7 @@ header h1 {
     object-fit: contain;
 }
 
-/* Color Selector */
+/* Color Selector (Pílulas Padronizadas em Todo o Site) */
 .color-options {
     display: flex;
     flex-wrap: wrap;
@@ -499,28 +499,41 @@ header h1 {
 }
 .color-option {
     cursor: pointer;
+    display: inline-flex;
 }
 .color-option input {
     display: none;
 }
 .color-btn {
-    display: inline-block;
-    padding: 8px 12px;
-    border: 3px solid transparent;
-    border-radius: 20px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: 0.2s;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 18px;
+    border: 2px solid transparent;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.2px;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.12);
+    user-select: none;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+    white-space: nowrap;
 }
-.color-option input[value="Branco"] + .color-btn {
-    color: var(--text-dark);
-    text-shadow: none;
+.color-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.color-option input[value="Branco"] + .color-btn,
+.color-option input[value="Branca"] + .color-btn {
+    color: #1e293b !important;
+    border: 2px solid #cbd5e1 !important;
+    text-shadow: none !important;
 }
 .color-option input:checked + .color-btn {
     transform: scale(1.05);
-    border-color: var(--primary-color);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    border-color: #0056b3 !important;
+    box-shadow: 0 0 0 3px #0056b3, 0 4px 12px rgba(0, 86, 179, 0.35) !important;
 }
 
 .color-square {
@@ -528,7 +541,7 @@ header h1 {
     width: 44px;
     height: 44px;
     border: 3px solid transparent;
-    border-radius: 8px; /* Slightly rounded for premium feel, but still square-ish */
+    border-radius: 8px;
     transition: 0.2s;
     box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
@@ -538,15 +551,20 @@ header h1 {
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-/* Print Color Selector (Estampa) */
+/* Print Color Selector (Tinta Silkscreen com Legenda Abaixo) */
 .print-color-options {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 18px;
+    align-items: flex-start;
 }
 .print-color-option {
     cursor: pointer;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
 }
 .print-color-option input {
     display: none;
@@ -560,10 +578,20 @@ header h1 {
     transition: 0.2s;
     padding: 2px;
 }
+.print-color-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    transition: 0.2s;
+}
 .print-color-option input:checked + .print-color-img {
     border-color: var(--primary-color);
     transform: scale(1.1);
     background: #eef5ff;
+}
+.print-color-option input:checked ~ .print-color-label {
+    color: var(--primary-color);
+    font-weight: 800;
 }
 
 /* Cart Drawer */
@@ -1484,6 +1512,23 @@ button, input, .variant-option, .color-option, .print-color-option, .close-btn, 
         padding: 8px 8px !important;
         font-size: 0.88rem !important;
         min-height: 42px !important;
+    }
+    .color-options {
+        gap: 8px;
+    }
+    .color-btn {
+        padding: 8px 14px;
+        font-size: 0.88rem;
+    }
+    .print-color-options {
+        gap: 12px;
+    }
+    .print-color-img {
+        width: 52px;
+        height: 52px;
+    }
+    .print-color-label {
+        font-size: 0.82rem;
     }
 }
 
